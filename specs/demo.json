@@ -1,0 +1,20 @@
+{
+  "title": "explainer-engine demo",
+  "resolution": "landscape",
+  "fps": 24,
+  "background": "grid+radialglow",
+  "brand": { "wordmark": "pangea8", "url": "pangea8.com", "accent_char": "8" },
+  "audio": {
+    "tempo_bpm": 120,
+    "sections": [
+      {"name": "intro", "start": 0},
+      {"name": "drive", "start": 5},
+      {"name": "climax", "start": 9, "pivot_to_major": true}
+    ]
+  },
+  "scenes": [
+    {"type": "hook", "duration": 5, "params": {"line1": "made entirely from code", "line2": "EXPLAINER ENGINE"}},
+    {"type": "big_counter", "duration": 5, "params": {"title": "FREE IELTS TESTS", "target": 100, "unit": "and growing"}},
+    {"type": "cta", "duration": 4, "params": {"tagline": "Master English & IELTS — free."}}
+  ]
+}

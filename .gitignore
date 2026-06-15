@@ -7,3 +7,5 @@ out/_*.mp4
 out/preview_*.png
 .DS_Store
 .env
+out/jobs/*.mp4
+out/jobs/*.png

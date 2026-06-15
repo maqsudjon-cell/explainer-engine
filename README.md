@@ -18,7 +18,41 @@ all author specs — no engine code changes needed for a new video.
 
 ---
 
-## Quick start
+## 🖥️ Desktop app (chatbot UI)
+
+Prefer not to touch the terminal? There's a **chatbot-style desktop app**: you
+describe an idea (or drop an image), it brainstorms a direction with you, and
+then renders a branded **video** or **poster** right there — with inline preview
+and a download button. It opens in a **native desktop window** (via pywebview);
+without pywebview it falls back to your browser.
+
+```bash
+pip install -r requirements.txt
+pip install anthropic pywebview        # chat brain + native window
+
+# macOS / Linux
+./run.sh
+# Windows
+run.bat
+```
+
+Then add your Anthropic API key in **Settings** (stored locally in the app
+only). Type an idea → pick **Render video** or **Poster only** → watch it build.
+
+> It generates branded motion-graphics in its own neon style (kinetic text,
+> counters, charts, spheres, network graphs) — not photoreal AI images.
+> A *poster* is a single branded still; a *video* is the full animated piece
+> with synthesized music.
+
+Run just the server (browser, no native window):
+
+```bash
+python app/server.py      # -> http://127.0.0.1:7867
+```
+
+---
+
+## Quick start (CLI)
 
 ```bash
 # 1. install
@@ -190,9 +224,14 @@ explainer-engine/
   ideate/
     generate.py   topic -> spec via Anthropic API
     director_prompt.md
-  specs/          example specs (universe.json, vocab.json)
+  app/
+    server.py     Flask backend (chat + render jobs + file serving)
+    desktop.py    pywebview launcher (native window)
+    ui/index.html chatbot frontend (neon, single file)
+  specs/          example specs (universe.json, vocab.json, demo.json)
   out/            frames/ + final videos
   cli.py          ideate / render / preview
+  run.sh / run.bat  desktop app launchers
   Makefile        chunked render driver
 ```
 

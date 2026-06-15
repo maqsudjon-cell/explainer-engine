@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>explainer-engine</title>
+<style>
+:root{
+  --bg:#060A09; --bg2:#0a1311; --panel:rgba(255,255,255,.035);
+  --line:rgba(56,222,158,.14); --line2:rgba(56,222,158,.30);
+  --mint:#34E0A1; --mint-br:#A8FFDD; --txt:#e7f2ee; --mut:#8fa9a0; --dim:#5d736b;
+  --user:#13282f; --grad:linear-gradient(120deg,#34E0A1,#22D3EE);
+  --sans:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);overflow:hidden;display:flex;flex-direction:column}
+.bgfx{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(60% 55% at 50% 0%,rgba(40,150,108,.10),transparent 70%),var(--bg)}
+.bgfx::before{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(rgba(56,222,158,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(56,222,158,.04) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:radial-gradient(75% 75% at 50% 30%,#000 30%,transparent 85%)}
+::selection{background:var(--mint);color:#04110d}
+button{font-family:inherit;cursor:pointer}
+
+/* header */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(6,10,9,.7);backdrop-filter:blur(10px);z-index:5}
+.brand{display:flex;align-items:center;gap:12px}
+.spark{width:34px;height:34px;flex:none}
+.spark .ray{stroke:var(--mint);stroke-width:13;stroke-linecap:round;
+  filter:drop-shadow(0 0 3px rgba(52,224,161,.7)) drop-shadow(0 0 8px rgba(52,224,161,.4));
+  transform-box:view-box;transform-origin:100px 100px;animation:tw 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*-.3s)}
+.spark .g{transform-box:view-box;transform-origin:100px 100px;animation:sp 8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes tw{0%,100%{transform:scale(.78)}50%{transform:scale(1)}}
+.brand h1{font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+.brand h1 b{color:var(--mint)}
+.brand .sub{font-family:var(--mono);font-size:.62rem;color:var(--dim);letter-spacing:.04em}
+.hbtn{display:inline-flex;align-items:center;gap:7px;color:var(--mut);background:var(--panel);
+  border:1px solid var(--line);border-radius:9px;padding:7px 12px;font-size:.8rem;transition:.2s}
+.hbtn:hover{border-color:var(--line2);color:var(--txt)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--dim);box-shadow:0 0 8px currentColor}
+.dot.on{background:var(--mint);color:var(--mint)}
+
+/* chat area */
+main{flex:1;overflow-y:auto;padding:26px 0 16px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;gap:18px}
+.msg{display:flex;gap:12px;animation:in .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.msg .av{width:30px;height:30px;border-radius:9px;flex:none;display:grid;place-items:center;font-size:.8rem}
+.msg.bot .av{background:linear-gradient(135deg,#0d2a22,#0a1f1a);border:1px solid var(--line2)}
+.msg.user .av{background:var(--user);border:1px solid rgba(255,255,255,.1)}
+.msg .body{flex:1;min-width:0}
+.msg .who{font-size:.72rem;color:var(--dim);margin-bottom:4px;font-family:var(--mono)}
+.bubble{font-size:.96rem;line-height:1.6;color:var(--txt);white-space:pre-wrap;word-wrap:break-word}
+.msg.user .bubble{color:#dfeee8}
+.bubble img.up{max-width:240px;border-radius:12px;border:1px solid var(--line);margin-bottom:8px;display:block}
+
+/* render card */
+.rcard{margin-top:12px;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--panel)}
+.rcard .rhead{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.rcard .rhead .ic{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#0d2a22,#0a1f1a);border:1px solid var(--line2);display:grid;place-items:center}
+.rcard .rtitle{font-weight:600;font-size:.92rem}
+.rcard .rmeta{font-family:var(--mono);font-size:.64rem;color:var(--dim)}
+.rcard .racts{display:flex;gap:9px;padding:12px 14px;flex-wrap:wrap}
+.gen{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:9px;padding:9px 15px;font-size:.85rem;font-weight:600}
+.gen.vid{background:var(--grad);color:#04110d}
+.gen.img{background:var(--panel);border:1px solid var(--line2);color:var(--mint)}
+.gen:disabled{opacity:.5;cursor:not-allowed}
+.gen svg{width:15px;height:15px}
+.rcard pre.spec{margin:0 14px 12px;padding:10px;background:#04100c;border:1px solid var(--line);border-radius:8px;
+  font-family:var(--mono);font-size:.66rem;color:var(--mut);max-height:120px;overflow:auto;white-space:pre}
+
+/* progress + result */
+.prog{padding:14px}
+.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar > i{display:block;height:100%;width:0;background:var(--grad);transition:width .3s;box-shadow:0 0 12px rgba(52,224,161,.6)}
+.pstat{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;color:var(--dim);margin-top:7px}
+.result{padding:12px 14px}
+.result video,.result img{width:100%;border-radius:12px;border:1px solid var(--line2);display:block;background:#000}
+.result .dl{margin-top:10px;display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--mint);
+  border:1px solid var(--line2);border-radius:8px;padding:7px 13px;text-decoration:none}
+
+/* typing */
+.typing{display:flex;gap:5px;padding:6px 0}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--mint);opacity:.5;animation:bln 1.2s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes bln{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+
+/* composer */
+.composer{border-top:1px solid var(--line);background:rgba(6,10,9,.8);backdrop-filter:blur(10px);padding:14px 0}
+.cwrap{max-width:760px;margin:0 auto;padding:0 20px}
+.cbox{display:flex;align-items:flex-end;gap:10px;border:1px solid var(--line2);border-radius:16px;
+  background:var(--panel);padding:8px 8px 8px 14px;transition:border-color .2s}
+.cbox:focus-within{border-color:var(--mint)}
+.cbox textarea{flex:1;background:transparent;border:none;outline:none;color:var(--txt);font-family:inherit;
+  font-size:.96rem;line-height:1.5;resize:none;max-height:160px;padding:7px 0}
+.cbox textarea::placeholder{color:var(--dim)}
+.iconbtn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:transparent;
+  color:var(--mut);display:grid;place-items:center;flex:none;transition:.2s}
+.iconbtn:hover{border-color:var(--line2);color:var(--txt)}
+.send{background:var(--grad);border:none;color:#04110d}
+.send:disabled{opacity:.4;cursor:not-allowed}
+.iconbtn svg{width:17px;height:17px}
+.chip{display:inline-flex;align-items:center;gap:7px;margin-bottom:8px;font-size:.78rem;color:var(--mut);
+  background:#0c1916;border:1px solid var(--line);border-radius:8px;padding:5px 10px}
+.chip button{background:none;border:none;color:var(--dim);font-size:1rem;line-height:1;padding:0 0 0 4px}
+.hint{font-family:var(--mono);font-size:.62rem;color:var(--dim);text-align:center;margin-top:9px}
+
+/* suggestions (empty state) */
+.empty{text-align:center;padding:40px 20px 24px}
+.empty .big{width:64px;height:64px;margin:0 auto 16px}
+.empty h2{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.empty h2 b{color:var(--mint)}
+.empty p{color:var(--mut);max-width:46ch;margin:0 auto 22px;font-size:.95rem}
+.sugs{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:0 auto}
+@media(max-width:560px){.sugs{grid-template-columns:1fr}}
+.sug{text-align:left;border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel);transition:.2s}
+.sug:hover{border-color:var(--line2);transform:translateY(-2px)}
+.sug b{display:block;color:var(--txt);font-size:.88rem;font-weight:600;margin-bottom:3px}
+.sug span{color:var(--dim);font-size:.78rem}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+  background:rgba(4,8,7,.7);backdrop-filter:blur(5px);padding:18px}
+.modal.open{display:flex}
+.mbox{width:100%;max-width:440px;border:1px solid var(--line2);border-radius:16px;background:#0a1311;
+  box-shadow:0 30px 80px -20px #000;padding:22px;animation:in .25s}
+.mbox h3{font-size:1.05rem;margin-bottom:6px}
+.mbox p{color:var(--mut);font-size:.85rem;margin-bottom:16px;line-height:1.5}
+.mbox label{display:block;font-size:.76rem;color:var(--mut);margin-bottom:6px;font-family:var(--mono)}
+.mbox input{width:100%;background:#04100c;border:1px solid var(--line2);border-radius:10px;color:var(--txt);
+  font-family:var(--mono);font-size:.85rem;padding:11px 13px;outline:none}
+.mbox input:focus{border-color:var(--mint)}
+.mrow{display:flex;gap:10px;margin-top:18px;justify-content:flex-end}
+.mrow button{border-radius:9px;padding:9px 16px;font-size:.85rem;font-weight:600}
+.mrow .save{background:var(--grad);border:none;color:#04110d}
+.mrow .cancel{background:transparent;border:1px solid var(--line);color:var(--mut)}
+.mbox .mlink{font-size:.76rem;color:var(--mint);text-decoration:none}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(12px);background:#0a1311;
+  border:1px solid var(--line2);color:var(--txt);padding:10px 16px;border-radius:11px;font-size:.85rem;z-index:60;
+  opacity:0;pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="bgfx"></div>
+
+<header>
+  <div class="brand">
+    <svg class="spark" viewBox="0 0 200 200"><g class="g">
+      <line class="ray" style="--i:0" x1="130" y1="100" x2="178" y2="100"/>
+      <line class="ray" style="--i:1" x1="121.2" y1="121.2" x2="155.2" y2="155.2"/>
+      <line class="ray" style="--i:2" x1="100" y1="130" x2="100" y2="178"/>
+      <line class="ray" style="--i:3" x1="78.8" y1="121.2" x2="44.8" y2="155.2"/>
+      <line class="ray" style="--i:4" x1="70" y1="100" x2="22" y2="100"/>
+      <line class="ray" style="--i:5" x1="78.8" y1="78.8" x2="44.8" y2="44.8"/>
+      <line class="ray" style="--i:6" x1="100" y1="70" x2="100" y2="22"/>
+      <line class="ray" style="--i:7" x1="121.2" y1="78.8" x2="155.2" y2="44.8"/>
+    </g></svg>
+    <div>
+      <h1>explainer<b>engine</b></h1>
+      <div class="sub">BRANDED VIDEO & POSTER STUDIO</div>
+    </div>
+  </div>
+  <button class="hbtn" id="setBtn"><span class="dot" id="keyDot"></span> Settings</button>
+</header>
+
+<main id="main">
+  <div class="wrap" id="chat">
+    <div class="empty" id="empty">
+      <svg class="big" viewBox="0 0 200 200"><g>
+        <line class="ray" style="--i:0" x1="130" y1="100" x2="178" y2="100" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line class="ray" style="--i:1" x1="121.2" y1="121.2" x2="155.2" y2="155.2" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:2" x1="100" y1="130" x2="100" y2="178" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:3" x1="78.8" y1="121.2" x2="44.8" y2="155.2" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:4" x1="70" y1="100" x2="22" y2="100" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:5" x1="78.8" y1="78.8" x2="44.8" y2="44.8" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:6" x1="100" y1="70" x2="100" y2="22" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+        <line style="--i:7" x1="121.2" y1="78.8" x2="155.2" y2="44.8" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
+      </g></svg>
+      <h2>What should we <b>explain</b> today?</h2>
+      <p>Describe an idea or drop an image. I'll suggest a direction, then render a branded video or poster — neon, kinetic, with its own soundtrack.</p>
+      <div class="sugs">
+        <button class="sug" data-s="Make a 60-second explainer: how big is the universe?"><b>How big is the universe?</b><span>cosmic scale, counters, starfield</span></button>
+        <button class="sug" data-s="Create an IELTS vocabulary upgrade video — weak words to band-8 words."><b>IELTS vocab upgrade</b><span>kinetic word swaps</span></button>
+        <button class="sug" data-s="Make a poster announcing 100+ free IELTS tests on pangea8."><b>pangea8 launch poster</b><span>single branded still</span></button>
+        <button class="sug" data-s="Explain why sleep matters in under 3 minutes, with stats."><b>Why sleep matters</b><span>stats, charts, arc</span></button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="composer">
+  <div class="cwrap">
+    <div id="imgChip"></div>
+    <div class="cbox">
+      <textarea id="ta" rows="1" placeholder="Describe your idea, or paste an image…"></textarea>
+      <input type="file" id="file" accept="image/*" hidden>
+      <button class="iconbtn" id="attach" title="Attach image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 11.05 12.25 20.2a5 5 0 0 1-7.07-7.07l9.19-9.19a3 3 0 0 1 4.24 4.24l-8.49 8.49a1 1 0 0 1-1.41-1.41l7.78-7.78"/></svg>
+      </button>
+      <button class="iconbtn send" id="send" title="Send" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+    <div class="hint">Renders run locally on your machine · video ≈ a minute or two · poster ≈ seconds</div>
+  </div>
+</div>
+
+<!-- settings modal -->
+<div class="modal" id="modal">
+  <div class="mbox">
+    <h3>Anthropic API key</h3>
+    <p>The chat / idea brain uses Claude. Your key is stored locally in this browser only and sent straight to Anthropic. <a class="mlink" href="https://console.anthropic.com/settings/keys" target="_blank">Get a key →</a></p>
+    <label>API KEY</label>
+    <input type="password" id="keyInput" placeholder="sk-ant-...">
+    <div class="mrow">
+      <button class="cancel" id="setCancel">Cancel</button>
+      <button class="save" id="setSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const chat = $('#chat'), main = $('#main'), ta = $('#ta'), sendBtn = $('#send');
+let messages = [];          // {role, content}
+let pendingImage = null;    // {dataUrl, mime}
+let busy = false;
+
+function getKey(){ return localStorage.getItem('anthropic_key') || ''; }
+function setKeyDot(){ $('#keyDot').classList.toggle('on', !!getKey()); }
+setKeyDot();
+
+function toast(t){ const e=$('#toast'); e.textContent=t; e.classList.add('show'); setTimeout(()=>e.classList.remove('show'),2600); }
+
+// ---- textarea autosize + enable send ----
+ta.addEventListener('input', ()=>{
+  ta.style.height='auto'; ta.style.height=Math.min(ta.scrollHeight,160)+'px';
+  sendBtn.disabled = !ta.value.trim() && !pendingImage;
+});
+ta.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); doSend(); }
+});
+
+// ---- suggestions ----
+document.querySelectorAll('.sug').forEach(b=>b.addEventListener('click',()=>{
+  ta.value=b.dataset.s; ta.dispatchEvent(new Event('input')); ta.focus();
+}));
+
+// ---- image attach + paste ----
+$('#attach').addEventListener('click', ()=>$('#file').click());
+$('#file').addEventListener('change', e=>{ if(e.target.files[0]) loadImage(e.target.files[0]); });
+document.addEventListener('paste', e=>{
+  const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith('image/'));
+  if(it) loadImage(it.getAsFile());
+});
+function loadImage(file){
+  const r=new FileReader();
+  r.onload=()=>{ pendingImage={dataUrl:r.result, mime:file.type||'image/png'}; renderChip(); sendBtn.disabled=false; };
+  r.readAsDataURL(file);
+}
+function renderChip(){
+  $('#imgChip').innerHTML = pendingImage
+    ? `<div class="chip">🖼 image attached <button onclick="clearImg()">×</button></div>` : '';
+}
+window.clearImg=()=>{ pendingImage=null; renderChip(); sendBtn.disabled=!ta.value.trim(); };
+
+// ---- settings ----
+$('#setBtn').addEventListener('click',()=>{ $('#keyInput').value=getKey(); $('#modal').classList.add('open'); });
+$('#setCancel').addEventListener('click',()=>$('#modal').classList.remove('open'));
+$('#setSave').addEventListener('click',()=>{
+  const v=$('#keyInput').value.trim();
+  if(v) localStorage.setItem('anthropic_key',v); else localStorage.removeItem('anthropic_key');
+  setKeyDot(); $('#modal').classList.remove('open'); toast('Settings saved');
+});
+$('#modal').addEventListener('click',e=>{ if(e.target===$('#modal')) $('#modal').classList.remove('open'); });
+
+// ---- message rendering ----
+function esc(s){ return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function addMsg(role, html){
+  $('#empty')?.remove();
+  const el=document.createElement('div');
+  el.className='msg '+role;
+  const avatar = role==='bot' ? sparkMini() : '🧑';
+  el.innerHTML=`<div class="av">${avatar}</div><div class="body"><div class="who">${role==='bot'?'engine':'you'}</div><div class="bubble">${html}</div></div>`;
+  chat.appendChild(el); scrollDown();
+  return el.querySelector('.bubble');
+}
+function sparkMini(){ return '<svg viewBox="0 0 200 200" style="width:16px;height:16px"><g>'+
+  [[130,100,178,100],[121,121,155,155],[100,130,100,178],[79,121,45,155],[70,100,22,100],[79,79,45,45],[100,70,100,22],[121,79,155,45]]
+  .map(c=>`<line x1="${c[0]}" y1="${c[1]}" x2="${c[2]}" y2="${c[3]}" stroke="#34E0A1" stroke-width="15" stroke-linecap="round"/>`).join('')+'</g></svg>'; }
+function scrollDown(){ main.scrollTop=main.scrollbar?0:main.scrollHeight; main.scrollTo({top:main.scrollHeight,behavior:'smooth'}); }
+
+function showTyping(){
+  const el=document.createElement('div'); el.className='msg bot'; el.id='typing';
+  el.innerHTML=`<div class="av">${sparkMini()}</div><div class="body"><div class="who">engine</div><div class="typing"><i></i><i></i><i></i></div></div>`;
+  chat.appendChild(el); scrollDown();
+}
+function hideTyping(){ $('#typing')?.remove(); }
+
+// ---- send / chat ----
+sendBtn.addEventListener('click', doSend);
+async function doSend(){
+  const text=ta.value.trim();
+  if((!text && !pendingImage) || busy) return;
+  if(!getKey()){ $('#modal').classList.add('open'); toast('Add your API key first'); return; }
+  busy=true; sendBtn.disabled=true;
+
+  let userHtml = (pendingImage?`<img class="up" src="${pendingImage.dataUrl}">`:'') + esc(text);
+  addMsg('user', userHtml);
+  messages.push({role:'user', content:text || 'Here is an image to work from.'});
+  const imgPayload = pendingImage;
+  ta.value=''; ta.style.height='auto'; clearImg();
+
+  showTyping();
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages, api_key:getKey(), image:imgPayload?.dataUrl, image_mime:imgPayload?.mime})});
+    const data=await res.json();
+    hideTyping();
+    if(data.error){ addMsg('bot', esc(data.message||'Something went wrong.')); }
+    else{
+      messages.push({role:'assistant', content:data.reply || '(concept ready)'});
+      const b=addMsg('bot', esc(data.reply||''));
+      if(data.spec) attachRenderCard(b.closest('.body'), data.spec);
+    }
+  }catch(e){ hideTyping(); addMsg('bot','Could not reach the local server.'); }
+  busy=false; sendBtn.disabled=!ta.value.trim();
+}
+
+// ---- render card ----
+function attachRenderCard(bodyEl, spec){
+  const isPoster = !!spec.poster;
+  const dur = (spec.scenes||[]).reduce((a,s)=>a+(s.duration||0),0);
+  const card=document.createElement('div');
+  card.className='rcard';
+  card.innerHTML=`
+    <div class="rhead">
+      <div class="ic">${sparkMini()}</div>
+      <div style="flex:1;min-width:0">
+        <div class="rtitle">${esc(spec.title||'Untitled')}</div>
+        <div class="rmeta">${(spec.scenes||[]).length} scene(s) · ${isPoster?'poster':dur+'s'} · ${esc(spec.resolution||'landscape')}</div>
+      </div>
+    </div>
+    <pre class="spec">${esc(JSON.stringify(spec,null,1))}</pre>
+    <div class="racts">
+      <button class="gen vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>${isPoster?'Render poster':'Render video'}</button>
+      ${isPoster?'':'<button class="gen img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Poster only</button>'}
+    </div>`;
+  bodyEl.appendChild(card);
+  const vidBtn=card.querySelector('.gen.vid'), imgBtn=card.querySelector('.gen.img');
+  vidBtn.addEventListener('click', ()=>startRender(card, spec, isPoster?'poster':'video'));
+  imgBtn?.addEventListener('click', ()=>startRender(card, spec, 'poster'));
+  scrollDown();
+}
+
+async function startRender(card, spec, mode){
+  card.querySelectorAll('.gen').forEach(b=>b.disabled=true);
+  const prog=document.createElement('div');
+  prog.className='prog';
+  prog.innerHTML=`<div class="bar"><i></i></div><div class="pstat"><span class="ps-stage">starting…</span><span class="ps-pct">0%</span></div>`;
+  card.appendChild(prog);
+  const bar=prog.querySelector('.bar > i'), psStage=prog.querySelector('.ps-stage'), psPct=prog.querySelector('.ps-pct');
+  scrollDown();
+  try{
+    const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spec,mode})});
+    const {job_id}=await r.json();
+    const stages={frames:'rendering frames',audio:'composing music',encoding:'encoding video'};
+    const poll=setInterval(async ()=>{
+      const j=await (await fetch('/api/job/'+job_id)).json();
+      const pct=Math.round((j.progress||0)*100);
+      bar.style.width=pct+'%'; psPct.textContent=pct+'%';
+      psStage.textContent = j.stage ? (stages[j.stage]||j.stage) : (mode==='poster'?'rendering':'rendering frames');
+      if(j.status==='done'){ clearInterval(poll); prog.remove(); showResult(card, j); }
+      else if(j.status==='error'){ clearInterval(poll); psStage.textContent='error: '+(j.error||'failed'); }
+    }, 700);
+  }catch(e){ psStage.textContent='could not start render'; }
+}
+
+function showResult(card, j){
+  const res=document.createElement('div'); res.className='result';
+  const url='/files/'+j.file;
+  if(j.kind==='video'){
+    res.innerHTML=`<video src="${url}" controls autoplay loop muted playsinline></video><a class="dl" href="${url}" download>↓ Download MP4</a>`;
+  }else{
+    res.innerHTML=`<img src="${url}"><a class="dl" href="${url}" download>↓ Download PNG</a>`;
+  }
+  card.appendChild(res); scrollDown();
+  toast(j.kind==='video'?'Video ready':'Poster ready');
+}
+
+// health check
+fetch('/api/health').then(r=>r.json()).then(d=>{ if(d.has_key && !getKey()){} }).catch(()=>{});
+</script>
+</body>
+</html>

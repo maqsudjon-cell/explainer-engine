@@ -1,4 +1,11 @@
+# core (rendering)
 pillow>=10.0
 numpy>=1.24
-# optional: imageio-ffmpeg  (fallback if system ffmpeg is unavailable)
-# optional: anthropic        (only needed for `cli.py ideate`)
+
+# desktop app (chatbot UI + local server)
+flask>=3.0
+# anthropic   # chat / idea brain  -> pip install anthropic
+# pywebview   # native desktop window -> pip install pywebview
+#             # (without it, the app opens in your browser instead)
+
+# ffmpeg: use system ffmpeg, or `pip install imageio-ffmpeg` as a fallback
