@@ -261,6 +261,43 @@ def job_status(job_id):
     return jsonify(job)
 
 
+@app.route("/api/specs")
+def list_specs():
+    """List the bundled example specs (no API key needed)."""
+    specs_dir = os.path.join(ROOT, "specs")
+    out = []
+    for fn in sorted(os.listdir(specs_dir)):
+        if not fn.endswith(".json"):
+            continue
+        try:
+            with open(os.path.join(specs_dir, fn)) as f:
+                d = json.load(f)
+            dur = sum(s.get("duration", 0) for s in d.get("scenes", []))
+            out.append({
+                "file": fn,
+                "title": d.get("title", fn),
+                "scenes": len(d.get("scenes", [])),
+                "duration": dur,
+                "poster": bool(d.get("poster")),
+                "spec": d,
+            })
+        except Exception:
+            continue
+    return jsonify(specs=out)
+
+
+@app.route("/api/validate", methods=["POST"])
+def validate_spec():
+    """Validate a hand-written spec (no API key needed)."""
+    data = request.get_json(force=True)
+    try:
+        spec = spec_mod.from_dict(data.get("spec", {}))
+        spec.validate()
+        return jsonify(ok=True)
+    except Exception as e:
+        return jsonify(ok=False, error=str(e)), 400
+
+
 @app.route("/files/<name>")
 def files(name):
     return send_from_directory(JOBS_DIR, name)

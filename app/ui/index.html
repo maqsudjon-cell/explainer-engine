@@ -166,7 +166,10 @@ main{flex:1;overflow-y:auto;padding:26px 0 16px}
       <div class="sub">BRANDED VIDEO & POSTER STUDIO</div>
     </div>
   </div>
-  <button class="hbtn" id="setBtn"><span class="dot" id="keyDot"></span> Settings</button>
+  <div style="display:flex;gap:9px;align-items:center">
+    <button class="hbtn" id="tmplBtn" title="Render an example without an API key">▦ Templates</button>
+    <button class="hbtn" id="setBtn"><span class="dot" id="keyDot"></span> Settings</button>
+  </div>
 </header>
 
 <main id="main">
@@ -183,7 +186,7 @@ main{flex:1;overflow-y:auto;padding:26px 0 16px}
         <line style="--i:7" x1="121.2" y1="78.8" x2="155.2" y2="44.8" stroke="#34E0A1" stroke-width="13" stroke-linecap="round"/>
       </g></svg>
       <h2>What should we <b>explain</b> today?</h2>
-      <p>Describe an idea or drop an image. I'll suggest a direction, then render a branded video or poster — neon, kinetic, with its own soundtrack.</p>
+      <p>Describe an idea or drop an image. I'll suggest a direction, then render a branded video or poster — neon, kinetic, with its own soundtrack. <br><span style="color:var(--dim);font-size:.85rem">No API key? Hit <b style="color:var(--mint)">▦ Templates</b> to render an example right away.</span></p>
       <div class="sugs">
         <button class="sug" data-s="Make a 60-second explainer: how big is the universe?"><b>How big is the universe?</b><span>cosmic scale, counters, starfield</span></button>
         <button class="sug" data-s="Create an IELTS vocabulary upgrade video — weak words to band-8 words."><b>IELTS vocab upgrade</b><span>kinetic word swaps</span></button>
@@ -208,6 +211,22 @@ main{flex:1;overflow-y:auto;padding:26px 0 16px}
       </button>
     </div>
     <div class="hint">Renders run locally on your machine · video ≈ a minute or two · poster ≈ seconds</div>
+  </div>
+</div>
+
+<!-- templates modal -->
+<div class="modal" id="tmplModal">
+  <div class="mbox" style="max-width:560px">
+    <h3>Templates &amp; custom specs</h3>
+    <p>Render a ready-made example — <b>no API key needed</b>. Or paste your own spec JSON.</p>
+    <div id="tmplList" style="display:flex;flex-direction:column;gap:9px;margin-bottom:16px"></div>
+    <label>OR PASTE A SPEC (JSON)</label>
+    <textarea id="specInput" spellcheck="false" placeholder='{ "title": "...", "scenes": [ ... ] }'
+      style="width:100%;height:120px;background:#04100c;border:1px solid var(--line2);border-radius:10px;color:var(--txt);font-family:var(--mono);font-size:.74rem;padding:11px 13px;outline:none;resize:vertical"></textarea>
+    <div class="mrow">
+      <button class="cancel" id="tmplCancel">Close</button>
+      <button class="save" id="tmplRender">Render pasted spec</button>
+    </div>
   </div>
 </div>
 
@@ -281,6 +300,46 @@ $('#setSave').addEventListener('click',()=>{
   setKeyDot(); $('#modal').classList.remove('open'); toast('Settings saved');
 });
 $('#modal').addEventListener('click',e=>{ if(e.target===$('#modal')) $('#modal').classList.remove('open'); });
+
+// ---- templates (no API key) ----
+$('#tmplBtn').addEventListener('click', openTemplates);
+$('#tmplCancel').addEventListener('click', ()=>$('#tmplModal').classList.remove('open'));
+$('#tmplModal').addEventListener('click', e=>{ if(e.target===$('#tmplModal')) $('#tmplModal').classList.remove('open'); });
+async function openTemplates(){
+  $('#tmplModal').classList.add('open');
+  const list=$('#tmplList');
+  list.innerHTML='<div style="color:var(--dim);font-size:.8rem">loading…</div>';
+  try{
+    const {specs}=await (await fetch('/api/specs')).json();
+    list.innerHTML='';
+    specs.forEach(s=>{
+      const row=document.createElement('button');
+      row.className='sug'; row.style.width='100%';
+      row.innerHTML=`<b>${esc(s.title)} <span style="color:var(--dim);font-weight:400;font-family:var(--mono);font-size:.7rem">${s.poster?'poster':s.duration+'s'} · ${s.scenes} scene(s)</span></b><span>${esc(s.file)} — click to render</span>`;
+      row.addEventListener('click', ()=>{
+        $('#tmplModal').classList.remove('open');
+        const b=addMsg('bot', `Rendering template <b>${esc(s.title)}</b>…`);
+        attachRenderCard(b.closest('.body'), s.spec);
+        // auto-start the render
+        const card=b.closest('.body').querySelector('.rcard');
+        startRender(card, s.spec, s.poster?'poster':'video');
+        card.querySelectorAll('.gen').forEach(x=>x.disabled=true);
+      });
+      list.appendChild(row);
+    });
+  }catch(e){ list.innerHTML='<div style="color:#e5a">could not load templates</div>'; }
+}
+$('#tmplRender').addEventListener('click', ()=>{
+  let spec;
+  try{ spec=JSON.parse($('#specInput').value); }
+  catch(e){ toast('Invalid JSON: '+e.message); return; }
+  $('#tmplModal').classList.remove('open');
+  const b=addMsg('bot', `Rendering your spec <b>${esc(spec.title||'untitled')}</b>…`);
+  attachRenderCard(b.closest('.body'), spec);
+  const card=b.closest('.body').querySelector('.rcard');
+  startRender(card, spec, spec.poster?'poster':'video');
+  card.querySelectorAll('.gen').forEach(x=>x.disabled=true);
+});
 
 // ---- message rendering ----
 function esc(s){ return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
