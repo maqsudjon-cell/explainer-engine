@@ -1,0 +1,29 @@
+{
+  "title": "How big is the universe?",
+  "resolution": "landscape",
+  "fps": 24,
+  "background": "starfield+radialglow",
+  "brand": { "wordmark": "pangea8", "url": "pangea8.com", "accent_char": "8" },
+  "audio": {
+    "tempo_bpm": 120,
+    "sections": [
+      {"name": "intro", "start": 0},
+      {"name": "build", "start": 8},
+      {"name": "drive", "start": 34},
+      {"name": "climax", "start": 84, "pivot_to_major": true},
+      {"name": "uplift", "start": 122},
+      {"name": "finale", "start": 150}
+    ]
+  },
+  "scenes": [
+    {"type": "hook", "duration": 8, "params": {"line1": "How big is", "line2": "THE UNIVERSE?"}},
+    {"type": "glowing_sphere", "duration": 13, "params": {"label": "EARTH", "color": [70, 130, 180], "continents": true, "scale": 0.20, "counter": [12742, "km across"]}},
+    {"type": "glowing_sphere", "duration": 13, "params": {"label": "THE SUN", "color": [255, 170, 60], "scale": 0.27, "counter": [1391000, "km across"]}},
+    {"type": "big_counter", "duration": 17, "params": {"title": "STARS IN OUR GALAXY", "target": 100000000000, "unit": "and counting"}},
+    {"type": "section_card", "duration": 8, "params": {"number": "13.8B", "label": "years of light"}},
+    {"type": "big_counter", "duration": 18, "params": {"title": "GALAXIES WE CAN SEE", "target": 2000000000000, "unit": "each with billions of stars"}},
+    {"type": "network_graph", "duration": 18, "params": {"title": "NOW IMAGINE", "caption": "every point of light, a world", "nodes": 30}},
+    {"type": "line_chart", "duration": 14, "params": {"title": "AND IT KEEPS EXPANDING", "values": [10, 14, 22, 38, 70, 140, 280, 560]}},
+    {"type": "cta", "duration": 17, "params": {"tagline": "Curious minds learn languages too. Master English & IELTS — free."}}
+  ]
+}

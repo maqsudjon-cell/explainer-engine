@@ -1,0 +1,25 @@
+{
+  "title": "Upgrade your IELTS vocabulary",
+  "resolution": "landscape",
+  "fps": 24,
+  "background": "grid+radialglow",
+  "brand": { "wordmark": "pangea8", "url": "pangea8.com", "accent_char": "8" },
+  "audio": {
+    "tempo_bpm": 120,
+    "sections": [
+      {"name": "intro", "start": 0},
+      {"name": "build", "start": 6},
+      {"name": "drive", "start": 14},
+      {"name": "climax", "start": 30, "pivot_to_major": true},
+      {"name": "finale", "start": 40}
+    ]
+  },
+  "scenes": [
+    {"type": "hook", "duration": 6, "params": {"line1": "Band 6 to Band 8", "line2": "ONE WORD AT A TIME"}},
+    {"type": "word_upgrade", "duration": 8, "params": {"weak": "good", "strong": "remarkable", "example": "The results were remarkable.", "label": "Adjectives", "counter": [1, 12]}},
+    {"type": "word_upgrade", "duration": 8, "params": {"weak": "very big", "strong": "immense", "example": "An immense amount of data.", "label": "Adjectives", "counter": [2, 12]}},
+    {"type": "word_upgrade", "duration": 8, "params": {"weak": "important", "strong": "pivotal", "example": "A pivotal role in the economy.", "label": "Adjectives", "counter": [3, 12]}},
+    {"type": "bullet_list", "duration": 10, "params": {"title": "WHY IT WORKS", "items": [["Precision", "examiners reward exact word choice"], ["Range", "lexical resource is 25% of your score"], ["Confidence", "stronger words, stronger answers"]]}},
+    {"type": "cta", "duration": 12, "params": {"tagline": "100+ free IELTS practice tests. Master English & IELTS — free."}}
+  ]
+}
