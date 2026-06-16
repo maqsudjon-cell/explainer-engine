@@ -155,10 +155,20 @@ def chat():
     return jsonify(reply=visible, spec=spec)
 
 
-def _run_job(job_id, spec_dict, mode):
+def _run_job(job_id, spec_dict, mode, fast=False, quality="full"):
     job = JOBS[job_id]
     try:
+        # fast glow path
+        try:
+            from engine import core as _core
+            _core.FAST = bool(fast)
+        except Exception:
+            pass
         spec = spec_mod.from_dict(spec_dict)
+        # quality scaling: trade resolution/fps for speed
+        if quality == "draft":
+            spec.resolution = "square" if spec.resolution == "square" else "landscape"
+            spec.fps = min(spec.fps, 18)
         spec.validate()
         W, H = spec.dims()
         fps = spec.fps
@@ -195,10 +205,9 @@ def _run_job(job_id, spec_dict, mode):
             job["kind"] = "image"
             return
 
-        # video: render frames in small chunks for progress, then assemble
+        # video: render frames (parallel, all cores) then assemble
         total = int(round(spec.total_duration() * fps))
         job["total"] = total
-        CH = 60
         done = 0
         # clear previous frames
         frames_dir = render_mod.FRAMES_DIR
@@ -206,14 +215,30 @@ def _run_job(job_id, spec_dict, mode):
         for f in os.listdir(frames_dir):
             if f.endswith(".png"):
                 os.remove(os.path.join(frames_dir, f))
-        while done < total:
-            end = min(done + CH, total)
-            render_mod.render_frames(spec, done, end, bg=bg, progress=False)
-            done = end
-            job["progress"] = 0.82 * (done / total)
-            if job.get("cancel"):
-                job["status"] = "cancelled"
-                return
+        # parallel render in chunks so we can report progress
+        try:
+            from engine import render_fast
+            import multiprocessing as mp
+            workers = max(1, (os.cpu_count() or 1))
+            CH = max(40, total // (workers * 3) or 40)
+            while done < total:
+                end = min(done + CH, total)
+                render_fast.render_frames_parallel(spec, done, end,
+                                                   workers=workers, progress=False)
+                done = end
+                job["progress"] = 0.82 * (done / total)
+                job["workers"] = workers
+                if job.get("cancel"):
+                    job["status"] = "cancelled"
+                    return
+        except Exception:
+            # fallback to single-process if pool fails
+            CH = 60
+            while done < total:
+                end = min(done + CH, total)
+                render_mod.render_frames(spec, done, end, bg=bg, progress=False)
+                done = end
+                job["progress"] = 0.82 * (done / total)
         # audio + assemble
         job["progress"] = 0.85
         job["stage"] = "audio"
@@ -248,7 +273,10 @@ def render():
     job_id = uuid.uuid4().hex[:12]
     JOBS[job_id] = {"status": "running", "progress": 0.0, "stage": "frames",
                     "kind": "video" if mode == "video" else "image"}
-    t = threading.Thread(target=_run_job, args=(job_id, spec_dict, mode), daemon=True)
+    fast = bool(data.get("fast", True))      # default fast ON
+    quality = data.get("quality", "full")     # 'full' | 'draft'
+    t = threading.Thread(target=_run_job,
+                         args=(job_id, spec_dict, mode, fast, quality), daemon=True)
     t.start()
     return jsonify(job_id=job_id)
 

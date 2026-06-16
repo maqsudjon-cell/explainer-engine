@@ -412,16 +412,20 @@ function attachRenderCard(bodyEl, spec){
     <div class="racts">
       <button class="gen vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>${isPoster?'Render poster':'Render video'}</button>
       ${isPoster?'':'<button class="gen img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Poster only</button>'}
+      ${isPoster?'':'<select class="qsel" style="margin-left:auto;background:#04100c;border:1px solid var(--line2);color:var(--mut);border-radius:8px;padding:7px 9px;font-family:var(--mono);font-size:.7rem"><option value="full">Full quality</option><option value="draft">Draft · fastest</option></select>'}
     </div>`;
   bodyEl.appendChild(card);
   const vidBtn=card.querySelector('.gen.vid'), imgBtn=card.querySelector('.gen.img');
-  vidBtn.addEventListener('click', ()=>startRender(card, spec, isPoster?'poster':'video'));
-  imgBtn?.addEventListener('click', ()=>startRender(card, spec, 'poster'));
+  const qsel=card.querySelector('.qsel');
+  vidBtn.addEventListener('click', ()=>startRender(card, spec, isPoster?'poster':'video', qsel?qsel.value:'full'));
+  imgBtn?.addEventListener('click', ()=>startRender(card, spec, 'poster', 'full'));
   scrollDown();
 }
 
-async function startRender(card, spec, mode){
+async function startRender(card, spec, mode, quality){
+  quality = quality || 'full';
   card.querySelectorAll('.gen').forEach(b=>b.disabled=true);
+  const qs=card.querySelector('.qsel'); if(qs) qs.disabled=true;
   const prog=document.createElement('div');
   prog.className='prog';
   prog.innerHTML=`<div class="bar"><i></i></div><div class="pstat"><span class="ps-stage">starting…</span><span class="ps-pct">0%</span></div>`;
@@ -429,14 +433,16 @@ async function startRender(card, spec, mode){
   const bar=prog.querySelector('.bar > i'), psStage=prog.querySelector('.ps-stage'), psPct=prog.querySelector('.ps-pct');
   scrollDown();
   try{
-    const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spec,mode})});
+    const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spec,mode,quality,fast:true})});
     const {job_id}=await r.json();
     const stages={frames:'rendering frames',audio:'composing music',encoding:'encoding video'};
     const poll=setInterval(async ()=>{
       const j=await (await fetch('/api/job/'+job_id)).json();
       const pct=Math.round((j.progress||0)*100);
       bar.style.width=pct+'%'; psPct.textContent=pct+'%';
-      psStage.textContent = j.stage ? (stages[j.stage]||j.stage) : (mode==='poster'?'rendering':'rendering frames');
+      let stg = j.stage ? (stages[j.stage]||j.stage) : (mode==='poster'?'rendering':'rendering frames');
+      if(j.workers && j.stage==='frames') stg += ` · ${j.workers} cores`;
+      psStage.textContent = stg;
       if(j.status==='done'){ clearInterval(poll); prog.remove(); showResult(card, j); }
       else if(j.status==='error'){ clearInterval(poll); psStage.textContent='error: '+(j.error||'failed'); }
     }, 700);

@@ -64,6 +64,9 @@ def pf(size):
 # ----------------------------------------------------------------------------
 GS = 3  # downsample factor
 
+# When FAST is on, use a cheaper 2-pass glow (still looks good, ~40% faster finish).
+FAST = False
+
 def finish(frame, glow, txt, W, H):
     """Composite the three layers into a final RGB frame.
 
@@ -71,9 +74,11 @@ def finish(frame, glow, txt, W, H):
     glow  : RGB  — bright shapes to bloom (black = no glow)
     txt   : RGBA — text, composited last so edges stay crisp
     """
-    small = glow.resize((W // GS, H // GS), Image.BILINEAR)
-    acc = Image.new("RGB", (W // GS, H // GS), (0, 0, 0))
-    for radius, gain in [(4, 0.9), (11, 0.58), (24, 0.45)]:
+    gs = GS + 1 if FAST else GS
+    small = glow.resize((W // gs, H // gs), Image.BILINEAR)
+    acc = Image.new("RGB", (W // gs, H // gs), (0, 0, 0))
+    passes = [(6, 0.85), (18, 0.5)] if FAST else [(4, 0.9), (11, 0.58), (24, 0.45)]
+    for radius, gain in passes:
         b = small.filter(ImageFilter.GaussianBlur(radius)).point(
             lambda v: int(min(255, v * gain))
         )
