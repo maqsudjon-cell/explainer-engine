@@ -18,7 +18,7 @@ import uuid
 import base64
 import threading
 
-from flask import Flask, request, jsonify, send_from_directory, Response
+from flask import Flask, request, jsonify, send_from_directory, send_file, Response
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
@@ -340,7 +340,26 @@ def validate_spec():
 
 @app.route("/files/<name>")
 def files(name):
-    return send_from_directory(JOBS_DIR, name)
+    """Serve a rendered file inline (for the <video>/<img> preview)."""
+    path = os.path.join(JOBS_DIR, name)
+    if not os.path.isfile(path):
+        return jsonify(error="not_found", name=name), 404
+    mt = "video/mp4" if name.endswith(".mp4") else (
+        "image/png" if name.endswith(".png") else None)
+    # conditional=True enables HTTP range requests so seeking works
+    return send_file(path, mimetype=mt, conditional=True)
+
+
+@app.route("/download/<name>")
+def download(name):
+    """Force a download (attachment) — reliable on Safari/Chrome."""
+    path = os.path.join(JOBS_DIR, name)
+    if not os.path.isfile(path):
+        return jsonify(error="not_found", name=name), 404
+    mt = "video/mp4" if name.endswith(".mp4") else (
+        "image/png" if name.endswith(".png") else "application/octet-stream")
+    nice = ("explainer-engine." + name.split(".")[-1])
+    return send_file(path, mimetype=mt, as_attachment=True, download_name=nice)
 
 
 def main():

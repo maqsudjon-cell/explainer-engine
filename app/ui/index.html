@@ -85,7 +85,7 @@ main{flex:1;overflow-y:auto;padding:26px 0 16px}
 .pstat{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;color:var(--dim);margin-top:7px}
 .result{padding:12px 14px}
 .result video,.result img{width:100%;border-radius:12px;border:1px solid var(--line2);display:block;background:#000}
-.result .dl{margin-top:10px;display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--mint);
+.result .dl{margin-top:10px;display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--mint);cursor:pointer;background:transparent;
   border:1px solid var(--line2);border-radius:8px;padding:7px 13px;text-decoration:none}
 
 /* typing */
@@ -475,13 +475,39 @@ async function startRender(card, spec, mode, quality){
 function showResult(card, j){
   const res=document.createElement('div'); res.className='result';
   const url='/files/'+j.file;
+  const ext=j.kind==='video'?'mp4':'png';
   if(j.kind==='video'){
-    res.innerHTML=`<video src="${url}" controls autoplay loop muted playsinline></video><a class="dl" href="${url}" download>↓ Download MP4</a>`;
+    res.innerHTML=`<video src="${url}" controls autoplay loop playsinline></video>
+      <button class="dl">↓ Download MP4</button>`;
   }else{
-    res.innerHTML=`<img src="${url}"><a class="dl" href="${url}" download>↓ Download PNG</a>`;
+    res.innerHTML=`<img src="${url}"><button class="dl">↓ Download PNG</button>`;
   }
+  const btn=res.querySelector('.dl');
+  btn.addEventListener('click', ()=>saveFile('/download/'+j.file, 'explainer-engine.'+ext, btn));
   card.appendChild(res); scrollDown();
   toast(j.kind==='video'?'Video ready':'Poster ready');
+}
+
+// reliable cross-browser download: fetch -> blob -> anchor click
+async function saveFile(url, filename, btn){
+  const old = btn ? btn.textContent : '';
+  if(btn){ btn.textContent='Downloading…'; btn.disabled=true; }
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    const objurl = URL.createObjectURL(blob);
+    a.href = objurl; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(objurl), 2000);
+    if(btn){ btn.textContent='Saved ✓'; setTimeout(()=>{ btn.textContent=old; btn.disabled=false; }, 1500); }
+  }catch(e){
+    // fallback: open in a new tab so the user can save manually
+    window.open(url, '_blank');
+    if(btn){ btn.textContent=old; btn.disabled=false; }
+    toast('Opened in new tab — long-press / right-click to save');
+  }
 }
 
 // health check
