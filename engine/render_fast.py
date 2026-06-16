@@ -53,6 +53,8 @@ def _render_one(i):
                     pp["accent_char"] = spec.brand.accent_char
                 if typ == "cta" and "url" not in pp:
                     pp["url"] = spec.brand.url
+                if typ == "network_graph" and "you_label" not in pp:
+                    pp["you_label"] = "SIZ" if getattr(spec, "lang", "en") == "uz" else "YOU"
                 fn(t - st, D, frame, fd, gd, td, **pp)
             break
     out = finish(frame, glow, txt, W, H)

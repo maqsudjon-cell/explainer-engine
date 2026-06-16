@@ -53,7 +53,7 @@ def kick(dur=0.4):
     f = 150 * np.exp(-t * 28) + 44
     phase = 2 * np.pi * np.cumsum(f) / SR
     body = np.sin(phase) * np.exp(-t * 7)
-    click = (np.random.rand(n) * 2 - 1) * np.exp(-t * 120) * 0.5
+    click = (np.random.rand(n) * 2 - 1) * np.exp(-t * 120) * 0.3
     return (body + click) * 0.9
 
 
@@ -61,9 +61,11 @@ def hat(dur=0.06):
     n = int(dur * SR)
     t = _t(n)
     noise = np.random.rand(n) * 2 - 1
-    # crude high-pass: difference
+    # band-limit: smooth then high-pass via difference, so it's a softer "tss" not harsh hiss
+    k = 3
+    noise = np.convolve(noise, np.ones(k) / k, mode="same")
     noise = np.diff(noise, prepend=0)
-    return noise * np.exp(-t * 90) * 0.4
+    return noise * np.exp(-t * 110) * 0.28
 
 
 def clap(dur=0.3):
@@ -73,9 +75,11 @@ def clap(dur=0.3):
     for d in [0.0, 0.012, 0.024]:
         s = int(d * SR)
         e = np.exp(-(t) * 50)
-        burst = (np.random.rand(n) * 2 - 1) * e
+        raw = np.random.rand(n) * 2 - 1
+        raw = np.convolve(raw, np.ones(4)/4, mode="same")
+        burst = raw * e
         out[s:] += burst[:n - s]
-    return out * 0.35
+    return out * 0.26
 
 
 def tom(freq=110, dur=0.35):
@@ -139,17 +143,19 @@ def riser(dur=2.0):
     n = int(dur * SR)
     t = _t(n)
     noise = np.random.rand(n) * 2 - 1
+    noise = np.convolve(noise, np.ones(6)/6, mode="same")
     sweep = np.sin(2 * np.pi * (200 + 800 * (t / dur) ** 2) * t)
     e = (t / dur) ** 2
-    return (noise * 0.4 + sweep * 0.6) * e * 0.5
+    return (noise * 0.25 + sweep * 0.6) * e * 0.42
 
 
 def whoosh(dur=0.6):
     n = int(dur * SR)
     t = _t(n)
     noise = np.random.rand(n) * 2 - 1
+    noise = np.convolve(noise, np.ones(8)/8, mode="same")
     e = np.exp(-((t - dur / 2) ** 2) / (2 * (dur / 5) ** 2))
-    return noise * e * 0.4
+    return noise * e * 0.3
 
 
 def boom(dur=1.5):
@@ -433,10 +439,34 @@ def render_audio(spec, out_path):
         add(L, R, bell(lf * 2, 1.6), max(0, dur - 2.0) + i * 0.12, gain=0.3, pan=(i - 1) * 0.3)
 
     # ---- master ----
-    stack = np.stack([L, R])
-    mix = np.tanh(stack * 1.0)
+    stack = np.stack([L, R]).astype(np.float64)
+
+    # gentle one-pole low-pass to roll off harsh highs (kills the "hiss")
+    def lowpass(x, cutoff_hz=11000.0):
+        a = float(np.exp(-2 * np.pi * cutoff_hz / SR))
+        try:
+            from scipy.signal import lfilter
+            return lfilter([1 - a], [1, -a], x)
+        except Exception:
+            # fast vectorized IIR via cumulative trick is not exact; use a
+            # cheap FIR moving-average approximation when scipy is absent
+            k = max(1, int(SR / cutoff_hz))
+            return np.convolve(x, np.ones(k) / k, mode="same")
+
+    # normalize input level BEFORE saturation so tanh doesn't over-distort
+    pk = np.max(np.abs(stack)) or 1.0
+    stack = stack / pk * 0.8
+    for ch in range(2):
+        stack[ch] = lowpass(stack[ch], 12000.0)
+    # soft knee limiter (gentler than hard tanh)
+    drive = 0.9
+    mix = np.tanh(stack * drive) / np.tanh(drive)
     peak = np.max(np.abs(mix)) or 1.0
-    mix = mix / peak * 0.93
+    mix = mix / peak * 0.89          # headroom, avoid inter-sample clipping
+    # short fade-in to avoid a click at the very start
+    fin = int(0.05 * SR)
+    if mix.shape[1] > fin:
+        mix[:, :fin] *= np.linspace(0, 1, fin)
     # end fade
     fade_n = int(0.6 * SR)
     if mix.shape[1] > fade_n:
@@ -444,7 +474,7 @@ def render_audio(spec, out_path):
         mix[:, -fade_n:] *= fade
 
     # write 16-bit PCM
-    data = (mix.T * 32767).astype(np.int16)
+    data = (np.clip(mix.T, -1, 1) * 32767).astype(np.int16)
     with wave.open(out_path, "w") as w:
         w.setnchannels(2)
         w.setsampwidth(2)

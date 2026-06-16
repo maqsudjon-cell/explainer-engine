@@ -53,6 +53,9 @@ def render_frames(spec, start, end, bg=None, progress=True):
                         pp["accent_char"] = spec.brand.accent_char
                     if typ == "cta" and "url" not in pp:
                         pp["url"] = spec.brand.url
+                    # localize built-in labels by spec language
+                    if typ == "network_graph" and "you_label" not in pp:
+                        pp["you_label"] = "SIZ" if getattr(spec, "lang", "en") == "uz" else "YOU"
                     fn(t - st, D, frame, fd, gd, td, **pp)
                 break
 

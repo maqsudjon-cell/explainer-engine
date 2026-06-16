@@ -136,6 +136,37 @@ def glowtext(gd, cx, cy, s, font, rgb, k=1.0, anchor="mm"):
     col = (int(rgb[0] * k), int(rgb[1] * k), int(rgb[2] * k))
     gd.text((cx, cy), s, font=font, fill=col, anchor=anchor)
 
+
+def fit_font(font_fn, s, max_w, start_size, min_size=18):
+    """Return the largest font (via font_fn(size)) that renders s within max_w.
+
+    font_fn is gf or pf (or a lambda). Shrinks from start_size down to min_size.
+    """
+    size = int(start_size)
+    while size > min_size:
+        f = font_fn(size)
+        if f.getlength(s) <= max_w:
+            return f
+        size -= 2
+    return font_fn(min_size)
+
+
+def fit_lines(font_fn, s, max_w, start_size, min_size=18, max_lines=2):
+    """Fit text into up to max_lines lines within max_w, scaling font down.
+
+    Returns (font, lines). Tries the largest size where the wrapped text
+    fits in max_lines lines, each within max_w.
+    """
+    size = int(start_size)
+    while size > min_size:
+        f = font_fn(size)
+        lines = wrap(s, f, max_w)
+        if len(lines) <= max_lines and all(f.getlength(ln) <= max_w for ln in lines):
+            return f, lines
+        size -= 2
+    f = font_fn(min_size)
+    return f, wrap(s, f, max_w)
+
 # ----------------------------------------------------------------------------
 # draw helpers — replace tofu-prone glyphs with real geometry
 # ----------------------------------------------------------------------------

@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw
 from . import MINT, MINT_BRIGHT, WHITE, DIM, RED, AMBER, BG_DARK
 from .core import (
     ss, eob, eoc, lerp, c01, gf, pf, text, dml, wrap, glowtext,
-    chevron, checkmark, bullet, measure, _rgba,
+    chevron, checkmark, bullet, measure, _rgba, fit_font, fit_lines,
 )
 
 # ----------------------------------------------------------------------------
@@ -108,19 +108,24 @@ def hook(tau, D, frame, fd, gd, td, **p):
     cx = W / 2
     line1 = p.get("line1", "")
     line2 = p.get("line2", "")
-    s1 = int(H * 0.062)
-    s2 = int(H * 0.13)
-    f1 = gf(s1, 500)
-    f2 = pf(s2)
+    maxw = W * 0.88
+    # line1: small, fit to width
+    f1 = fit_font(lambda s: gf(s, 500), line1, maxw, int(H * 0.062)) if line1 else gf(int(H*0.062), 500)
+    # line2: big impact — scale down and wrap up to 2 lines so it never overflows
+    f2, l2 = fit_lines(pf, line2, maxw, int(H * 0.13), min_size=int(H*0.05), max_lines=2) if line2 else (pf(int(H*0.13)), [])
     a1 = e * ss(c01(tau / 0.5))
-    # line2 slams in
     a2 = e * ss(c01((tau - 0.35) / 0.5))
     dy = lerp(40, 0, eob(c01((tau - 0.35) / 0.7)))
     if line1:
-        text(td, cx, H * 0.40, line1, f1, DIM, a1, anchor="mm")
+        text(td, cx, H * 0.38, line1, f1, DIM, a1, anchor="mm")
     if line2:
-        glowtext(gd, cx, H * 0.52 + dy, line2, f2, MINT, 0.5 * a2)
-        text(td, cx, H * 0.52 + dy, line2, f2, MINT_BRIGHT, a2, anchor="mm")
+        line_h = int(f2.size * 1.12)
+        total = line_h * len(l2)
+        y0 = H * 0.54 + dy - total / 2 + line_h / 2
+        for i, ln in enumerate(l2):
+            yy = y0 + i * line_h
+            glowtext(gd, cx, yy, ln, f2, MINT, 0.5 * a2)
+            text(td, cx, yy, ln, f2, MINT_BRIGHT, a2, anchor="mm")
 
 
 def cta(tau, D, frame, fd, gd, td, **p):
@@ -160,14 +165,14 @@ def big_counter(tau, D, frame, fd, gd, td, **p):
     prog = ss(c01((tau - 0.4) / max(0.1, D * 0.62)))
     n = int(target * prog)
     if title:
-        ft = gf(int(H * 0.040), 500)
+        ft = fit_font(lambda s: gf(s, 500), title, W * 0.86, int(H * 0.040))
         text(td, cx, H * 0.34, title, ft, DIM, e, anchor="mm")
     num = f"{n:,}"
-    fn = pf(int(H * 0.135))
+    fn = fit_font(pf, num, W * 0.88, int(H * 0.135))
     glowtext(gd, cx, H * 0.52, num, fn, MINT, 0.55 * e)
     text(td, cx, H * 0.52, num, fn, MINT_BRIGHT, e, anchor="mm")
     if unit:
-        fu = gf(int(H * 0.044), 500)
+        fu = fit_font(lambda s: gf(s, 500), unit, W * 0.86, int(H * 0.044))
         text(td, cx, H * 0.66, unit, fu, WHITE, e, anchor="mm")
 
 
@@ -353,7 +358,7 @@ def network_graph(tau, D, frame, fd, gd, td, **p):
             bullet(fd, x, y, 9, MINT_BRIGHT, e * rev)
             gd.ellipse([x-9, y-9, x+9, y+9], fill=(int(MINT[0]*e), int(MINT[1]*e), int(MINT[2]*e)))
             fh = gf(int(H * 0.028), 600)
-            text(td, x, y - 22, "YOU", fh, MINT_BRIGHT, e * rev, anchor="mm")
+            text(td, x, y - 22, p.get("you_label", "YOU"), fh, MINT_BRIGHT, e * rev, anchor="mm")
         else:
             bullet(fd, x, y, 5, MINT, e * rev * 0.85)
     if title:
@@ -419,7 +424,7 @@ def section_card(tau, D, frame, fd, gd, td, **p):
         glowtext(gd, cx, H * 0.46, str(number), fn, MINT, 0.5 * e)
         text(td, cx, H * 0.46, str(number), fn, MINT_BRIGHT, e, anchor="mm")
     if label:
-        fl = gf(int(H * 0.044), 500)
+        fl = fit_font(lambda q: gf(q, 500), label, W * 0.86, int(H * 0.044))
         text(td, cx, H * 0.60, label, fl, WHITE, e, anchor="mm")
     # small spark accents flanking
     R = H * 0.03

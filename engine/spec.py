@@ -40,6 +40,7 @@ class VideoSpec:
     resolution: str = "landscape"
     fps: int = FPS
     background: str = "grid+radialglow"
+    lang: str = "en"   # "en" | "uz" — sets built-in label language
     brand: Brand = field(default_factory=Brand)
     audio: AudioPlan = field(default_factory=AudioPlan)
     scenes: List[Scene] = field(default_factory=list)
@@ -90,6 +91,7 @@ def from_dict(d: dict) -> VideoSpec:
         resolution=d.get("resolution", "landscape"),
         fps=int(d.get("fps", FPS)),
         background=d.get("background", "grid+radialglow"),
+        lang=d.get("lang", "en"),
         brand=brand, audio=audio, scenes=scenes,
     )
 

@@ -116,6 +116,18 @@ def chat():
     history = data.get("messages", [])
     image_b64 = data.get("image")          # optional data URL or raw b64
     image_mime = data.get("image_mime", "image/png")
+    lang = data.get("lang", "en")
+
+    system = CHAT_SYSTEM
+    if lang == "uz":
+        system += (
+            "\n\nIMPORTANT — LANGUAGE: The user wants the video in UZBEK. Write ALL "
+            "on-screen text fields (line1, line2, title, unit, label, tagline, "
+            "caption, weak, strong, example, items, number labels) in natural, "
+            "correct Uzbek (Latin script, e.g. o', g', sh, ch). Keep it short and "
+            "punchy. Set \"lang\": \"uz\" at the top level of the spec so built-in "
+            "labels localize. You may still chat with the user in their language."
+        )
 
     # build anthropic messages
     msgs = []
@@ -140,7 +152,7 @@ def chat():
         resp = client.messages.create(
             model=data.get("model") or DEFAULT_MODEL,
             max_tokens=4000,
-            system=CHAT_SYSTEM,
+            system=system,
             messages=msgs,
         )
         text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
