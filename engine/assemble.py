@@ -50,7 +50,7 @@ def assemble(spec, with_audio=True):
     fps = spec.fps
     silent = frames_to_silent(fps)
     if with_audio:
-        from . import audio as audio_mod
+        from . import audio2 as audio_mod
         audio_mod.render_audio(spec, os.path.join(OUT, "_audio.wav"))
     final = mux(silent, os.path.join(OUT, "_audio.wav"))
     return final

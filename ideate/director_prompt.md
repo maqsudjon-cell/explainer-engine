@@ -38,7 +38,8 @@ You are a **creative director + motion designer** producing short, **narration-f
 ```
 
 - `background`: one of `grid`, `starfield`, `radialglow`, or combos joined with `+` (e.g. `grid+radialglow`, `starfield+radialglow`).
-- `audio.sections[].name`: one of `intro, build, drive, climax, warm, uplift, finale`. Section `start` times (seconds) should roughly line up with scene boundaries. Put `pivot_to_major: true` on the climax/reveal section.
+- `audio.sections[].name`: one of `intro, build, drive, climax, warm, uplift, finale`.
+- `audio.mood` (optional but recommended): pick the emotional palette that fits the topic — one of `emotional` (bittersweet/garage), `uplifting` (bright/anthemic), `cosmic` (vast/ambient), `driving` (dark/urgent), `tense` (suspenseful), `playful` (light/bouncy). Each has its own chords + tempo, so the soundtrack matches the subject. If omitted, it is auto-detected from the title. Section `start` times (seconds) should roughly line up with scene boundaries. Put `pivot_to_major: true` on the climax/reveal section.
 
 # Scene primitive catalog (use only these `type`s)
 

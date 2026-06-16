@@ -242,7 +242,7 @@ def _run_job(job_id, spec_dict, mode, fast=False, quality="full"):
         # audio + assemble
         job["progress"] = 0.85
         job["stage"] = "audio"
-        from engine import audio as audio_mod
+        from engine import audio2 as audio_mod
         audio_path = os.path.join(render_mod.os.path.join(ROOT, "out"), "_audio.wav")
         audio_mod.render_audio(spec, audio_path)
         job["progress"] = 0.92

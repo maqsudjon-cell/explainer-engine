@@ -22,6 +22,7 @@ class AudioSection:
 @dataclass
 class AudioPlan:
     tempo_bpm: int = 120
+    mood: str = None          # emotional | uplifting | cosmic | driving | tense | playful (auto if None)
     sections: List[AudioSection] = field(default_factory=list)
 
 
@@ -80,7 +81,8 @@ def from_dict(d: dict) -> VideoSpec:
     brand = Brand(**d.get("brand", {})) if d.get("brand") else Brand()
     ap = d.get("audio", {}) or {}
     sections = [AudioSection(**s) for s in ap.get("sections", [])]
-    audio = AudioPlan(tempo_bpm=ap.get("tempo_bpm", 120), sections=sections)
+    audio = AudioPlan(tempo_bpm=ap.get("tempo_bpm", 120),
+                      mood=ap.get("mood"), sections=sections)
     scenes = [Scene(type=s["type"], duration=float(s["duration"]),
                     params=s.get("params", {})) for s in d.get("scenes", [])]
     return VideoSpec(
