@@ -182,6 +182,18 @@ def _run_job(job_id, spec_dict, mode, fast=False, quality="full"):
             spec.resolution = "square" if spec.resolution == "square" else "landscape"
             spec.fps = min(spec.fps, 18)
         spec.validate()
+        # ---- safety: reject absurd durations BEFORE wasting hours ----
+        dur_s = spec.total_duration()
+        MAX_S = 360  # 6 minutes — this tool makes short, punchy explainers
+        if mode != "poster" and dur_s > MAX_S:
+            mins = dur_s / 60.0
+            job["status"] = "error"
+            job["error"] = (
+                f"This spec is {mins:.0f} min ({int(round(dur_s*spec.fps)):,} frames). "
+                f"The engine is built for short explainers — keep it under {MAX_S//60} min. "
+                f"Split long topics into a series of 2–3 min videos instead."
+            )
+            return
         W, H = spec.dims()
         fps = spec.fps
         bg = render_mod._bg_for(spec)
@@ -260,10 +272,23 @@ def _run_job(job_id, spec_dict, mode, fast=False, quality="full"):
         job["progress"] = 0.92
         job["stage"] = "encoding"
         silent = assemble_mod.frames_to_silent(fps)
+        if not silent or not os.path.isfile(silent):
+            raise RuntimeError("frame encoding failed (check free disk space)")
         final_tmp = assemble_mod.mux(silent, audio_path)
-        # move to job file
+        if not final_tmp or not os.path.isfile(final_tmp):
+            raise RuntimeError("audio mux failed — the silent video is at " + str(silent))
+        # move to job file (copy+remove if os.replace can't cross dirs)
         final_path = os.path.join(JOBS_DIR, job_id + ".mp4")
-        os.replace(final_tmp, final_path)
+        os.makedirs(JOBS_DIR, exist_ok=True)
+        try:
+            os.replace(final_tmp, final_path)
+        except OSError:
+            import shutil as _sh
+            _sh.copy(final_tmp, final_path)
+            try:
+                os.remove(final_tmp)
+            except OSError:
+                pass
         job["progress"] = 1.0
         job["status"] = "done"
         job["file"] = job_id + ".mp4"

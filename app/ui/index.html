@@ -45,6 +45,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px;
 .dot{width:7px;height:7px;border-radius:50%;background:var(--dim);box-shadow:0 0 8px currentColor}
 .dot.on{background:var(--mint);color:var(--mint)}
 .langtog{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel)}
+.rwarn{margin:10px 0 0;padding:9px 12px;border-radius:9px;font-size:.78rem;line-height:1.4;background:rgba(255,180,60,.08);border:1px solid rgba(255,180,60,.3);color:#ffce7a}
+.rwarn.err{background:rgba(255,90,90,.08);border-color:rgba(255,90,90,.35);color:#ff9b9b}
 .langtog button{border:none;background:transparent;color:var(--mut);font-family:var(--mono);font-size:.72rem;font-weight:500;padding:7px 11px;transition:.15s}
 .langtog button.on{background:var(--mint);color:#04110d}
 .langtog button:hover:not(.on){color:var(--txt)}
@@ -421,6 +423,17 @@ async function doSend(){
 function attachRenderCard(bodyEl, spec){
   const isPoster = !!spec.poster;
   const dur = (spec.scenes||[]).reduce((a,s)=>a+(s.duration||0),0);
+  const fps = spec.fps||24;
+  const frames = Math.round(dur*fps);
+  const tooLong = !isPoster && dur>360;        // >6 min: blocked
+  const longish = !isPoster && dur>180 && dur<=360; // 3–6 min: caution
+  const mins = (dur/60).toFixed(dur>=60?1:0);
+  let warn='';
+  if(tooLong){
+    warn=`<div class="rwarn err">⚠ ${mins} min · ${frames.toLocaleString()} frames — too long to render. This engine makes short explainers (under 6 min). Split this into a series of 2–3 min videos.</div>`;
+  }else if(longish){
+    warn=`<div class="rwarn">⚠ ${mins} min · ${frames.toLocaleString()} frames — this will take a while. For speed, keep videos around 1–3 min or use Draft.</div>`;
+  }
   const card=document.createElement('div');
   card.className='rcard';
   card.innerHTML=`
@@ -431,16 +444,17 @@ function attachRenderCard(bodyEl, spec){
         <div class="rmeta">${(spec.scenes||[]).length} scene(s) · ${isPoster?'poster':dur+'s'} · ${esc(spec.resolution||'landscape')}</div>
       </div>
     </div>
+    ${warn}
     <pre class="spec">${esc(JSON.stringify(spec,null,1))}</pre>
     <div class="racts">
-      <button class="gen vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>${isPoster?'Render poster':'Render video'}</button>
+      <button class="gen vid"${tooLong?' disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>${isPoster?'Render poster':'Render video'}</button>
       ${isPoster?'':'<button class="gen img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Poster only</button>'}
       ${isPoster?'':'<select class="qsel" style="margin-left:auto;background:#04100c;border:1px solid var(--line2);color:var(--mut);border-radius:8px;padding:7px 9px;font-family:var(--mono);font-size:.7rem"><option value="full">Full quality</option><option value="draft">Draft · fastest</option></select>'}
     </div>`;
   bodyEl.appendChild(card);
   const vidBtn=card.querySelector('.gen.vid'), imgBtn=card.querySelector('.gen.img');
   const qsel=card.querySelector('.qsel');
-  vidBtn.addEventListener('click', ()=>startRender(card, spec, isPoster?'poster':'video', qsel?qsel.value:'full'));
+  if(!tooLong) vidBtn.addEventListener('click', ()=>startRender(card, spec, isPoster?'poster':'video', qsel?qsel.value:'full'));
   imgBtn?.addEventListener('click', ()=>startRender(card, spec, 'poster', 'full'));
   scrollDown();
 }
