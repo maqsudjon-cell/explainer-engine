@@ -136,7 +136,7 @@ process. Frames are written to `out/frames/`, never held in RAM.
   "resolution": "landscape",
   "fps": 24,
   "background": "starfield+radialglow",
-  "brand": { "wordmark": "pangea8", "url": "pangea8.com", "accent_char": "8" },
+  "brand": { "wordmark": "Flarestamina", "url": "flarestamina.com", "accent_char": "8" },
   "audio": { "tempo_bpm": 120, "sections": [
       {"name": "intro", "start": 0},
       {"name": "climax", "start": 84, "pivot_to_major": true},
@@ -198,7 +198,7 @@ Section boundaries line up with scene boundaries (the spec carries both).
 ```bash
 export ANTHROPIC_API_KEY=sk-...
 pip install anthropic
-python cli.py ideate "Why sleep matters" --brand pangea8
+python cli.py ideate "Why sleep matters" --brand Flarestamina
 # -> writes specs/why_sleep_matters.json for you to review, then render
 ```
 
