@@ -3,7 +3,7 @@
   "resolution": "landscape",
   "fps": 24,
   "background": "starfield+radialglow",
-  "brand": { "wordmark": "pangea8", "url": "pangea8.com", "accent_char": "8" },
+  "brand": { "wordmark": "Flarestamina", "url": "flarestamina.com", "accent_char": "8" },
   "audio": {
     "tempo_bpm": 120,
     "sections": [
