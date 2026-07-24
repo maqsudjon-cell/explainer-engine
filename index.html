@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>then — Biznesingiz uchun sayt studiyasi | O'zbekiston</title>
+<meta name="description" content="then — O'zbek bizneslari uchun premium, tez, sotadigan saytlar. Jonli portfolio, halol narx, to'g'ridan-to'g'ri quruvchi bilan. UZ / RU.">
+<meta name="theme-color" content="#F4F0E7">
+<meta property="og:title" content="then — sayt studiyasi">
+<meta property="og:description" content="Biznesingiz uchun premium, sotadigan saytlar. Jonli ishlar, halol narx.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E8401E'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Georgia,serif' text-anchor='middle' fill='white'%3Et%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F0E7; --paper2:#ECE6D8; --card:#FFFFFF; --ink:#16130E; --ink2:#37322A;
+  --mut:#6E665A; --line:#E4DDCD; --line2:#D6CDB8;
+  --acc:#E8401E; --acc-d:#C22F12; --sun:#F4A62A;
+  --r:14px; --rs:10px; --max:1180px;
+  --sh:0 24px 50px -30px rgba(60,42,20,.5);
+  --sh-s:0 10px 26px -18px rgba(60,42,20,.5);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{position:relative}
+.serif{font-family:var(--serif);font-weight:500}
+.acc{color:var(--acc)}
+.hl{position:relative;white-space:nowrap;color:var(--acc);font-style:italic}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--acc);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--acc);display:inline-block}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;
+  font-family:inherit;font-weight:700;font-size:15px;border-radius:100px;
+  padding:14px 26px;transition:transform .18s ease,box-shadow .25s,background .2s,color .2s;letter-spacing:.2px}
+.btn-acc{background:var(--acc);color:#fff;box-shadow:0 14px 30px -12px rgba(232,64,30,.6)}
+.btn-acc:hover{transform:translateY(-2px);box-shadow:0 20px 40px -12px rgba(232,64,30,.75);background:var(--acc-d)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{transform:translateY(-2px);background:#000}
+.btn-out{background:transparent;color:var(--ink);border:1.5px solid var(--line2)}
+.btn-out:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.btn .ar{transition:transform .2s}
+.btn:hover .ar{transform:translateX(3px)}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:60;transition:box-shadow .3s,background .3s;
+  background:rgba(244,240,231,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent}
+header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 24px -18px rgba(60,42,20,.5)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--serif);font-weight:600;font-size:27px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:2px}
+.logo b{color:var(--acc);font-weight:600}
+.nav-mid{display:flex;align-items:center;gap:30px}
+.nav-mid a{color:var(--ink2);font-size:14.5px;font-weight:600;transition:color .2s;position:relative}
+.nav-mid a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--acc);transition:width .25s}
+.nav-mid a:hover{color:var(--ink)}.nav-mid a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang{display:flex;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:3px;font-size:12.5px;font-weight:700}
+.lang button{border:none;background:none;cursor:pointer;font-family:inherit;font-weight:700;
+  color:var(--mut);padding:6px 12px;border-radius:100px;transition:.2s;font-size:12.5px}
+.lang button.on{background:var(--ink);color:var(--paper)}
+.burger{display:none;background:var(--card);border:1px solid var(--line);border-radius:11px;
+  width:44px;height:44px;font-size:19px;cursor:pointer;color:var(--ink)}
+
+/* HERO */
+.hero{padding:66px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,72px);
+  line-height:1.03;letter-spacing:-1.5px;margin:22px 0 22px}
+.hero h1 .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.5em;
+  background:rgba(244,166,42,.45);z-index:-1;transform:rotate(-1deg);border-radius:3px}
+.hero p.lead{font-size:clamp(16px,2vw,19px);color:var(--ink2);max-width:500px;margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.proof{display:flex;gap:26px;flex-wrap:wrap}
+.proof div{display:flex;flex-direction:column}
+.proof b{font-family:var(--serif);font-size:26px;font-weight:600;line-height:1}
+.proof span{font-size:13px;color:var(--mut);margin-top:4px}
+.proof .sep{width:1px;background:var(--line2);align-self:stretch}
+
+/* hero visual: work index card */
+.showcase{background:var(--card);border:1px solid var(--line);border-radius:20px;
+  box-shadow:var(--sh);padding:28px;position:relative}
+.showcase .sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.showcase .sc-top span{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut)}
+.showcase .sc-top em{font-family:var(--serif);font-style:normal;font-size:13px;color:var(--acc);font-weight:600}
+.wrow{display:flex;align-items:center;gap:14px;padding:15px 6px;border-top:1px solid var(--line);transition:padding-left .2s}
+.wrow:hover{padding-left:14px}
+.wrow .sq{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;color:#fff;font-family:var(--serif);font-weight:600;font-size:17px}
+.wrow .wm{flex:1}
+.wrow .wm b{font-size:15.5px;font-weight:700;display:block}
+.wrow .wm small{font-size:12.5px;color:var(--mut)}
+.wrow .go{color:var(--mut);font-size:18px;transition:.2s}
+.wrow:hover .go{color:var(--acc);transform:translate(3px,-3px)}
+.c1{background:linear-gradient(135deg,#2563eb,#1e3a8a)}
+.c2{background:linear-gradient(135deg,#0e9488,#0f5e57)}
+.c3{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
+.c4{background:linear-gradient(135deg,#e8401e,#a32b12)}
+.c5{background:linear-gradient(135deg,#0f766e,#134e4a)}
+.float-tag{position:absolute;bottom:-18px;left:-18px;background:var(--acc);color:#fff;
+  font-weight:700;font-size:13px;padding:12px 18px;border-radius:100px;box-shadow:var(--sh-s);
+  display:flex;align-items:center;gap:8px}
+.float-tag b{font-family:var(--serif);font-size:16px}
+
+/* MARQUEE */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--paper2);overflow:hidden;padding:20px 0;margin-top:34px}
+.marq-track{display:flex;gap:0;white-space:nowrap;animation:scrollx 26s linear infinite;width:max-content}
+.marq:hover .marq-track{animation-play-state:paused}
+.marq-item{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);padding:0 34px;display:flex;align-items:center;gap:34px}
+.marq-item::after{content:"✳";color:var(--acc);font-size:15px}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* section head */
+.sec{padding:82px 0}
+.sec.alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.head{max-width:640px}
+.head h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,50px);
+  letter-spacing:-1px;line-height:1.05;margin:16px 0 14px}
+.head .sub{color:var(--mut);font-size:17px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+
+/* SERVICES */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.svc-item{padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  transition:background .25s;position:relative}
+.svc-item:hover{background:var(--paper)}
+.svc-item .no{font-family:var(--serif);font-size:15px;color:var(--acc);font-weight:600}
+.svc-item h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:14px 0 10px;letter-spacing:-.3px}
+.svc-item p{color:var(--mut);font-size:14.5px}
+.svc-item .pk{margin-top:16px;font-size:13px;font-weight:700;color:var(--ink2)}
+
+/* WHY (statement) */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.why-lead h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,44px);
+  letter-spacing:-1px;line-height:1.08}
+.why-lead p{color:var(--mut);font-size:16px;margin-top:20px;max-width:420px}
+.why-lead .btn{margin-top:26px}
+.why-list{display:flex;flex-direction:column;gap:2px}
+.why-row{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line2)}
+.why-row .wn{font-family:var(--serif);font-size:20px;color:var(--acc);font-weight:600;min-width:30px}
+.why-row h4{font-size:17px;font-weight:700;margin-bottom:5px}
+.why-row p{color:var(--mut);font-size:14.5px}
+
+/* WORK */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:44px}
+.work{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:28px 30px;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.work:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line2)}
+.work .wtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px}
+.work .cat{font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--acc);background:rgba(232,64,30,.09);padding:6px 12px;border-radius:100px}
+.work .idx{font-family:var(--serif);font-size:30px;color:var(--line2);font-weight:600;line-height:1}
+.work h3{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.4px}
+.work p{color:var(--mut);font-size:14.5px;margin:8px 0 16px;max-width:90%}
+.work .open{font-size:14px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.work .open .ar{color:var(--acc);transition:transform .2s}
+.work:hover .open .ar{transform:translate(3px,-3px)}
+.work.you{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.work.you .cat{color:var(--sun);background:rgba(244,166,42,.14)}
+.work.you .idx{color:#4a4438}
+.work.you p{color:#b8b0a2}
+.work.you .open{color:#fff}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.step{position:relative;padding-top:26px;border-top:2px solid var(--ink)}
+.step .pn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--acc)}
+.step h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:12px 0 10px}
+.step p{color:var(--mut);font-size:14.5px}
+
+/* PRICING */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;align-items:stretch}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px 30px;
+  display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.plan:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.plan.pop{background:var(--ink);color:var(--paper);border-color:var(--ink);position:relative}
+.plan.pop .pt,.plan.pop .pd{color:#c3bbac}
+.plan.pop li{color:#e7e1d5;border-color:#332e26}
+.plan .flag{position:absolute;top:22px;right:24px;background:var(--acc);color:#fff;font-size:11px;
+  font-weight:700;letter-spacing:.5px;padding:5px 12px;border-radius:100px}
+.plan .pt{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut)}
+.plan .pr{font-family:var(--serif);font-weight:600;font-size:40px;letter-spacing:-1px;margin:14px 0 2px}
+.plan .pr small{font-size:15px;color:var(--mut);font-weight:400;font-family:var(--sans)}
+.plan.pop .pr small{color:#b3a99a}
+.plan .pd{color:var(--mut);font-size:14px;margin-bottom:20px;min-height:40px}
+.plan ul{list-style:none;flex:1;margin-bottom:24px}
+.plan li{font-size:14px;padding:11px 0 11px 26px;position:relative;border-top:1px solid var(--line);color:var(--ink2)}
+.plan li:first-child{border-top:none}
+.plan li::before{content:"→";position:absolute;left:0;color:var(--acc);font-weight:800}
+.plan .btn{width:100%;justify-content:center}
+.pnote{text-align:center;color:var(--mut);font-size:13.5px;margin-top:26px}
+
+/* FAQ */
+.faq{max-width:820px;margin:44px auto 0}
+.q{border-bottom:1px solid var(--line2)}
+.q summary{cursor:pointer;padding:22px 4px;font-weight:700;font-size:18px;list-style:none;
+  display:flex;justify-content:space-between;gap:16px;align-items:center;font-family:var(--serif)}
+.q summary::-webkit-details-marker{display:none}
+.q .pl{color:var(--acc);font-size:24px;transition:transform .25s;flex-shrink:0;font-weight:400}
+.q[open] .pl{transform:rotate(45deg)}
+.q .ans{padding:0 4px 22px;color:var(--mut);font-size:15px;max-width:90%}
+
+/* CTA */
+.cta-sec{padding:30px 0 90px}
+.cta{background:var(--acc);border-radius:26px;padding:66px 50px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:"then";position:absolute;font-family:var(--serif);font-size:340px;font-weight:600;
+  color:rgba(0,0,0,.06);bottom:-120px;right:-30px;line-height:1;pointer-events:none}
+.cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,54px);letter-spacing:-1px;
+  color:#fff;position:relative;line-height:1.05}
+.cta p{color:rgba(255,255,255,.9);max-width:480px;margin:18px auto 30px;position:relative;font-size:17px}
+.cta .btn{position:relative}
+.cta-eg{position:relative;max-width:440px;margin:30px auto 0;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px 20px;text-align:left;
+  color:#fff;font-size:14.5px;backdrop-filter:blur(4px)}
+.cta-eg b{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.8;margin-bottom:6px;font-weight:700}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+.cc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;
+  display:flex;align-items:center;gap:18px;transition:.25s}
+.cc:hover{border-color:var(--line2);box-shadow:var(--sh-s)}
+.cc .ic{width:50px;height:50px;border-radius:13px;background:rgba(232,64,30,.1);color:var(--acc);
+  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.cc small{font-size:12px;color:var(--mut);font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block}
+.cc b{font-size:17px;font-weight:700}
+
+/* FOOTER */
+footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 34px}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+.foot-in .logo{font-size:30px}
+.foot-tag{color:var(--mut);font-size:14px;margin-top:8px;max-width:240px}
+.foot-links{display:flex;gap:40px;flex-wrap:wrap}
+.foot-col b{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink2);display:block;margin-bottom:12px}
+.foot-col a{display:block;color:var(--mut);font-size:14.5px;padding:4px 0;transition:.2s}
+.foot-col a:hover{color:var(--acc)}
+.copy{margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:940px){
+  .hero-grid,.why-grid{grid-template-columns:1fr;gap:44px}
+  .svc,.plans,.steps,.work-grid,.contact-grid{grid-template-columns:1fr}
+  .svc-item{border-right:none}
+  .nav-mid{display:none}
+  .burger{display:flex;align-items:center;justify-content:center}
+  .nav-mid.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--line);padding:8px 24px 20px}
+  .nav-mid.open a{padding:14px 0;border-bottom:1px solid var(--line);width:100%}
+}
+@media(max-width:560px){
+  .hero{padding:36px 0 20px}
+  .float-tag{position:static;margin-top:18px;width:max-content}
+  .showcase{box-shadow:var(--sh-s)}
+  .cta{padding:48px 24px}.cta::before{font-size:200px;bottom:-70px}
+  .proof{gap:18px}.proof .sep{display:none}
+  .work .wtop{margin-bottom:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo">then<b>.</b></a>
+    <nav class="nav-mid" id="menu">
+      <a href="#services" data-i18n="nav_services">Xizmatlar</a>
+      <a href="#work" data-i18n="nav_work">Ishlar</a>
+      <a href="#pricing" data-i18n="nav_pricing">Narx</a>
+      <a href="#process" data-i18n="nav_process">Jarayon</a>
+      <a href="#contact" data-i18n="nav_contact">Aloqa</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" id="lang">
+        <button data-lang="uz" class="on">UZ</button>
+        <button data-lang="ru">RU</button>
+      </div>
+      <a class="btn btn-ink js-cta" href="#contact" data-i18n="nav_cta">Loyiha boshlash</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Toshkent · Web studiya</span>
+      <h1 data-i18n="hero_h1">Biznesingiz uchun <span class="hl">sotadigan</span> sayt.</h1>
+      <p class="lead" data-i18n="hero_lead">Chiroyli ko'rinish yetarli emas. Biz mijoz keltiradigan, tez ochiladigan, mobil uchun tuzilgan saytlar quramiz — reklamadan arizagacha.</p>
+      <div class="hero-cta">
+        <a class="btn btn-acc js-cta" href="#contact"><span data-i18n="hero_cta1">Bepul narx olish</span> <span class="ar">→</span></a>
+        <a class="btn btn-out" href="#work" data-i18n="hero_cta2">Ishlarni ko'rish</a>
+      </div>
+      <div class="proof">
+        <div><b>1–3</b><span data-i18n="hero_p1">kunda ishga tushadi</span></div>
+        <div class="sep"></div>
+        <div><b>5+</b><span data-i18n="hero_p2">jonli loyiha</span></div>
+        <div class="sep"></div>
+        <div><b>0</b><span data-i18n="hero_p3">vositachi — to'g'ridan-to'g'ri</span></div>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="showcase">
+        <div class="sc-top">
+          <span data-i18n="sc_top">Tanlangan ishlar</span>
+          <em data-i18n="sc_live">jonli ↗</em>
+        </div>
+        <a class="wrow" href="https://zedavlod.uz" target="_blank" rel="noopener">
+          <div class="sq c1">Z</div><div class="wm"><b>zedavlod.uz</b><small data-i18n="sc_1">Xususiy maktab · uch tilli</small></div><span class="go">↗</span></a>
+        <a class="wrow" href="https://ctnlc.uz" target="_blank" rel="noopener">
+          <div class="sq c2">C</div><div class="wm"><b>ctnlc.uz</b><small data-i18n="sc_2">Til markazi · marketing</small></div><span class="go">↗</span></a>
+        <a class="wrow" href="https://pangea8.com" target="_blank" rel="noopener">
+          <div class="sq c3">P</div><div class="wm"><b>pangea8.com</b><small data-i18n="sc_3">Ta'lim platformasi</small></div><span class="go">↗</span></a>
+        <a class="wrow" href="https://flarestamina.com" target="_blank" rel="noopener">
+          <div class="sq c4">F</div><div class="wm"><b>flarestamina.com</b><small data-i18n="sc_4">Testlar platformasi</small></div><span class="go">↗</span></a>
+      </div>
+      <div class="float-tag"><b>◷</b> <span data-i18n="hero_float">Tez · mobil-birinchi</span></div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marq">
+    <div class="marq-track" id="marq"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" data-i18n="svc_eyebrow">Xizmatlar</span>
+      <h2 data-i18n="svc_title">Vazifangizga mos yechim</h2>
+      <p class="sub" data-i18n="svc_sub">Har bir sayt mobil-birinchi, tez ochiladigan va qidiruv tizimlariga tayyor quriladi.</p>
+    </div>
+    <div class="svc rv">
+      <div class="svc-item"><div class="no">01</div><h3 data-i18n="s1t">Lending</h3><p data-i18n="s1d">Bitta taklif, bitta harakat. Reklama trafigini arizaga aylantiradi.</p><div class="pk" data-i18n="s1p">1.5 mln so'mdan</div></div>
+      <div class="svc-item"><div class="no">02</div><h3 data-i18n="s2t">Biznes sayt</h3><p data-i18n="s2d">Ko'p sahifali sayt — kompaniya, xizmatlar va aloqani to'liq ko'rsatadi.</p><div class="pk" data-i18n="s2p">2.5 mln so'mdan</div></div>
+      <div class="svc-item"><div class="no">03</div><h3 data-i18n="s3t">Ko'p tilli sayt</h3><p data-i18n="s3d">UZ / RU / EN — mahalliy va xalqaro auditoriyaga bir vaqtda.</p><div class="pk" data-i18n="s3p">4 mln so'mdan</div></div>
+      <div class="svc-item"><div class="no">04</div><h3 data-i18n="s4t">Katalog / vitrina</h3><p data-i18n="s4d">Mahsulotlar katalogi va buyurtma formasi — savdo uchun.</p><div class="pk" data-i18n="s4p">kelishuvga qarab</div></div>
+      <div class="svc-item"><div class="no">05</div><h3 data-i18n="s5t">Redizayn</h3><p data-i18n="s5d">Eski, sekin yoki mobil'da buziladigan saytni zamonaviylashtiramiz.</p><div class="pk" data-i18n="s5p">kelishuvga qarab</div></div>
+      <div class="svc-item"><div class="no">06</div><h3 data-i18n="s6t">Qo'llab-quvvatlash</h3><p data-i18n="s6d">Ishga tushgach ham yolg'iz emassiz — yangilash va tuzatishlar.</p><div class="pk" data-i18n="s6p">oylik / kelishuvga qarab</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec alt">
+  <div class="wrap why-grid">
+    <div class="why-lead rv">
+      <span class="eyebrow" data-i18n="why_eyebrow">Nega then</span>
+      <h2 data-i18n="why_title">Arzonroq — chunki ortiqcha narsa yo'q.</h2>
+      <p data-i18n="why_p">Katta agentliklarda ofis, menejerlar va vositachilar narxni oshiradi. Bizda esa siz to'g'ridan-to'g'ri saytni quruvchi bilan ishlaysiz. Shuning uchun narx past, sifat yuqori, javob tez.</p>
+      <a class="btn btn-acc js-cta" href="#contact"><span data-i18n="why_cta">Boshlaymizmi?</span> <span class="ar">→</span></a>
+    </div>
+    <div class="why-list rv">
+      <div class="why-row"><div class="wn">01</div><div><h4 data-i18n="w1t">To'g'ridan-to'g'ri quruvchi bilan</h4><p data-i18n="w1d">Vositachi va yashirin to'lov yo'q. Narx past, javob shaxsan va tez.</p></div></div>
+      <div class="why-row"><div class="wn">02</div><div><h4 data-i18n="w2t">Jonli portfolio, demo emas</h4><p data-i18n="w2d">Ishlarimizni hoziroq ochib, telefoningizda sinab ko'rasiz — real bizneslar ishlatyapti.</p></div></div>
+      <div class="why-row"><div class="wn">03</div><div><h4 data-i18n="w3t">Tez va mobil-birinchi</h4><p data-i18n="w3d">Og'ir shablon emas, toza kod. Sayt telefonda ham, sekin internetda ham tez ochiladi.</p></div></div>
+      <div class="why-row"><div class="wn">04</div><div><h4 data-i18n="w4t">Halol narx, aniq smeta</h4><p data-i18n="w4d">Boshlashdan oldin narx, muddat va nima kirishini yozib beramiz. Keyin oshib ketmaydi.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" data-i18n="work_eyebrow">Ishlar</span>
+      <h2 data-i18n="work_title">Real bizneslar. Jonli saytlar.</h2>
+      <p class="sub" data-i18n="work_sub">Bularning har birini hoziroq ochib ko'rishingiz mumkin. Bu bizning eng kuchli isbotimiz.</p>
+    </div>
+    <div class="work-grid">
+      <a class="work rv" href="https://zedavlod.uz" target="_blank" rel="noopener">
+        <div class="wtop"><span class="cat" data-i18n="cat_edu">Ta'lim</span><span class="idx">01</span></div>
+        <h3>zedavlod.uz</h3><p data-i18n="wk1">Xususiy maktab sayti — uch tilli, real CEFR natijalari bilan.</p>
+        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
+      <a class="work rv" href="https://ctnlc.uz" target="_blank" rel="noopener">
+        <div class="wtop"><span class="cat" data-i18n="cat_lang">Til markazi</span><span class="idx">02</span></div>
+        <h3>ctnlc.uz</h3><p data-i18n="wk2">Til o'quv markazi uchun zamonaviy, uch tilli marketing sayti.</p>
+        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
+      <a class="work rv" href="https://pangea8.com" target="_blank" rel="noopener">
+        <div class="wtop"><span class="cat" data-i18n="cat_platform">Platforma</span><span class="idx">03</span></div>
+        <h3>pangea8.com</h3><p data-i18n="wk3">Insho yozish va baholash platformasi — o'quvchilar uchun.</p>
+        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
+      <a class="work rv" href="https://flarestamina.com" target="_blank" rel="noopener">
+        <div class="wtop"><span class="cat" data-i18n="cat_edu">Ta'lim</span><span class="idx">04</span></div>
+        <h3>flarestamina.com</h3><p data-i18n="wk4">Amaliy testlar va ta'lim platformasi.</p>
+        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
+      <a class="work rv" href="https://maqsudjon.com" target="_blank" rel="noopener">
+        <div class="wtop"><span class="cat" data-i18n="cat_portfolio">Portfolio</span><span class="idx">05</span></div>
+        <h3>maqsudjon.com</h3><p data-i18n="wk5">Shaxsiy portfolio sayti namunasi.</p>
+        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
+      <a class="work you rv js-cta" href="#contact">
+        <div class="wtop"><span class="cat" data-i18n="cat_next">Keyingi</span><span class="idx">06</span></div>
+        <h3 data-i18n="wk6t">Sizning saytingiz</h3><p data-i18n="wk6d">Keyingi ish shu ro'yxatda bo'lishi mumkin. Keling, boshlaymiz.</p>
+        <span class="open"><span data-i18n="wk6l">Boshlash</span> <span class="ar">→</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec alt" id="process">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" data-i18n="proc_eyebrow">Jarayon</span>
+      <h2 data-i18n="proc_title">G'oyadan birinchi mijozgacha</h2>
+      <p class="sub" data-i18n="proc_sub">Cheksiz qo'ng'iroqlarsiz. Ishlaydigan natijani ko'rsatamiz va ishga tushiramiz.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="pn" data-i18n="pr1n">15 daqiqa</div><h3 data-i18n="pr1t">Vazifani aniqlaymiz</h3><p data-i18n="pr1d">Kim uchun, qanday sahifalar va ariza qayerga tushishini birga yozamiz.</p></div>
+      <div class="step rv"><div class="pn" data-i18n="pr2n">Birinchi ekran</div><h3 data-i18n="pr2t">Prototipni ko'rasiz</h3><p data-i18n="pr2d">Ishlab chiqishdan oldin dizaynni ko'rsatamiz. Tasdiqlagach quramiz.</p></div>
+      <div class="step rv"><div class="pn" data-i18n="pr3n">Ishga tushirish</div><h3 data-i18n="pr3t">Domen va topshirish</h3><p data-i18n="pr3d">Domenni ulaymiz, joylashtiramiz, tekshiramiz va to'liq topshiramiz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow" style="justify-content:center" data-i18n="pri_eyebrow">Narxlar</span>
+      <h2 data-i18n="pri_title">Ochiq va tushunarli narxlar</h2>
+      <p class="sub" data-i18n="pri_sub">Boshlashdan oldin ssenariy, muddat va aniq smetani belgilaymiz. Yashirin to'lov yo'q.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv">
+        <div class="pt" data-i18n="pl1t">Lending</div>
+        <div class="pr">1.5 <small data-i18n="mln">mln so'mdan</small></div>
+        <p class="pd" data-i18n="pl1d">Bir sahifali sayt — reklama va ariza yig'ish uchun.</p>
+        <ul><li data-i18n="pl1f1">1 sahifa, mobil-birinchi</li><li data-i18n="pl1f2">Ariza / bog'lanish formasi</li><li data-i18n="pl1f3">Reklamaga tayyor (UTM)</li><li data-i18n="pl1f4">1–3 kunda tayyor</li></ul>
+        <a class="btn btn-out js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+      </div>
+      <div class="plan pop rv">
+        <div class="flag" data-i18n="popular">Ommabop</div>
+        <div class="pt" data-i18n="pl2t">Biznes sayt</div>
+        <div class="pr">2.5 <small data-i18n="mln">mln so'mdan</small></div>
+        <p class="pd" data-i18n="pl2d">Ko'p sahifali sayt — biznesingizni to'liq ko'rsatadi.</p>
+        <ul><li data-i18n="pl2f1">Bir nechta sahifa / bo'lim</li><li data-i18n="pl2f2">Xizmatlar katalogi</li><li data-i18n="pl2f3">Aloqa, xarita, galereya</li><li data-i18n="pl2f4">SEO asosi + tezlik</li></ul>
+        <a class="btn btn-acc js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+      </div>
+      <div class="plan rv">
+        <div class="pt" data-i18n="pl3t">Premium / Ko'p tilli</div>
+        <div class="pr">4 <small data-i18n="mln">mln so'mdan</small></div>
+        <p class="pd" data-i18n="pl3d">Ko'p tilli, murakkab tuzilish yoki maxsus dizayn.</p>
+        <ul><li data-i18n="pl3f1">UZ / RU / EN tillar</li><li data-i18n="pl3f2">Maxsus dizayn, animatsiya</li><li data-i18n="pl3f3">Kontent panel (kelishuvga qarab)</li><li data-i18n="pl3f4">Kengaytirilgan SEO</li></ul>
+        <a class="btn btn-out js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+      </div>
+    </div>
+    <p class="pnote" data-i18n="pri_note">Narxlar loyiha hajmiga qarab aniqlanadi. Aniq narxni bepul olish uchun yozing.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow" style="justify-content:center" data-i18n="faq_eyebrow">Savol-javob</span>
+      <h2 data-i18n="faq_title">Qisqacha</h2>
+    </div>
+    <div class="faq">
+      <details class="q rv"><summary><span data-i18n="fq1">Sayt qancha vaqtda tayyor bo'ladi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa1">Oddiy lending 1–3 kun, ko'p sahifali biznes sayt 3–7 kun ichida. Aniq muddatni ish hajmiga qarab boshida kelishamiz.</div></details>
+      <details class="q rv"><summary><span data-i18n="fq2">Domen va hostingni siz sozlaysizmi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa2">Ha. Domen ulash va joylashtirishda to'liq yordam beramiz. Ko'p hollarda hosting bepul bo'lishi mumkin — bu sizga oylik to'lovni tejaydi.</div></details>
+      <details class="q rv"><summary><span data-i18n="fq3">Saytni keyin o'zim tahrirlay olamanmi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa3">Kelishuvga qarab, matn va rasmlarni o'zingiz o'zgartirishingiz uchun oddiy panel qo'shamiz. Yoki kichik o'zgarishlarni biz qilamiz.</div></details>
+      <details class="q rv"><summary><span data-i18n="fq4">Sayt mobil telefonda yaxshi ko'rinadimi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa4">Albatta. Barcha saytlarimiz mobil-birinchi quriladi — mijozlaringizning aksariyati telefondan kiradi.</div></details>
+      <details class="q rv"><summary><span data-i18n="fq5">To'lov qanday amalga oshiriladi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa5">Odatda boshlashda oldindan to'lov, topshirishda qolgani. Aniq shartlarni yozishmada kelishamiz.</div></details>
+      <details class="q rv"><summary><span data-i18n="fq6">Telegram bot ham qilasizmi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa6">Hozircha e'tiborimiz saytlarda — eng sifatli ishni shu sohada beramiz. Telegram bot va Mini App xizmatlari tez orada qo'shiladi.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wrap">
+    <div class="cta rv">
+      <h2 data-i18n="cta_title">Loyihangizni bugun boshlaymiz.</h2>
+      <p data-i18n="cta_p">Vazifangizni bitta xabarda yozing — formatni maslahat beramiz, namuna va narxni aytamiz.</p>
+      <a class="btn btn-ink js-cta" href="#contact"><span data-i18n="cta_btn">Bepul narx olish</span> <span class="ar">→</span></a>
+      <div class="cta-eg"><b data-i18n="cta_eg_l">Namuna xabar</b><span data-i18n="cta_eg">«Assalomu alaykum! Kafem uchun menyu va joy band qilish formasi bo'lgan sayt kerak.»</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow" data-i18n="con_eyebrow">Aloqa</span>
+      <h2 data-i18n="con_title">Keling, gaplashamiz</h2>
+      <p class="sub" data-i18n="con_sub">Bitta xabar yeting — shaxsan javob beramiz, ortiqcha qo'ng'iroqsiz.</p>
+    </div>
+    <div class="contact-grid" id="contacts"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <a href="#top" class="logo">then<b>.</b></a>
+        <p class="foot-tag" data-i18n="foot_tag">O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b data-i18n="foot_nav">Bo'limlar</b>
+          <a href="#services" data-i18n="nav_services">Xizmatlar</a>
+          <a href="#work" data-i18n="nav_work">Ishlar</a>
+          <a href="#pricing" data-i18n="nav_pricing">Narx</a>
+          <a href="#process" data-i18n="nav_process">Jarayon</a>
+        </div>
+        <div class="foot-col" id="foot-contact">
+          <b data-i18n="foot_con">Aloqa</b>
+        </div>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 then.uz</span>
+      <span data-i18n="foot_rights">O'zbekistonda ❤ bilan qurildi</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ======= SOZLAMALAR — shu yerni to'ldiring ======= */
+const CFG = {
+  email:    "polatovmaqsudjon1@gmail.com",  // ishlayotgan aloqa
+  telegram: "",                              // ← Telegram username: "https://t.me/username"
+  phone:    ""                               // ← "+998 90 123 45 67" (ixtiyoriy)
+};
+
+/* ======= TARJIMALAR (UZ / RU) ======= */
+const I18N = {
+ uz:{
+  nav_services:"Xizmatlar",nav_work:"Ishlar",nav_pricing:"Narx",nav_process:"Jarayon",nav_contact:"Aloqa",nav_cta:"Loyiha boshlash",
+  hero_eyebrow:"Toshkent · Web studiya",
+  hero_h1:"Biznesingiz uchun <span class='hl'>sotadigan</span> sayt.",
+  hero_lead:"Chiroyli ko'rinish yetarli emas. Biz mijoz keltiradigan, tez ochiladigan, mobil uchun tuzilgan saytlar quramiz — reklamadan arizagacha.",
+  hero_cta1:"Bepul narx olish",hero_cta2:"Ishlarni ko'rish",
+  hero_p1:"kunda ishga tushadi",hero_p2:"jonli loyiha",hero_p3:"vositachi — to'g'ridan-to'g'ri",
+  sc_top:"Tanlangan ishlar",sc_live:"jonli ↗",
+  sc_1:"Xususiy maktab · uch tilli",sc_2:"Til markazi · marketing",sc_3:"Ta'lim platformasi",sc_4:"Testlar platformasi",
+  hero_float:"Tez · mobil-birinchi",
+  svc_eyebrow:"Xizmatlar",svc_title:"Vazifangizga mos yechim",svc_sub:"Har bir sayt mobil-birinchi, tez ochiladigan va qidiruv tizimlariga tayyor quriladi.",
+  s1t:"Lending",s1d:"Bitta taklif, bitta harakat. Reklama trafigini arizaga aylantiradi.",s1p:"1.5 mln so'mdan",
+  s2t:"Biznes sayt",s2d:"Ko'p sahifali sayt — kompaniya, xizmatlar va aloqani to'liq ko'rsatadi.",s2p:"2.5 mln so'mdan",
+  s3t:"Ko'p tilli sayt",s3d:"UZ / RU / EN — mahalliy va xalqaro auditoriyaga bir vaqtda.",s3p:"4 mln so'mdan",
+  s4t:"Katalog / vitrina",s4d:"Mahsulotlar katalogi va buyurtma formasi — savdo uchun.",s4p:"kelishuvga qarab",
+  s5t:"Redizayn",s5d:"Eski, sekin yoki mobil'da buziladigan saytni zamonaviylashtiramiz.",s5p:"kelishuvga qarab",
+  s6t:"Qo'llab-quvvatlash",s6d:"Ishga tushgach ham yolg'iz emassiz — yangilash va tuzatishlar.",s6p:"oylik / kelishuvga qarab",
+  why_eyebrow:"Nega then",why_title:"Arzonroq — chunki ortiqcha narsa yo'q.",
+  why_p:"Katta agentliklarda ofis, menejerlar va vositachilar narxni oshiradi. Bizda esa siz to'g'ridan-to'g'ri saytni quruvchi bilan ishlaysiz. Shuning uchun narx past, sifat yuqori, javob tez.",
+  why_cta:"Boshlaymizmi?",
+  w1t:"To'g'ridan-to'g'ri quruvchi bilan",w1d:"Vositachi va yashirin to'lov yo'q. Narx past, javob shaxsan va tez.",
+  w2t:"Jonli portfolio, demo emas",w2d:"Ishlarimizni hoziroq ochib, telefoningizda sinab ko'rasiz — real bizneslar ishlatyapti.",
+  w3t:"Tez va mobil-birinchi",w3d:"Og'ir shablon emas, toza kod. Sayt telefonda ham, sekin internetda ham tez ochiladi.",
+  w4t:"Halol narx, aniq smeta",w4d:"Boshlashdan oldin narx, muddat va nima kirishini yozib beramiz. Keyin oshib ketmaydi.",
+  work_eyebrow:"Ishlar",work_title:"Real bizneslar. Jonli saytlar.",work_sub:"Bularning har birini hoziroq ochib ko'rishingiz mumkin. Bu bizning eng kuchli isbotimiz.",
+  cat_edu:"Ta'lim",cat_lang:"Til markazi",cat_platform:"Platforma",cat_portfolio:"Portfolio",cat_next:"Keyingi",open:"Saytni ochish",
+  wk1:"Xususiy maktab sayti — uch tilli, real CEFR natijalari bilan.",
+  wk2:"Til o'quv markazi uchun zamonaviy, uch tilli marketing sayti.",
+  wk3:"Insho yozish va baholash platformasi — o'quvchilar uchun.",
+  wk4:"Amaliy testlar va ta'lim platformasi.",wk5:"Shaxsiy portfolio sayti namunasi.",
+  wk6t:"Sizning saytingiz",wk6d:"Keyingi ish shu ro'yxatda bo'lishi mumkin. Keling, boshlaymiz.",wk6l:"Boshlash",
+  proc_eyebrow:"Jarayon",proc_title:"G'oyadan birinchi mijozgacha",proc_sub:"Cheksiz qo'ng'iroqlarsiz. Ishlaydigan natijani ko'rsatamiz va ishga tushiramiz.",
+  pr1n:"15 daqiqa",pr1t:"Vazifani aniqlaymiz",pr1d:"Kim uchun, qanday sahifalar va ariza qayerga tushishini birga yozamiz.",
+  pr2n:"Birinchi ekran",pr2t:"Prototipni ko'rasiz",pr2d:"Ishlab chiqishdan oldin dizaynni ko'rsatamiz. Tasdiqlagach quramiz.",
+  pr3n:"Ishga tushirish",pr3t:"Domen va topshirish",pr3d:"Domenni ulaymiz, joylashtiramiz, tekshiramiz va to'liq topshiramiz.",
+  pri_eyebrow:"Narxlar",pri_title:"Ochiq va tushunarli narxlar",pri_sub:"Boshlashdan oldin ssenariy, muddat va aniq smetani belgilaymiz. Yashirin to'lov yo'q.",
+  mln:"mln so'mdan",popular:"Ommabop",choose:"Tanlash",
+  pl1t:"Lending",pl1d:"Bir sahifali sayt — reklama va ariza yig'ish uchun.",pl1f1:"1 sahifa, mobil-birinchi",pl1f2:"Ariza / bog'lanish formasi",pl1f3:"Reklamaga tayyor (UTM)",pl1f4:"1–3 kunda tayyor",
+  pl2t:"Biznes sayt",pl2d:"Ko'p sahifali sayt — biznesingizni to'liq ko'rsatadi.",pl2f1:"Bir nechta sahifa / bo'lim",pl2f2:"Xizmatlar katalogi",pl2f3:"Aloqa, xarita, galereya",pl2f4:"SEO asosi + tezlik",
+  pl3t:"Premium / Ko'p tilli",pl3d:"Ko'p tilli, murakkab tuzilish yoki maxsus dizayn.",pl3f1:"UZ / RU / EN tillar",pl3f2:"Maxsus dizayn, animatsiya",pl3f3:"Kontent panel (kelishuvga qarab)",pl3f4:"Kengaytirilgan SEO",
+  pri_note:"Narxlar loyiha hajmiga qarab aniqlanadi. Aniq narxni bepul olish uchun yozing.",
+  faq_eyebrow:"Savol-javob",faq_title:"Qisqacha",
+  fq1:"Sayt qancha vaqtda tayyor bo'ladi?",fa1:"Oddiy lending 1–3 kun, ko'p sahifali biznes sayt 3–7 kun ichida. Aniq muddatni ish hajmiga qarab boshida kelishamiz.",
+  fq2:"Domen va hostingni siz sozlaysizmi?",fa2:"Ha. Domen ulash va joylashtirishda to'liq yordam beramiz. Ko'p hollarda hosting bepul bo'lishi mumkin — bu sizga oylik to'lovni tejaydi.",
+  fq3:"Saytni keyin o'zim tahrirlay olamanmi?",fa3:"Kelishuvga qarab, matn va rasmlarni o'zingiz o'zgartirishingiz uchun oddiy panel qo'shamiz. Yoki kichik o'zgarishlarni biz qilamiz.",
+  fq4:"Sayt mobil telefonda yaxshi ko'rinadimi?",fa4:"Albatta. Barcha saytlarimiz mobil-birinchi quriladi — mijozlaringizning aksariyati telefondan kiradi.",
+  fq5:"To'lov qanday amalga oshiriladi?",fa5:"Odatda boshlashda oldindan to'lov, topshirishda qolgani. Aniq shartlarni yozishmada kelishamiz.",
+  fq6:"Telegram bot ham qilasizmi?",fa6:"Hozircha e'tiborimiz saytlarda — eng sifatli ishni shu sohada beramiz. Telegram bot va Mini App xizmatlari tez orada qo'shiladi.",
+  cta_title:"Loyihangizni bugun boshlaymiz.",cta_p:"Vazifangizni bitta xabarda yozing — formatni maslahat beramiz, namuna va narxni aytamiz.",cta_btn:"Bepul narx olish",
+  cta_eg_l:"Namuna xabar",cta_eg:"«Assalomu alaykum! Kafem uchun menyu va joy band qilish formasi bo'lgan sayt kerak.»",
+  con_eyebrow:"Aloqa",con_title:"Keling, gaplashamiz",con_sub:"Bitta xabar yeting — shaxsan javob beramiz, ortiqcha qo'ng'iroqsiz.",
+  con_email:"Email",con_tg:"Telegram",con_phone:"Telefon",
+  foot_tag:"O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.",
+  foot_nav:"Bo'limlar",foot_con:"Aloqa",foot_rights:"O'zbekistonda ❤ bilan qurildi",
+  page_title:"then — Biznesingiz uchun sayt studiyasi | O'zbekiston"
+ },
+ ru:{
+  nav_services:"Услуги",nav_work:"Работы",nav_pricing:"Цены",nav_process:"Процесс",nav_contact:"Контакты",nav_cta:"Начать проект",
+  hero_eyebrow:"Ташкент · Веб-студия",
+  hero_h1:"Сайт, который <span class='hl'>продаёт</span> ваш бизнес.",
+  hero_lead:"Красивой картинки мало. Мы делаем сайты, которые приводят клиентов: быстрые, мобильные, заточенные под заявки — от рекламы до обращения.",
+  hero_cta1:"Узнать цену",hero_cta2:"Смотреть работы",
+  hero_p1:"дня до запуска",hero_p2:"живых проекта",hero_p3:"посредников — напрямую",
+  sc_top:"Избранные работы",sc_live:"живые ↗",
+  sc_1:"Частная школа · 3 языка",sc_2:"Языковой центр · маркетинг",sc_3:"Образовательная платформа",sc_4:"Платформа тестов",
+  hero_float:"Быстро · mobile-first",
+  svc_eyebrow:"Услуги",svc_title:"Решение под вашу задачу",svc_sub:"Каждый сайт делается mobile-first, быстро загружается и готов к поисковым системам.",
+  s1t:"Лендинг",s1d:"Одно предложение, одно действие. Превращает трафик в заявки.",s1p:"от 1.5 млн сум",
+  s2t:"Бизнес-сайт",s2d:"Многостраничный сайт — компания, услуги и контакты полностью.",s2p:"от 2.5 млн сум",
+  s3t:"Многоязычный сайт",s3d:"UZ / RU / EN — локальная и международная аудитория сразу.",s3p:"от 4 млн сум",
+  s4t:"Каталог / витрина",s4d:"Каталог товаров и форма заказа — для продаж.",s4p:"по договорённости",
+  s5t:"Редизайн",s5d:"Обновляем старый, медленный или «ломающийся» на мобильном сайт.",s5p:"по договорённости",
+  s6t:"Поддержка",s6d:"После запуска вы не одни — обновления и правки.",s6p:"помесячно / по договорённости",
+  why_eyebrow:"Почему then",why_title:"Дешевле — потому что нет лишнего.",
+  why_p:"В крупных агентствах офис, менеджеры и посредники поднимают цену. У нас вы работаете напрямую с тем, кто делает сайт. Поэтому цена ниже, качество выше, а ответ — быстрый.",
+  why_cta:"Начнём?",
+  w1t:"Напрямую с разработчиком",w1d:"Без посредников и скрытых платежей. Цена ниже, ответ лично и быстро.",
+  w2t:"Живое портфолио, а не демо",w2d:"Наши работы можно открыть прямо сейчас — их используют реальные бизнесы.",
+  w3t:"Быстро и mobile-first",w3d:"Не тяжёлый шаблон, а чистый код. Сайт быстрый и на телефоне, и на медленном интернете.",
+  w4t:"Честная цена, чёткая смета",w4d:"До старта фиксируем цену, сроки и что входит. Потом сумма не растёт.",
+  work_eyebrow:"Работы",work_title:"Реальные бизнесы. Живые сайты.",work_sub:"Каждый из них можно открыть прямо сейчас. Это наше главное доказательство.",
+  cat_edu:"Образование",cat_lang:"Языковой центр",cat_platform:"Платформа",cat_portfolio:"Портфолио",cat_next:"Следующий",open:"Открыть сайт",
+  wk1:"Сайт частной школы — трёхъязычный, с реальными результатами CEFR.",
+  wk2:"Современный трёхъязычный маркетинговый сайт для языкового центра.",
+  wk3:"Платформа для написания и оценки эссе — для учащихся.",
+  wk4:"Платформа практических тестов и обучения.",wk5:"Пример личного сайта-портфолио.",
+  wk6t:"Ваш сайт",wk6d:"Следующая работа может быть в этом списке. Давайте начнём.",wk6l:"Начать",
+  proc_eyebrow:"Процесс",proc_title:"От идеи до первого клиента",proc_sub:"Без бесконечных созвонов. Показываем рабочий результат и запускаем.",
+  pr1n:"15 минут",pr1t:"Определяем задачу",pr1d:"Вместе фиксируем: для кого, какие страницы и куда приходит заявка.",
+  pr2n:"Первый экран",pr2t:"Показываем прототип",pr2d:"Показываем дизайн до разработки. Утвердили — делаем.",
+  pr3n:"Запуск",pr3t:"Домен и передача",pr3d:"Подключаем домен, размещаем, тестируем и полностью передаём.",
+  pri_eyebrow:"Цены",pri_title:"Открытые и понятные цены",pri_sub:"До старта фиксируем сценарий, сроки и точную смету. Без скрытых платежей.",
+  mln:"млн сум",popular:"Популярный",choose:"Выбрать",
+  pl1t:"Лендинг",pl1d:"Одностраничный сайт — для рекламы и сбора заявок.",pl1f1:"1 страница, mobile-first",pl1f2:"Форма заявки / связи",pl1f3:"Готов к рекламе (UTM)",pl1f4:"Готов за 1–3 дня",
+  pl2t:"Бизнес-сайт",pl2d:"Многостраничный сайт — полностью представляет ваш бизнес.",pl2f1:"Несколько страниц / разделов",pl2f2:"Каталог услуг",pl2f3:"Контакты, карта, галерея",pl2f4:"Основы SEO + скорость",
+  pl3t:"Премиум / Многоязычный",pl3d:"Многоязычность, сложная структура или особый дизайн.",pl3f1:"Языки UZ / RU / EN",pl3f2:"Особый дизайн, анимация",pl3f3:"Панель контента (по договорённости)",pl3f4:"Расширенное SEO",
+  pri_note:"Цена зависит от объёма проекта. Напишите — узнаете точную цену бесплатно.",
+  faq_eyebrow:"Вопросы",faq_title:"Коротко",
+  fq1:"Сколько времени займёт сайт?",fa1:"Простой лендинг — 1–3 дня, многостраничный бизнес-сайт — 3–7 дней. Точный срок фиксируем в начале по объёму работ.",
+  fq2:"Вы настраиваете домен и хостинг?",fa2:"Да. Полностью помогаем с подключением домена и размещением. Часто хостинг может быть бесплатным — это экономит вам ежемесячный платёж.",
+  fq3:"Смогу ли я потом сам редактировать сайт?",fa3:"По договорённости добавим простую панель, чтобы вы сами меняли тексты и фото. Либо мелкие правки делаем мы.",
+  fq4:"Хорошо ли сайт выглядит на телефоне?",fa4:"Конечно. Все сайты делаются mobile-first — большинство ваших клиентов заходят с телефона.",
+  fq5:"Как происходит оплата?",fa5:"Обычно предоплата в начале, остальное — при сдаче. Точные условия согласуем в переписке.",
+  fq6:"Делаете ли Telegram-ботов?",fa6:"Пока фокус на сайтах — здесь мы даём лучшее качество. Услуги Telegram-ботов и Mini App добавим скоро.",
+  cta_title:"Начнём ваш проект сегодня.",cta_p:"Опишите задачу одним сообщением — подскажем формат, покажем пример и назовём цену.",cta_btn:"Узнать цену",
+  cta_eg_l:"Пример сообщения",cta_eg:"«Здравствуйте! Нужен сайт для кафе с меню и формой бронирования столика.»",
+  con_eyebrow:"Контакты",con_title:"Давайте поговорим",con_sub:"Напишите одно сообщение — ответим лично, без лишних созвонов.",
+  con_email:"Email",con_tg:"Telegram",con_phone:"Телефон",
+  foot_tag:"Современные продающие сайты в Узбекистане. Напрямую с разработчиком.",
+  foot_nav:"Разделы",foot_con:"Контакты",foot_rights:"Сделано с ❤ в Узбекистане",
+  page_title:"then — веб-студия для вашего бизнеса | Узбекистан"
+ }
+};
+
+/* ======= RENDER ======= */
+const mailHref = "mailto:"+CFG.email+"?subject="+encodeURIComponent("then.uz — sayt bo'yicha so'rov");
+function primaryContact(){ return CFG.telegram ? CFG.telegram : mailHref; }
+
+function buildContacts(lang){
+  const box=document.getElementById('contacts');
+  const foot=document.getElementById('foot-contact');
+  const t=I18N[lang];
+  let items=[];
+  if(CFG.telegram) items.push({ic:"✈",lbl:t.con_tg,val:CFG.telegram.replace(/^https?:\/\//,''),href:CFG.telegram});
+  items.push({ic:"✉",lbl:t.con_email,val:CFG.email,href:mailHref});
+  if(CFG.phone) items.push({ic:"☎",lbl:t.con_phone,val:CFG.phone,href:"tel:"+CFG.phone.replace(/\s/g,'')});
+  box.innerHTML=items.map(i=>`<a class="cc" href="${i.href}" ${i.href.startsWith('http')?'target="_blank" rel="noopener"':''}><span class="ic">${i.ic}</span><span><small>${i.lbl}</small><b>${i.val}</b></span></a>`).join('');
+  // footer contact links
+  let f='<b>'+t.foot_con+'</b>';
+  if(CFG.telegram) f+=`<a href="${CFG.telegram}" target="_blank" rel="noopener">Telegram</a>`;
+  f+=`<a href="${mailHref}">${CFG.email}</a>`;
+  if(CFG.phone) f+=`<a href="tel:${CFG.phone.replace(/\s/g,'')}">${CFG.phone}</a>`;
+  foot.innerHTML=f;
+}
+
+function applyLang(lang){
+  const t=I18N[lang]; if(!t) return;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n'); if(t[k]!=null) el.innerHTML=t[k];
+  });
+  if(t.page_title) document.title=t.page_title;
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+  document.querySelectorAll('.js-cta').forEach(a=>{
+    a.href=primaryContact(); if(CFG.telegram){a.target="_blank";a.rel="noopener";}
+  });
+  buildContacts(lang);
+  localStorage.setItem('then_lang',lang);
+}
+
+/* marquee */
+(function(){
+  const items=["zedavlod.uz","ctnlc.uz","pangea8.com","flarestamina.com","maqsudjon.com"];
+  const one=items.map(x=>`<span class="marq-item">${x}</span>`).join('');
+  document.getElementById('marq').innerHTML=one+one;
+})();
+
+/* lang toggle */
+document.getElementById('lang').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(b) applyLang(b.dataset.lang);
+});
+
+/* mobile menu */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>menu.classList.toggle('open'));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+/* nav shadow */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* init */
+applyLang(localStorage.getItem('then_lang')||'uz');
+</script>
+</body>
+</html>
