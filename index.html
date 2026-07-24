@@ -9,187 +9,200 @@
 <meta property="og:title" content="then — sayt studiyasi">
 <meta property="og:description" content="Biznesingiz uchun premium, sotadigan saytlar. Jonli ishlar, halol narx.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E8401E'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Georgia,serif' text-anchor='middle' fill='white'%3Et%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF4A1C'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Georgia,serif' text-anchor='middle' fill='white'%3Et%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F4F0E7; --paper2:#ECE6D8; --card:#FFFFFF; --ink:#16130E; --ink2:#37322A;
+  --paper:#F4F0E7; --paper2:#EBE4D4; --card:#FFFFFF; --ink:#16130E; --ink2:#37322A;
   --mut:#6E665A; --line:#E4DDCD; --line2:#D6CDB8;
-  --acc:#E8401E; --acc-d:#C22F12; --sun:#F4A62A;
-  --r:14px; --rs:10px; --max:1180px;
-  --sh:0 24px 50px -30px rgba(60,42,20,.5);
-  --sh-s:0 10px 26px -18px rgba(60,42,20,.5);
-  --serif:"Fraunces",Georgia,"Times New Roman",serif;
-  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --acc:#FF4A1C; --acc-d:#DA3A11; --pink:#FF7E9D; --amber:#F9B233; --blue:#4B5BFF; --violet:#9B5CFF;
+  --grad:linear-gradient(100deg,#FF4A1C,#FF7E9D 55%,#F9B233);
+  --r:16px; --rs:11px; --max:1180px;
+  --sh:0 30px 60px -34px rgba(60,42,20,.55);
+  --sh-s:0 14px 30px -20px rgba(60,42,20,.5);
+  --serif:"Fraunces",Georgia,serif; --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);
-  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 section{position:relative}
 .serif{font-family:var(--serif);font-weight:500}
-.acc{color:var(--acc)}
-.hl{position:relative;white-space:nowrap;color:var(--acc);font-style:italic}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--acc);display:inline-flex;align-items:center;gap:9px}
-.eyebrow::before{content:"";width:26px;height:2px;background:var(--acc);display:inline-block}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--acc);
+  display:inline-flex;align-items:center;gap:9px}
+.eyebrow.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc);
+  box-shadow:0 0 0 0 rgba(255,74,28,.6);animation:pulse 2s infinite}
+.eyebrow.line::before{content:"";width:26px;height:2px;background:var(--acc)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,74,28,.55)}70%{box-shadow:0 0 0 10px rgba(255,74,28,0)}100%{box-shadow:0 0 0 0 rgba(255,74,28,0)}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;
-  font-family:inherit;font-weight:700;font-size:15px;border-radius:100px;
-  padding:14px 26px;transition:transform .18s ease,box-shadow .25s,background .2s,color .2s;letter-spacing:.2px}
-.btn-acc{background:var(--acc);color:#fff;box-shadow:0 14px 30px -12px rgba(232,64,30,.6)}
-.btn-acc:hover{transform:translateY(-2px);box-shadow:0 20px 40px -12px rgba(232,64,30,.75);background:var(--acc-d)}
+.btn{display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;font-family:inherit;
+  font-weight:700;font-size:15px;border-radius:100px;padding:14px 26px;letter-spacing:.2px;
+  transition:transform .18s,box-shadow .25s,background .2s,color .2s;will-change:transform}
+.btn-acc{background:var(--acc);color:#fff;box-shadow:0 16px 34px -12px rgba(255,74,28,.6)}
+.btn-acc:hover{background:var(--acc-d);box-shadow:0 22px 44px -12px rgba(255,74,28,.75)}
 .btn-ink{background:var(--ink);color:var(--paper)}
-.btn-ink:hover{transform:translateY(-2px);background:#000}
+.btn-ink:hover{background:#000}
 .btn-out{background:transparent;color:var(--ink);border:1.5px solid var(--line2)}
 .btn-out:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 .btn .ar{transition:transform .2s}
 .btn:hover .ar{transform:translateX(3px)}
 
 /* NAV */
-header.nav{position:sticky;top:0;z-index:60;transition:box-shadow .3s,background .3s;
-  background:rgba(244,240,231,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent}
-header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 24px -18px rgba(60,42,20,.5)}
+header.nav{position:sticky;top:0;z-index:80;transition:box-shadow .3s,background .3s,border-color .3s;
+  background:rgba(244,240,231,.8);backdrop-filter:blur(16px);border-bottom:1px solid transparent}
+header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 26px -20px rgba(60,42,20,.6)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font-family:var(--serif);font-weight:600;font-size:27px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:2px}
-.logo b{color:var(--acc);font-weight:600}
+.logo{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.5px;display:flex;align-items:baseline}
+.logo b{color:var(--acc)}
 .nav-mid{display:flex;align-items:center;gap:30px}
-.nav-mid a{color:var(--ink2);font-size:14.5px;font-weight:600;transition:color .2s;position:relative}
+.nav-mid a{color:var(--ink2);font-size:14.5px;font-weight:600;position:relative;transition:color .2s}
 .nav-mid a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--acc);transition:width .25s}
 .nav-mid a:hover{color:var(--ink)}.nav-mid a:hover::after{width:100%}
-.nav-right{display:flex;align-items:center;gap:16px}
-.lang{display:flex;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:3px;font-size:12.5px;font-weight:700}
-.lang button{border:none;background:none;cursor:pointer;font-family:inherit;font-weight:700;
-  color:var(--mut);padding:6px 12px;border-radius:100px;transition:.2s;font-size:12.5px}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{display:flex;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:3px}
+.lang button{border:none;background:none;cursor:pointer;font-family:inherit;font-weight:800;color:var(--mut);
+  padding:6px 12px;border-radius:100px;transition:.2s;font-size:12.5px}
 .lang button.on{background:var(--ink);color:var(--paper)}
-.burger{display:none;background:var(--card);border:1px solid var(--line);border-radius:11px;
-  width:44px;height:44px;font-size:19px;cursor:pointer;color:var(--ink)}
+.burger{display:none;background:var(--card);border:1px solid var(--line);border-radius:11px;width:44px;height:44px;font-size:19px;cursor:pointer;color:var(--ink)}
 
 /* HERO */
-.hero{padding:66px 0 40px}
-.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
-.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,72px);
-  line-height:1.03;letter-spacing:-1.5px;margin:22px 0 22px}
-.hero h1 .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.5em;
-  background:rgba(244,166,42,.45);z-index:-1;transform:rotate(-1deg);border-radius:3px}
-.hero p.lead{font-size:clamp(16px,2vw,19px);color:var(--ink2);max-width:500px;margin-bottom:30px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
-.proof{display:flex;gap:26px;flex-wrap:wrap}
-.proof div{display:flex;flex-direction:column}
-.proof b{font-family:var(--serif);font-size:26px;font-weight:600;line-height:1}
-.proof span{font-size:13px;color:var(--mut);margin-top:4px}
-.proof .sep{width:1px;background:var(--line2);align-self:stretch}
+.hero{position:relative;overflow:hidden;padding:60px 0 46px}
+.mesh{position:absolute;inset:-25% -12% 0;z-index:0;pointer-events:none;filter:blur(72px);opacity:.7}
+.blob{position:absolute;width:44vw;height:44vw;max-width:640px;max-height:640px;border-radius:50%;mix-blend-mode:multiply}
+.b1{background:radial-gradient(circle,#FF4A1C,transparent 62%);top:-6%;left:-4%;animation:fl1 16s ease-in-out infinite}
+.b2{background:radial-gradient(circle,#FF7E9D,transparent 62%);top:8%;right:-6%;animation:fl2 19s ease-in-out infinite}
+.b3{background:radial-gradient(circle,#F9B233,transparent 60%);bottom:-16%;left:22%;animation:fl3 22s ease-in-out infinite}
+.b4{background:radial-gradient(circle,#7C8BFF,transparent 62%);top:26%;left:34%;width:34vw;height:34vw;animation:fl1 25s ease-in-out infinite reverse}
+@keyframes fl1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6%,7%) scale(1.12)}}
+@keyframes fl2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7%,5%) scale(1.1)}}
+@keyframes fl3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5%,-6%) scale(1.15)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,5.7vw,68px);line-height:1.02;
+  letter-spacing:-1.5px;margin:20px 0 22px}
+.rot{display:inline-block;position:relative;font-style:italic;font-weight:600;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:opacity .34s ease,transform .34s ease}
+.rot.out{opacity:0;transform:translateY(-14px) rotate(-2deg)}
+.hero p.lead{font-size:clamp(16px,1.9vw,19px);color:var(--ink2);max-width:494px;margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.proof{display:flex;gap:30px;flex-wrap:wrap}
+.proof .st b{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1;display:block}
+.proof .st span{font-size:13px;color:var(--mut)}
+.proof .sep{width:1px;background:var(--line2)}
 
-/* hero visual: work index card */
-.showcase{background:var(--card);border:1px solid var(--line);border-radius:20px;
-  box-shadow:var(--sh);padding:28px;position:relative}
-.showcase .sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.showcase .sc-top span{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut)}
-.showcase .sc-top em{font-family:var(--serif);font-style:normal;font-size:13px;color:var(--acc);font-weight:600}
-.wrow{display:flex;align-items:center;gap:14px;padding:15px 6px;border-top:1px solid var(--line);transition:padding-left .2s}
-.wrow:hover{padding-left:14px}
-.wrow .sq{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;
-  justify-content:center;color:#fff;font-family:var(--serif);font-weight:600;font-size:17px}
-.wrow .wm{flex:1}
-.wrow .wm b{font-size:15.5px;font-weight:700;display:block}
-.wrow .wm small{font-size:12.5px;color:var(--mut)}
-.wrow .go{color:var(--mut);font-size:18px;transition:.2s}
-.wrow:hover .go{color:var(--acc);transform:translate(3px,-3px)}
-.c1{background:linear-gradient(135deg,#2563eb,#1e3a8a)}
-.c2{background:linear-gradient(135deg,#0e9488,#0f5e57)}
-.c3{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
-.c4{background:linear-gradient(135deg,#e8401e,#a32b12)}
-.c5{background:linear-gradient(135deg,#0f766e,#134e4a)}
-.float-tag{position:absolute;bottom:-18px;left:-18px;background:var(--acc);color:#fff;
-  font-weight:700;font-size:13px;padding:12px 18px;border-radius:100px;box-shadow:var(--sh-s);
-  display:flex;align-items:center;gap:8px}
-.float-tag b{font-family:var(--serif);font-size:16px}
+/* DEVICE (live iframe carousel) */
+.device{background:var(--card);border:1px solid var(--line2);border-radius:16px;box-shadow:var(--sh);overflow:hidden;position:relative}
+.d-bar{display:flex;align-items:center;gap:7px;padding:12px 14px;background:#F0EBE0;border-bottom:1px solid var(--line)}
+.d-bar .dot{width:11px;height:11px;border-radius:50%;background:#CDbfa8}
+.d-bar .dot:nth-child(1){background:#FF5F57}.d-bar .dot:nth-child(2){background:#FEBC2E}.d-bar .dot:nth-child(3){background:#28C840}
+.d-url{margin-left:10px;flex:1;background:var(--paper);border:1px solid var(--line);border-radius:7px;
+  padding:6px 12px;font-size:12.5px;color:var(--ink2);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-open{font-size:12px;font-weight:700;color:var(--acc);white-space:nowrap}
+.d-stage{position:relative;width:100%;aspect-ratio:16/10;background:#fff;overflow:hidden}
+.d-stage iframe{position:absolute;top:0;left:0;width:1440px;height:900px;transform-origin:0 0;border:0;
+  opacity:0;transition:opacity .55s ease;pointer-events:none}
+.d-stage iframe.on{opacity:1}
+.d-load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mut);
+  font-size:13px;font-weight:600;gap:9px}
+.d-load::before{content:"";width:15px;height:15px;border:2px solid var(--line2);border-top-color:var(--acc);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.d-hint{position:absolute;bottom:12px;right:12px;background:rgba(22,19,14,.82);color:#fff;font-size:11px;
+  font-weight:600;padding:6px 12px;border-radius:100px;z-index:3;backdrop-filter:blur(4px)}
+.d-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--card);border-top:1px solid var(--line)}
+.d-cap{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink2)}
+.d-dots{display:flex;gap:7px}
+.d-dots i{width:8px;height:8px;border-radius:50%;background:var(--line2);cursor:pointer;transition:.25s}
+.d-dots i.on{background:var(--acc);width:22px;border-radius:5px}
+.float-tag{position:absolute;bottom:-16px;left:-16px;background:var(--ink);color:#fff;font-weight:700;
+  font-size:13px;padding:11px 17px;border-radius:100px;box-shadow:var(--sh-s);z-index:4;display:flex;align-items:center;gap:8px}
+.float-tag b{color:var(--amber)}
+.dev-wrap{position:relative}
 
 /* MARQUEE */
-.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:var(--paper2);overflow:hidden;padding:20px 0;margin-top:34px}
-.marq-track{display:flex;gap:0;white-space:nowrap;animation:scrollx 26s linear infinite;width:max-content}
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper2);overflow:hidden;padding:18px 0}
+.marq-track{display:flex;white-space:nowrap;width:max-content;animation:scrollx 28s linear infinite}
 .marq:hover .marq-track{animation-play-state:paused}
-.marq-item{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);padding:0 34px;display:flex;align-items:center;gap:34px}
-.marq-item::after{content:"✳";color:var(--acc);font-size:15px}
-@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marq-item{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--ink);padding:0 30px;display:flex;align-items:center;gap:30px}
+.marq-item::after{content:"✳";color:var(--acc);font-size:14px}
+@keyframes scrollx{to{transform:translateX(-50%)}}
 
-/* section head */
-.sec{padding:82px 0}
+/* section */
+.sec{padding:84px 0}
 .sec.alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.head{max-width:640px}
-.head h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,50px);
-  letter-spacing:-1px;line-height:1.05;margin:16px 0 14px}
+.head{max-width:660px}
+.head h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,50px);letter-spacing:-1px;line-height:1.04;margin:15px 0 14px}
 .head .sub{color:var(--mut);font-size:17px}
 .center{text-align:center;margin-left:auto;margin-right:auto}
 
 /* SERVICES */
-.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
-.svc-item{padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-  transition:background .25s;position:relative}
-.svc-item:hover{background:var(--paper)}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.svc-item{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s;position:relative;overflow:hidden;transform-style:preserve-3d}
+.svc-item::after{content:"";position:absolute;inset:0;border-radius:var(--r);opacity:0;transition:opacity .3s;
+  background:linear-gradient(135deg,rgba(255,74,28,.06),rgba(249,178,51,.05));pointer-events:none}
+.svc-item:hover{box-shadow:var(--sh);border-color:var(--line2)}
+.svc-item:hover::after{opacity:1}
 .svc-item .no{font-family:var(--serif);font-size:15px;color:var(--acc);font-weight:600}
-.svc-item h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:14px 0 10px;letter-spacing:-.3px}
+.svc-item h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:12px 0 9px;letter-spacing:-.3px}
 .svc-item p{color:var(--mut);font-size:14.5px}
-.svc-item .pk{margin-top:16px;font-size:13px;font-weight:700;color:var(--ink2)}
+.svc-item .pk{margin-top:15px;font-size:13px;font-weight:800;color:var(--acc)}
 
-/* WHY (statement) */
+/* WHY */
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.why-lead h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,44px);
-  letter-spacing:-1px;line-height:1.08}
+.why-lead h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,44px);letter-spacing:-1px;line-height:1.08}
 .why-lead p{color:var(--mut);font-size:16px;margin-top:20px;max-width:420px}
 .why-lead .btn{margin-top:26px}
-.why-list{display:flex;flex-direction:column;gap:2px}
 .why-row{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line2)}
 .why-row .wn{font-family:var(--serif);font-size:20px;color:var(--acc);font-weight:600;min-width:30px}
 .why-row h4{font-size:17px;font-weight:700;margin-bottom:5px}
 .why-row p{color:var(--mut);font-size:14.5px}
 
 /* WORK */
-.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:44px}
-.work{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
-  padding:28px 30px;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
-.work:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line2)}
-.work .wtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px}
-.work .cat{font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  color:var(--acc);background:rgba(232,64,30,.09);padding:6px 12px;border-radius:100px}
-.work .idx{font-family:var(--serif);font-size:30px;color:var(--line2);font-weight:600;line-height:1}
-.work h3{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.4px}
-.work p{color:var(--mut);font-size:14.5px;margin:8px 0 16px;max-width:90%}
-.work .open{font-size:14px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:7px}
-.work .open .ar{color:var(--acc);transition:transform .2s}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px}
+.work{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s}
+.work:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:var(--line2)}
+.w-prev{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#efe9dc,#e6ddca);border-bottom:1px solid var(--line)}
+.w-prev iframe{position:absolute;top:0;left:0;width:1440px;height:810px;transform-origin:0 0;border:0;pointer-events:none}
+.w-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:44px;color:#fff}
+.w-badge{position:absolute;top:12px;left:12px;z-index:3;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  color:#fff;background:rgba(22,19,14,.72);padding:6px 12px;border-radius:100px;backdrop-filter:blur(4px)}
+.w-live{position:absolute;top:12px;right:12px;z-index:3;font-size:10.5px;font-weight:800;letter-spacing:.5px;
+  color:#fff;background:var(--acc);padding:5px 10px;border-radius:100px;display:flex;align-items:center;gap:5px}
+.w-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse2 1.6s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.3}}
+.w-info{padding:22px 24px 24px}
+.w-info h3{font-family:var(--serif);font-weight:600;font-size:23px;letter-spacing:-.3px}
+.w-info p{color:var(--mut);font-size:14px;margin:6px 0 14px}
+.w-info .open{font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.w-info .open .ar{color:var(--acc);transition:transform .2s}
 .work:hover .open .ar{transform:translate(3px,-3px)}
-.work.you{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.work.you .cat{color:var(--sun);background:rgba(244,166,42,.14)}
-.work.you .idx{color:#4a4438}
-.work.you p{color:#b8b0a2}
-.work.you .open{color:#fff}
+.work.you{background:var(--ink)}
+.work.you .w-info h3{color:#fff}.work.you .w-info p{color:#b8b0a2}.work.you .w-info .open{color:#fff}
 
 /* PROCESS */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
-.step{position:relative;padding-top:26px;border-top:2px solid var(--ink)}
+.step{padding-top:24px;border-top:2px solid var(--ink)}
 .step .pn{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--acc)}
-.step h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:12px 0 10px}
+.step h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:12px 0 9px}
 .step p{color:var(--mut);font-size:14.5px}
 
 /* PRICING */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;align-items:stretch}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px 30px;
-  display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
-.plan:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px 30px;display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s}
+.plan:hover{transform:translateY(-5px);box-shadow:var(--sh)}
 .plan.pop{background:var(--ink);color:var(--paper);border-color:var(--ink);position:relative}
-.plan.pop .pt,.plan.pop .pd{color:#c3bbac}
-.plan.pop li{color:#e7e1d5;border-color:#332e26}
-.plan .flag{position:absolute;top:22px;right:24px;background:var(--acc);color:#fff;font-size:11px;
-  font-weight:700;letter-spacing:.5px;padding:5px 12px;border-radius:100px}
-.plan .pt{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut)}
+.plan.pop .pt,.plan.pop .pd{color:#c3bbac}.plan.pop li{color:#e7e1d5;border-color:#332e26}
+.plan .flag{position:absolute;top:22px;right:24px;background:var(--acc);color:#fff;font-size:11px;font-weight:800;
+  letter-spacing:.5px;padding:5px 12px;border-radius:100px}
+.plan .pt{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut)}
 .plan .pr{font-family:var(--serif);font-weight:600;font-size:40px;letter-spacing:-1px;margin:14px 0 2px}
 .plan .pr small{font-size:15px;color:var(--mut);font-weight:400;font-family:var(--sans)}
 .plan.pop .pr small{color:#b3a99a}
@@ -204,72 +217,72 @@ header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 24px -18px 
 /* FAQ */
 .faq{max-width:820px;margin:44px auto 0}
 .q{border-bottom:1px solid var(--line2)}
-.q summary{cursor:pointer;padding:22px 4px;font-weight:700;font-size:18px;list-style:none;
-  display:flex;justify-content:space-between;gap:16px;align-items:center;font-family:var(--serif)}
+.q summary{cursor:pointer;padding:22px 4px;font-weight:600;font-size:18px;list-style:none;display:flex;
+  justify-content:space-between;gap:16px;align-items:center;font-family:var(--serif)}
 .q summary::-webkit-details-marker{display:none}
-.q .pl{color:var(--acc);font-size:24px;transition:transform .25s;flex-shrink:0;font-weight:400}
+.q .pl{color:var(--acc);font-size:24px;transition:transform .25s;flex-shrink:0}
 .q[open] .pl{transform:rotate(45deg)}
-.q .ans{padding:0 4px 22px;color:var(--mut);font-size:15px;max-width:90%}
+.q .ans{padding:0 4px 22px;color:var(--mut);font-size:15px;max-width:92%}
 
 /* CTA */
-.cta-sec{padding:30px 0 90px}
-.cta{background:var(--acc);border-radius:26px;padding:66px 50px;text-align:center;position:relative;overflow:hidden}
+.cta-sec{padding:24px 0 92px}
+.cta{border-radius:28px;padding:70px 50px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(120deg,#FF4A1C,#FF6A57 45%,#F9B233);background-size:180% 180%;animation:gshift 9s ease infinite}
+@keyframes gshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .cta::before{content:"then";position:absolute;font-family:var(--serif);font-size:340px;font-weight:600;
-  color:rgba(0,0,0,.06);bottom:-120px;right:-30px;line-height:1;pointer-events:none}
-.cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,54px);letter-spacing:-1px;
-  color:#fff;position:relative;line-height:1.05}
-.cta p{color:rgba(255,255,255,.9);max-width:480px;margin:18px auto 30px;position:relative;font-size:17px}
+  color:rgba(255,255,255,.12);bottom:-118px;right:-20px;line-height:1;pointer-events:none}
+.cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,54px);letter-spacing:-1px;color:#fff;position:relative;line-height:1.05}
+.cta p{color:rgba(255,255,255,.94);max-width:490px;margin:18px auto 30px;position:relative;font-size:17px}
 .cta .btn{position:relative}
-.cta-eg{position:relative;max-width:440px;margin:30px auto 0;background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px 20px;text-align:left;
-  color:#fff;font-size:14.5px;backdrop-filter:blur(4px)}
-.cta-eg b{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.8;margin-bottom:6px;font-weight:700}
+.cta-eg{position:relative;max-width:450px;margin:30px auto 0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+  border-radius:14px;padding:16px 20px;text-align:left;color:#fff;font-size:14.5px;backdrop-filter:blur(4px)}
+.cta-eg b{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-bottom:6px;font-weight:800}
 
 /* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
-.cc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;
-  display:flex;align-items:center;gap:18px;transition:.25s}
-.cc:hover{border-color:var(--line2);box-shadow:var(--sh-s)}
-.cc .ic{width:50px;height:50px;border-radius:13px;background:rgba(232,64,30,.1);color:var(--acc);
-  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.cc small{font-size:12px;color:var(--mut);font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block}
-.cc b{font-size:17px;font-weight:700}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.cc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;align-items:center;gap:16px;transition:.25s}
+.cc:hover{border-color:var(--line2);box-shadow:var(--sh-s);transform:translateY(-3px)}
+.cc .ic{width:48px;height:48px;border-radius:13px;background:rgba(255,74,28,.1);color:var(--acc);display:flex;
+  align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.cc small{font-size:11.5px;color:var(--mut);font-weight:800;letter-spacing:1px;text-transform:uppercase;display:block}
+.cc b{font-size:16px;font-weight:700;word-break:break-all}
 
 /* FOOTER */
-footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 34px}
-.foot-in{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+footer{background:var(--paper2);border-top:1px solid var(--line);padding:52px 0 34px}
+.foot-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
 .foot-in .logo{font-size:30px}
-.foot-tag{color:var(--mut);font-size:14px;margin-top:8px;max-width:240px}
-.foot-links{display:flex;gap:40px;flex-wrap:wrap}
+.foot-tag{color:var(--mut);font-size:14px;margin-top:8px;max-width:250px}
+.foot-links{display:flex;gap:44px;flex-wrap:wrap}
 .foot-col b{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink2);display:block;margin-bottom:12px}
 .foot-col a{display:block;color:var(--mut);font-size:14.5px;padding:4px 0;transition:.2s}
 .foot-col a:hover{color:var(--acc)}
-.copy{margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;
-  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.copy{margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}.rv[data-d="5"]{transition-delay:.4s}
 
+@media(hover:none){.rot{}}
 /* responsive */
 @media(max-width:940px){
   .hero-grid,.why-grid{grid-template-columns:1fr;gap:44px}
   .svc,.plans,.steps,.work-grid,.contact-grid{grid-template-columns:1fr}
-  .svc-item{border-right:none}
   .nav-mid{display:none}
   .burger{display:flex;align-items:center;justify-content:center}
   .nav-mid.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;
     background:var(--paper);border-bottom:1px solid var(--line);padding:8px 24px 20px}
   .nav-mid.open a{padding:14px 0;border-bottom:1px solid var(--line);width:100%}
+  .contact-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .hero{padding:36px 0 20px}
-  .float-tag{position:static;margin-top:18px;width:max-content}
-  .showcase{box-shadow:var(--sh-s)}
-  .cta{padding:48px 24px}.cta::before{font-size:200px;bottom:-70px}
-  .proof{gap:18px}.proof .sep{display:none}
-  .work .wtop{margin-bottom:24px}
+  .hero{padding:32px 0 24px}
+  .float-tag{position:static;display:inline-flex;margin-top:16px}
+  .proof{gap:20px}.proof .sep{display:none}
+  .cta{padding:48px 24px}.cta::before{font-size:190px;bottom:-66px}
+  .blob{filter:blur(50px)}
 }
+@media(prefers-reduced-motion:reduce){.blob,.cta,.marq-track{animation:none!important}.rot{transition:none}}
 </style>
 </head>
 <body>
@@ -286,11 +299,8 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
       <a href="#contact" data-i18n="nav_contact">Aloqa</a>
     </nav>
     <div class="nav-right">
-      <div class="lang" id="lang">
-        <button data-lang="uz" class="on">UZ</button>
-        <button data-lang="ru">RU</button>
-      </div>
-      <a class="btn btn-ink js-cta" href="#contact" data-i18n="nav_cta">Loyiha boshlash</a>
+      <div class="lang" id="lang"><button data-lang="uz" class="on">UZ</button><button data-lang="ru">RU</button></div>
+      <a class="btn btn-ink js-tg" href="#contact" data-i18n="nav_cta">Loyiha boshlash</a>
       <button class="burger" id="burger" aria-label="Menu">☰</button>
     </div>
   </div>
@@ -299,64 +309,63 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 
 <!-- HERO -->
 <section class="hero">
+  <div class="mesh"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
   <div class="wrap hero-grid">
     <div class="rv">
-      <span class="eyebrow" data-i18n="hero_eyebrow">Toshkent · Web studiya</span>
-      <h1 data-i18n="hero_h1">Biznesingiz uchun <span class="hl">sotadigan</span> sayt.</h1>
+      <span class="eyebrow dot" data-i18n="hero_eyebrow">Toshkent · Web studiya</span>
+      <h1><span data-i18n="hero_pre">Biznesingizga </span><span class="rot" id="rot">sotadigan</span><span data-i18n="hero_post"> sayt.</span></h1>
       <p class="lead" data-i18n="hero_lead">Chiroyli ko'rinish yetarli emas. Biz mijoz keltiradigan, tez ochiladigan, mobil uchun tuzilgan saytlar quramiz — reklamadan arizagacha.</p>
       <div class="hero-cta">
-        <a class="btn btn-acc js-cta" href="#contact"><span data-i18n="hero_cta1">Bepul narx olish</span> <span class="ar">→</span></a>
+        <a class="btn btn-acc js-tg mag" href="#contact"><span data-i18n="hero_cta1">Bepul narx olish</span> <span class="ar">→</span></a>
         <a class="btn btn-out" href="#work" data-i18n="hero_cta2">Ishlarni ko'rish</a>
       </div>
       <div class="proof">
-        <div><b>1–3</b><span data-i18n="hero_p1">kunda ishga tushadi</span></div>
+        <div class="st"><b data-count="5" data-suffix="+">0</b><span data-i18n="stat1">jonli loyiha</span></div>
         <div class="sep"></div>
-        <div><b>5+</b><span data-i18n="hero_p2">jonli loyiha</span></div>
+        <div class="st"><b>1–3</b><span data-i18n="stat2">kunda tayyor</span></div>
         <div class="sep"></div>
-        <div><b>0</b><span data-i18n="hero_p3">vositachi — to'g'ridan-to'g'ri</span></div>
+        <div class="st"><b data-count="100" data-suffix="%">0</b><span data-i18n="stat3">mobil-birinchi</span></div>
       </div>
     </div>
 
-    <div class="rv">
-      <div class="showcase">
-        <div class="sc-top">
-          <span data-i18n="sc_top">Tanlangan ishlar</span>
-          <em data-i18n="sc_live">jonli ↗</em>
+    <div class="rv dev-wrap">
+      <div class="device">
+        <div class="d-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="d-url" id="dUrl">https://zedavlod.uz</span>
+          <a class="d-open" id="dOpen" target="_blank" rel="noopener" data-i18n="d_open">Ochish ↗</a>
         </div>
-        <a class="wrow" href="https://zedavlod.uz" target="_blank" rel="noopener">
-          <div class="sq c1">Z</div><div class="wm"><b>zedavlod.uz</b><small data-i18n="sc_1">Xususiy maktab · uch tilli</small></div><span class="go">↗</span></a>
-        <a class="wrow" href="https://ctnlc.uz" target="_blank" rel="noopener">
-          <div class="sq c2">C</div><div class="wm"><b>ctnlc.uz</b><small data-i18n="sc_2">Til markazi · marketing</small></div><span class="go">↗</span></a>
-        <a class="wrow" href="https://pangea8.com" target="_blank" rel="noopener">
-          <div class="sq c3">P</div><div class="wm"><b>pangea8.com</b><small data-i18n="sc_3">Ta'lim platformasi</small></div><span class="go">↗</span></a>
-        <a class="wrow" href="https://flarestamina.com" target="_blank" rel="noopener">
-          <div class="sq c4">F</div><div class="wm"><b>flarestamina.com</b><small data-i18n="sc_4">Testlar platformasi</small></div><span class="go">↗</span></a>
+        <div class="d-stage" id="dStage">
+          <div class="d-load" data-i18n="d_load">jonli yuklanmoqda</div>
+          <div class="d-hint" data-i18n="d_hint">↑ haqiqiy jonli sayt</div>
+        </div>
+        <div class="d-foot">
+          <span class="d-cap" id="dCap">Xususiy maktab</span>
+          <div class="d-dots" id="dDots"></div>
+        </div>
       </div>
-      <div class="float-tag"><b>◷</b> <span data-i18n="hero_float">Tez · mobil-birinchi</span></div>
+      <div class="float-tag"><b>●</b> <span data-i18n="hero_float">jonli portfolio</span></div>
     </div>
-  </div>
-
-  <!-- MARQUEE -->
-  <div class="marq">
-    <div class="marq-track" id="marq"></div>
   </div>
 </section>
+
+<div class="marq"><div class="marq-track" id="marq"></div></div>
 
 <!-- SERVICES -->
 <section class="sec" id="services">
   <div class="wrap">
     <div class="head rv">
-      <span class="eyebrow" data-i18n="svc_eyebrow">Xizmatlar</span>
+      <span class="eyebrow line" data-i18n="svc_eyebrow">Xizmatlar</span>
       <h2 data-i18n="svc_title">Vazifangizga mos yechim</h2>
       <p class="sub" data-i18n="svc_sub">Har bir sayt mobil-birinchi, tez ochiladigan va qidiruv tizimlariga tayyor quriladi.</p>
     </div>
-    <div class="svc rv">
-      <div class="svc-item"><div class="no">01</div><h3 data-i18n="s1t">Lending</h3><p data-i18n="s1d">Bitta taklif, bitta harakat. Reklama trafigini arizaga aylantiradi.</p><div class="pk" data-i18n="s1p">1.5 mln so'mdan</div></div>
-      <div class="svc-item"><div class="no">02</div><h3 data-i18n="s2t">Biznes sayt</h3><p data-i18n="s2d">Ko'p sahifali sayt — kompaniya, xizmatlar va aloqani to'liq ko'rsatadi.</p><div class="pk" data-i18n="s2p">2.5 mln so'mdan</div></div>
-      <div class="svc-item"><div class="no">03</div><h3 data-i18n="s3t">Ko'p tilli sayt</h3><p data-i18n="s3d">UZ / RU / EN — mahalliy va xalqaro auditoriyaga bir vaqtda.</p><div class="pk" data-i18n="s3p">4 mln so'mdan</div></div>
-      <div class="svc-item"><div class="no">04</div><h3 data-i18n="s4t">Katalog / vitrina</h3><p data-i18n="s4d">Mahsulotlar katalogi va buyurtma formasi — savdo uchun.</p><div class="pk" data-i18n="s4p">kelishuvga qarab</div></div>
-      <div class="svc-item"><div class="no">05</div><h3 data-i18n="s5t">Redizayn</h3><p data-i18n="s5d">Eski, sekin yoki mobil'da buziladigan saytni zamonaviylashtiramiz.</p><div class="pk" data-i18n="s5p">kelishuvga qarab</div></div>
-      <div class="svc-item"><div class="no">06</div><h3 data-i18n="s6t">Qo'llab-quvvatlash</h3><p data-i18n="s6d">Ishga tushgach ham yolg'iz emassiz — yangilash va tuzatishlar.</p><div class="pk" data-i18n="s6p">oylik / kelishuvga qarab</div></div>
+    <div class="svc">
+      <div class="svc-item tilt rv" data-d="1"><div class="no">01</div><h3 data-i18n="s1t">Lending</h3><p data-i18n="s1d">Bitta taklif, bitta harakat. Reklama trafigini arizaga aylantiradi.</p><div class="pk" data-i18n="s1p">1.5 mln so'mdan</div></div>
+      <div class="svc-item tilt rv" data-d="2"><div class="no">02</div><h3 data-i18n="s2t">Biznes sayt</h3><p data-i18n="s2d">Ko'p sahifali sayt — kompaniya, xizmatlar va aloqani to'liq ko'rsatadi.</p><div class="pk" data-i18n="s2p">2.5 mln so'mdan</div></div>
+      <div class="svc-item tilt rv" data-d="3"><div class="no">03</div><h3 data-i18n="s3t">Ko'p tilli sayt</h3><p data-i18n="s3d">UZ / RU / EN — mahalliy va xalqaro auditoriyaga bir vaqtda.</p><div class="pk" data-i18n="s3p">4 mln so'mdan</div></div>
+      <div class="svc-item tilt rv" data-d="1"><div class="no">04</div><h3 data-i18n="s4t">Katalog / vitrina</h3><p data-i18n="s4d">Mahsulotlar katalogi va buyurtma formasi — savdo uchun.</p><div class="pk" data-i18n="s4p">kelishuvga qarab</div></div>
+      <div class="svc-item tilt rv" data-d="2"><div class="no">05</div><h3 data-i18n="s5t">Redizayn</h3><p data-i18n="s5d">Eski, sekin yoki mobil'da buziladigan saytni zamonaviylashtiramiz.</p><div class="pk" data-i18n="s5p">kelishuvga qarab</div></div>
+      <div class="svc-item tilt rv" data-d="3"><div class="no">06</div><h3 data-i18n="s6t">Qo'llab-quvvatlash</h3><p data-i18n="s6d">Ishga tushgach ham yolg'iz emassiz — yangilash va tuzatishlar.</p><div class="pk" data-i18n="s6p">oylik / kelishuvga qarab</div></div>
     </div>
   </div>
 </section>
@@ -365,12 +374,12 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <section class="sec alt">
   <div class="wrap why-grid">
     <div class="why-lead rv">
-      <span class="eyebrow" data-i18n="why_eyebrow">Nega then</span>
+      <span class="eyebrow line" data-i18n="why_eyebrow">Nega then</span>
       <h2 data-i18n="why_title">Arzonroq — chunki ortiqcha narsa yo'q.</h2>
       <p data-i18n="why_p">Katta agentliklarda ofis, menejerlar va vositachilar narxni oshiradi. Bizda esa siz to'g'ridan-to'g'ri saytni quruvchi bilan ishlaysiz. Shuning uchun narx past, sifat yuqori, javob tez.</p>
-      <a class="btn btn-acc js-cta" href="#contact"><span data-i18n="why_cta">Boshlaymizmi?</span> <span class="ar">→</span></a>
+      <a class="btn btn-acc js-tg mag" href="#contact"><span data-i18n="why_cta">Boshlaymizmi?</span> <span class="ar">→</span></a>
     </div>
-    <div class="why-list rv">
+    <div class="rv">
       <div class="why-row"><div class="wn">01</div><div><h4 data-i18n="w1t">To'g'ridan-to'g'ri quruvchi bilan</h4><p data-i18n="w1d">Vositachi va yashirin to'lov yo'q. Narx past, javob shaxsan va tez.</p></div></div>
       <div class="why-row"><div class="wn">02</div><div><h4 data-i18n="w2t">Jonli portfolio, demo emas</h4><p data-i18n="w2d">Ishlarimizni hoziroq ochib, telefoningizda sinab ko'rasiz — real bizneslar ishlatyapti.</p></div></div>
       <div class="why-row"><div class="wn">03</div><div><h4 data-i18n="w3t">Tez va mobil-birinchi</h4><p data-i18n="w3d">Og'ir shablon emas, toza kod. Sayt telefonda ham, sekin internetda ham tez ochiladi.</p></div></div>
@@ -383,35 +392,29 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <section class="sec" id="work">
   <div class="wrap">
     <div class="head rv">
-      <span class="eyebrow" data-i18n="work_eyebrow">Ishlar</span>
+      <span class="eyebrow line" data-i18n="work_eyebrow">Ishlar</span>
       <h2 data-i18n="work_title">Real bizneslar. Jonli saytlar.</h2>
-      <p class="sub" data-i18n="work_sub">Bularning har birini hoziroq ochib ko'rishingiz mumkin. Bu bizning eng kuchli isbotimiz.</p>
+      <p class="sub" data-i18n="work_sub">Quyidagi ko'rinishlar — haqiqiy jonli saytlar, real vaqtda. Istalganini bosib oching.</p>
     </div>
     <div class="work-grid">
-      <a class="work rv" href="https://zedavlod.uz" target="_blank" rel="noopener">
-        <div class="wtop"><span class="cat" data-i18n="cat_edu">Ta'lim</span><span class="idx">01</span></div>
-        <h3>zedavlod.uz</h3><p data-i18n="wk1">Xususiy maktab sayti — uch tilli, real CEFR natijalari bilan.</p>
-        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
-      <a class="work rv" href="https://ctnlc.uz" target="_blank" rel="noopener">
-        <div class="wtop"><span class="cat" data-i18n="cat_lang">Til markazi</span><span class="idx">02</span></div>
-        <h3>ctnlc.uz</h3><p data-i18n="wk2">Til o'quv markazi uchun zamonaviy, uch tilli marketing sayti.</p>
-        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
-      <a class="work rv" href="https://pangea8.com" target="_blank" rel="noopener">
-        <div class="wtop"><span class="cat" data-i18n="cat_platform">Platforma</span><span class="idx">03</span></div>
-        <h3>pangea8.com</h3><p data-i18n="wk3">Insho yozish va baholash platformasi — o'quvchilar uchun.</p>
-        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
-      <a class="work rv" href="https://flarestamina.com" target="_blank" rel="noopener">
-        <div class="wtop"><span class="cat" data-i18n="cat_edu">Ta'lim</span><span class="idx">04</span></div>
-        <h3>flarestamina.com</h3><p data-i18n="wk4">Amaliy testlar va ta'lim platformasi.</p>
-        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
-      <a class="work rv" href="https://maqsudjon.com" target="_blank" rel="noopener">
-        <div class="wtop"><span class="cat" data-i18n="cat_portfolio">Portfolio</span><span class="idx">05</span></div>
-        <h3>maqsudjon.com</h3><p data-i18n="wk5">Shaxsiy portfolio sayti namunasi.</p>
-        <span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></a>
-      <a class="work you rv js-cta" href="#contact">
-        <div class="wtop"><span class="cat" data-i18n="cat_next">Keyingi</span><span class="idx">06</span></div>
-        <h3 data-i18n="wk6t">Sizning saytingiz</h3><p data-i18n="wk6d">Keyingi ish shu ro'yxatda bo'lishi mumkin. Keling, boshlaymiz.</p>
-        <span class="open"><span data-i18n="wk6l">Boshlash</span> <span class="ar">→</span></span></a>
+      <a class="work rv" data-d="1" href="https://zedavlod.uz" target="_blank" rel="noopener">
+        <div class="w-prev" data-src="https://zedavlod.uz"><div class="w-ph" style="background:linear-gradient(135deg,#2563eb,#1e3a8a)">Z</div><span class="w-badge" data-i18n="cat_edu">Ta'lim</span><span class="w-live" data-i18n="live">JONLI</span></div>
+        <div class="w-info"><h3>zedavlod.uz</h3><p data-i18n="wk1">Xususiy maktab sayti — uch tilli, real CEFR natijalari.</p><span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></div></a>
+      <a class="work rv" data-d="2" href="https://ctnlc.uz" target="_blank" rel="noopener">
+        <div class="w-prev" data-src="https://ctnlc.uz"><div class="w-ph" style="background:linear-gradient(135deg,#0e9488,#0f5e57)">C</div><span class="w-badge" data-i18n="cat_lang">Til markazi</span><span class="w-live" data-i18n="live">JONLI</span></div>
+        <div class="w-info"><h3>ctnlc.uz</h3><p data-i18n="wk2">Til o'quv markazi uchun zamonaviy, uch tilli sayt.</p><span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></div></a>
+      <a class="work rv" data-d="1" href="https://pangea8.com" target="_blank" rel="noopener">
+        <div class="w-prev" data-src="https://pangea8.com"><div class="w-ph" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">P</div><span class="w-badge" data-i18n="cat_platform">Platforma</span><span class="w-live" data-i18n="live">JONLI</span></div>
+        <div class="w-info"><h3>pangea8.com</h3><p data-i18n="wk3">Insho yozish va baholash platformasi.</p><span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></div></a>
+      <a class="work rv" data-d="2" href="https://flarestamina.com" target="_blank" rel="noopener">
+        <div class="w-prev" data-src="https://flarestamina.com"><div class="w-ph" style="background:linear-gradient(135deg,#e8401e,#a32b12)">F</div><span class="w-badge" data-i18n="cat_edu">Ta'lim</span><span class="w-live" data-i18n="live">JONLI</span></div>
+        <div class="w-info"><h3>flarestamina.com</h3><p data-i18n="wk4">Amaliy testlar va ta'lim platformasi.</p><span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></div></a>
+      <a class="work rv" data-d="1" href="https://maqsudjon.com" target="_blank" rel="noopener">
+        <div class="w-prev" data-src="https://maqsudjon.com"><div class="w-ph" style="background:linear-gradient(135deg,#0f766e,#134e4a)">M</div><span class="w-badge" data-i18n="cat_portfolio">Portfolio</span><span class="w-live" data-i18n="live">JONLI</span></div>
+        <div class="w-info"><h3>maqsudjon.com</h3><p data-i18n="wk5">Shaxsiy portfolio sayti namunasi.</p><span class="open"><span data-i18n="open">Saytni ochish</span> <span class="ar">↗</span></span></div></a>
+      <a class="work you rv" data-d="2" href="#contact">
+        <div class="w-prev"><div class="w-ph" style="background:linear-gradient(135deg,#37322A,#16130E);color:var(--amber)">+</div><span class="w-badge" data-i18n="cat_next">Keyingi</span></div>
+        <div class="w-info"><h3 data-i18n="wk6t">Sizning saytingiz</h3><p data-i18n="wk6d">Keyingi ish shu ro'yxatda bo'lishi mumkin.</p><span class="open js-tg"><span data-i18n="wk6l">Boshlash</span> <span class="ar">→</span></span></div></a>
     </div>
   </div>
 </section>
@@ -420,14 +423,14 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <section class="sec alt" id="process">
   <div class="wrap">
     <div class="head rv">
-      <span class="eyebrow" data-i18n="proc_eyebrow">Jarayon</span>
+      <span class="eyebrow line" data-i18n="proc_eyebrow">Jarayon</span>
       <h2 data-i18n="proc_title">G'oyadan birinchi mijozgacha</h2>
       <p class="sub" data-i18n="proc_sub">Cheksiz qo'ng'iroqlarsiz. Ishlaydigan natijani ko'rsatamiz va ishga tushiramiz.</p>
     </div>
     <div class="steps">
-      <div class="step rv"><div class="pn" data-i18n="pr1n">15 daqiqa</div><h3 data-i18n="pr1t">Vazifani aniqlaymiz</h3><p data-i18n="pr1d">Kim uchun, qanday sahifalar va ariza qayerga tushishini birga yozamiz.</p></div>
-      <div class="step rv"><div class="pn" data-i18n="pr2n">Birinchi ekran</div><h3 data-i18n="pr2t">Prototipni ko'rasiz</h3><p data-i18n="pr2d">Ishlab chiqishdan oldin dizaynni ko'rsatamiz. Tasdiqlagach quramiz.</p></div>
-      <div class="step rv"><div class="pn" data-i18n="pr3n">Ishga tushirish</div><h3 data-i18n="pr3t">Domen va topshirish</h3><p data-i18n="pr3d">Domenni ulaymiz, joylashtiramiz, tekshiramiz va to'liq topshiramiz.</p></div>
+      <div class="step rv" data-d="1"><div class="pn" data-i18n="pr1n">15 daqiqa</div><h3 data-i18n="pr1t">Vazifani aniqlaymiz</h3><p data-i18n="pr1d">Kim uchun, qanday sahifalar va ariza qayerga tushishini birga yozamiz.</p></div>
+      <div class="step rv" data-d="2"><div class="pn" data-i18n="pr2n">Birinchi ekran</div><h3 data-i18n="pr2t">Prototipni ko'rasiz</h3><p data-i18n="pr2d">Ishlab chiqishdan oldin dizaynni ko'rsatamiz. Tasdiqlagach quramiz.</p></div>
+      <div class="step rv" data-d="3"><div class="pn" data-i18n="pr3n">Ishga tushirish</div><h3 data-i18n="pr3t">Domen va topshirish</h3><p data-i18n="pr3d">Domenni ulaymiz, joylashtiramiz, tekshiramiz va to'liq topshiramiz.</p></div>
     </div>
   </div>
 </section>
@@ -436,32 +439,28 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <section class="sec" id="pricing">
   <div class="wrap">
     <div class="head center rv">
-      <span class="eyebrow" style="justify-content:center" data-i18n="pri_eyebrow">Narxlar</span>
+      <span class="eyebrow line" style="justify-content:center" data-i18n="pri_eyebrow">Narxlar</span>
       <h2 data-i18n="pri_title">Ochiq va tushunarli narxlar</h2>
       <p class="sub" data-i18n="pri_sub">Boshlashdan oldin ssenariy, muddat va aniq smetani belgilaymiz. Yashirin to'lov yo'q.</p>
     </div>
     <div class="plans">
-      <div class="plan rv">
-        <div class="pt" data-i18n="pl1t">Lending</div>
-        <div class="pr">1.5 <small data-i18n="mln">mln so'mdan</small></div>
+      <div class="plan rv" data-d="1">
+        <div class="pt" data-i18n="pl1t">Lending</div><div class="pr">1.5 <small data-i18n="mln">mln so'mdan</small></div>
         <p class="pd" data-i18n="pl1d">Bir sahifali sayt — reklama va ariza yig'ish uchun.</p>
         <ul><li data-i18n="pl1f1">1 sahifa, mobil-birinchi</li><li data-i18n="pl1f2">Ariza / bog'lanish formasi</li><li data-i18n="pl1f3">Reklamaga tayyor (UTM)</li><li data-i18n="pl1f4">1–3 kunda tayyor</li></ul>
-        <a class="btn btn-out js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+        <a class="btn btn-out js-tg" href="#contact" data-i18n="choose">Tanlash</a>
       </div>
-      <div class="plan pop rv">
-        <div class="flag" data-i18n="popular">Ommabop</div>
-        <div class="pt" data-i18n="pl2t">Biznes sayt</div>
-        <div class="pr">2.5 <small data-i18n="mln">mln so'mdan</small></div>
+      <div class="plan pop rv" data-d="2">
+        <div class="flag" data-i18n="popular">Ommabop</div><div class="pt" data-i18n="pl2t">Biznes sayt</div><div class="pr">2.5 <small data-i18n="mln">mln so'mdan</small></div>
         <p class="pd" data-i18n="pl2d">Ko'p sahifali sayt — biznesingizni to'liq ko'rsatadi.</p>
         <ul><li data-i18n="pl2f1">Bir nechta sahifa / bo'lim</li><li data-i18n="pl2f2">Xizmatlar katalogi</li><li data-i18n="pl2f3">Aloqa, xarita, galereya</li><li data-i18n="pl2f4">SEO asosi + tezlik</li></ul>
-        <a class="btn btn-acc js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+        <a class="btn btn-acc js-tg" href="#contact" data-i18n="choose">Tanlash</a>
       </div>
-      <div class="plan rv">
-        <div class="pt" data-i18n="pl3t">Premium / Ko'p tilli</div>
-        <div class="pr">4 <small data-i18n="mln">mln so'mdan</small></div>
+      <div class="plan rv" data-d="3">
+        <div class="pt" data-i18n="pl3t">Premium / Ko'p tilli</div><div class="pr">4 <small data-i18n="mln">mln so'mdan</small></div>
         <p class="pd" data-i18n="pl3d">Ko'p tilli, murakkab tuzilish yoki maxsus dizayn.</p>
         <ul><li data-i18n="pl3f1">UZ / RU / EN tillar</li><li data-i18n="pl3f2">Maxsus dizayn, animatsiya</li><li data-i18n="pl3f3">Kontent panel (kelishuvga qarab)</li><li data-i18n="pl3f4">Kengaytirilgan SEO</li></ul>
-        <a class="btn btn-out js-cta" href="#contact" data-i18n="choose">Tanlash</a>
+        <a class="btn btn-out js-tg" href="#contact" data-i18n="choose">Tanlash</a>
       </div>
     </div>
     <p class="pnote" data-i18n="pri_note">Narxlar loyiha hajmiga qarab aniqlanadi. Aniq narxni bepul olish uchun yozing.</p>
@@ -471,10 +470,7 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <!-- FAQ -->
 <section class="sec alt">
   <div class="wrap">
-    <div class="head center rv">
-      <span class="eyebrow" style="justify-content:center" data-i18n="faq_eyebrow">Savol-javob</span>
-      <h2 data-i18n="faq_title">Qisqacha</h2>
-    </div>
+    <div class="head center rv"><span class="eyebrow line" style="justify-content:center" data-i18n="faq_eyebrow">Savol-javob</span><h2 data-i18n="faq_title">Qisqacha</h2></div>
     <div class="faq">
       <details class="q rv"><summary><span data-i18n="fq1">Sayt qancha vaqtda tayyor bo'ladi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa1">Oddiy lending 1–3 kun, ko'p sahifali biznes sayt 3–7 kun ichida. Aniq muddatni ish hajmiga qarab boshida kelishamiz.</div></details>
       <details class="q rv"><summary><span data-i18n="fq2">Domen va hostingni siz sozlaysizmi?</span><span class="pl">+</span></summary><div class="ans" data-i18n="fa2">Ha. Domen ulash va joylashtirishda to'liq yordam beramiz. Ko'p hollarda hosting bepul bo'lishi mumkin — bu sizga oylik to'lovni tejaydi.</div></details>
@@ -487,26 +483,18 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 </section>
 
 <!-- CTA -->
-<section class="cta-sec">
-  <div class="wrap">
-    <div class="cta rv">
-      <h2 data-i18n="cta_title">Loyihangizni bugun boshlaymiz.</h2>
-      <p data-i18n="cta_p">Vazifangizni bitta xabarda yozing — formatni maslahat beramiz, namuna va narxni aytamiz.</p>
-      <a class="btn btn-ink js-cta" href="#contact"><span data-i18n="cta_btn">Bepul narx olish</span> <span class="ar">→</span></a>
-      <div class="cta-eg"><b data-i18n="cta_eg_l">Namuna xabar</b><span data-i18n="cta_eg">«Assalomu alaykum! Kafem uchun menyu va joy band qilish formasi bo'lgan sayt kerak.»</span></div>
-    </div>
-  </div>
-</section>
+<section class="cta-sec"><div class="wrap"><div class="cta rv">
+  <h2 data-i18n="cta_title">Loyihangizni bugun boshlaymiz.</h2>
+  <p data-i18n="cta_p">Vazifangizni bitta xabarda yozing — formatni maslahat beramiz, namuna va narxni aytamiz.</p>
+  <a class="btn btn-ink js-tg mag" href="#contact"><span data-i18n="cta_btn">Bepul narx olish</span> <span class="ar">→</span></a>
+  <div class="cta-eg"><b data-i18n="cta_eg_l">Namuna xabar</b><span data-i18n="cta_eg">«Assalomu alaykum! Kafem uchun menyu va joy band qilish formasi bo'lgan sayt kerak.»</span></div>
+</div></div></section>
 
 <!-- CONTACT -->
 <section class="sec" id="contact" style="padding-top:0">
   <div class="wrap">
-    <div class="head rv">
-      <span class="eyebrow" data-i18n="con_eyebrow">Aloqa</span>
-      <h2 data-i18n="con_title">Keling, gaplashamiz</h2>
-      <p class="sub" data-i18n="con_sub">Bitta xabar yeting — shaxsan javob beramiz, ortiqcha qo'ng'iroqsiz.</p>
-    </div>
-    <div class="contact-grid" id="contacts"></div>
+    <div class="head rv"><span class="eyebrow line" data-i18n="con_eyebrow">Aloqa</span><h2 data-i18n="con_title">Keling, gaplashamiz</h2><p class="sub" data-i18n="con_sub">Bitta xabar yeting — shaxsan javob beramiz, ortiqcha qo'ng'iroqsiz.</p></div>
+    <div class="contact-grid rv" id="contacts"></div>
   </div>
 </section>
 
@@ -514,50 +502,34 @@ footer{background:var(--paper2);border-top:1px solid var(--line);padding:50px 0 
 <footer>
   <div class="wrap">
     <div class="foot-in">
-      <div>
-        <a href="#top" class="logo">then<b>.</b></a>
-        <p class="foot-tag" data-i18n="foot_tag">O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.</p>
-      </div>
+      <div><a href="#top" class="logo">then<b>.</b></a><p class="foot-tag" data-i18n="foot_tag">O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.</p></div>
       <div class="foot-links">
-        <div class="foot-col">
-          <b data-i18n="foot_nav">Bo'limlar</b>
-          <a href="#services" data-i18n="nav_services">Xizmatlar</a>
-          <a href="#work" data-i18n="nav_work">Ishlar</a>
-          <a href="#pricing" data-i18n="nav_pricing">Narx</a>
-          <a href="#process" data-i18n="nav_process">Jarayon</a>
-        </div>
-        <div class="foot-col" id="foot-contact">
-          <b data-i18n="foot_con">Aloqa</b>
-        </div>
+        <div class="foot-col"><b data-i18n="foot_nav">Bo'limlar</b>
+          <a href="#services" data-i18n="nav_services">Xizmatlar</a><a href="#work" data-i18n="nav_work">Ishlar</a><a href="#pricing" data-i18n="nav_pricing">Narx</a><a href="#process" data-i18n="nav_process">Jarayon</a></div>
+        <div class="foot-col" id="foot-contact"><b data-i18n="foot_con">Aloqa</b></div>
       </div>
     </div>
-    <div class="copy">
-      <span>© 2026 then.uz</span>
-      <span data-i18n="foot_rights">O'zbekistonda ❤ bilan qurildi</span>
-    </div>
+    <div class="copy"><span>© 2026 then.uz</span><span data-i18n="foot_rights">O'zbekistonda ❤ bilan qurildi</span></div>
   </div>
 </footer>
 
 <script>
-/* ======= SOZLAMALAR — shu yerni to'ldiring ======= */
+/* ===== SOZLAMALAR ===== */
 const CFG = {
-  email:    "polatovmaqsudjon1@gmail.com",  // ishlayotgan aloqa
-  telegram: "",                              // ← Telegram username: "https://t.me/username"
-  phone:    ""                               // ← "+998 90 123 45 67" (ixtiyoriy)
+  telegram: "https://t.me/mrbmp13",
+  phone:    "+998949059493",
+  email:    "polatovmaqsudjon1@gmail.com"
 };
 
-/* ======= TARJIMALAR (UZ / RU) ======= */
-const I18N = {
+/* ===== TARJIMALAR ===== */
+const I18N={
  uz:{
   nav_services:"Xizmatlar",nav_work:"Ishlar",nav_pricing:"Narx",nav_process:"Jarayon",nav_contact:"Aloqa",nav_cta:"Loyiha boshlash",
-  hero_eyebrow:"Toshkent · Web studiya",
-  hero_h1:"Biznesingiz uchun <span class='hl'>sotadigan</span> sayt.",
+  hero_eyebrow:"Toshkent · Web studiya",hero_pre:"Biznesingizga ",hero_post:" sayt.",
   hero_lead:"Chiroyli ko'rinish yetarli emas. Biz mijoz keltiradigan, tez ochiladigan, mobil uchun tuzilgan saytlar quramiz — reklamadan arizagacha.",
   hero_cta1:"Bepul narx olish",hero_cta2:"Ishlarni ko'rish",
-  hero_p1:"kunda ishga tushadi",hero_p2:"jonli loyiha",hero_p3:"vositachi — to'g'ridan-to'g'ri",
-  sc_top:"Tanlangan ishlar",sc_live:"jonli ↗",
-  sc_1:"Xususiy maktab · uch tilli",sc_2:"Til markazi · marketing",sc_3:"Ta'lim platformasi",sc_4:"Testlar platformasi",
-  hero_float:"Tez · mobil-birinchi",
+  stat1:"jonli loyiha",stat2:"kunda tayyor",stat3:"mobil-birinchi",
+  d_open:"Ochish ↗",d_load:"jonli yuklanmoqda",d_hint:"↑ haqiqiy jonli sayt",hero_float:"jonli portfolio",
   svc_eyebrow:"Xizmatlar",svc_title:"Vazifangizga mos yechim",svc_sub:"Har bir sayt mobil-birinchi, tez ochiladigan va qidiruv tizimlariga tayyor quriladi.",
   s1t:"Lending",s1d:"Bitta taklif, bitta harakat. Reklama trafigini arizaga aylantiradi.",s1p:"1.5 mln so'mdan",
   s2t:"Biznes sayt",s2d:"Ko'p sahifali sayt — kompaniya, xizmatlar va aloqani to'liq ko'rsatadi.",s2p:"2.5 mln so'mdan",
@@ -566,19 +538,16 @@ const I18N = {
   s5t:"Redizayn",s5d:"Eski, sekin yoki mobil'da buziladigan saytni zamonaviylashtiramiz.",s5p:"kelishuvga qarab",
   s6t:"Qo'llab-quvvatlash",s6d:"Ishga tushgach ham yolg'iz emassiz — yangilash va tuzatishlar.",s6p:"oylik / kelishuvga qarab",
   why_eyebrow:"Nega then",why_title:"Arzonroq — chunki ortiqcha narsa yo'q.",
-  why_p:"Katta agentliklarda ofis, menejerlar va vositachilar narxni oshiradi. Bizda esa siz to'g'ridan-to'g'ri saytni quruvchi bilan ishlaysiz. Shuning uchun narx past, sifat yuqori, javob tez.",
-  why_cta:"Boshlaymizmi?",
+  why_p:"Katta agentliklarda ofis, menejerlar va vositachilar narxni oshiradi. Bizda esa siz to'g'ridan-to'g'ri saytni quruvchi bilan ishlaysiz. Shuning uchun narx past, sifat yuqori, javob tez.",why_cta:"Boshlaymizmi?",
   w1t:"To'g'ridan-to'g'ri quruvchi bilan",w1d:"Vositachi va yashirin to'lov yo'q. Narx past, javob shaxsan va tez.",
   w2t:"Jonli portfolio, demo emas",w2d:"Ishlarimizni hoziroq ochib, telefoningizda sinab ko'rasiz — real bizneslar ishlatyapti.",
   w3t:"Tez va mobil-birinchi",w3d:"Og'ir shablon emas, toza kod. Sayt telefonda ham, sekin internetda ham tez ochiladi.",
   w4t:"Halol narx, aniq smeta",w4d:"Boshlashdan oldin narx, muddat va nima kirishini yozib beramiz. Keyin oshib ketmaydi.",
-  work_eyebrow:"Ishlar",work_title:"Real bizneslar. Jonli saytlar.",work_sub:"Bularning har birini hoziroq ochib ko'rishingiz mumkin. Bu bizning eng kuchli isbotimiz.",
-  cat_edu:"Ta'lim",cat_lang:"Til markazi",cat_platform:"Platforma",cat_portfolio:"Portfolio",cat_next:"Keyingi",open:"Saytni ochish",
-  wk1:"Xususiy maktab sayti — uch tilli, real CEFR natijalari bilan.",
-  wk2:"Til o'quv markazi uchun zamonaviy, uch tilli marketing sayti.",
-  wk3:"Insho yozish va baholash platformasi — o'quvchilar uchun.",
-  wk4:"Amaliy testlar va ta'lim platformasi.",wk5:"Shaxsiy portfolio sayti namunasi.",
-  wk6t:"Sizning saytingiz",wk6d:"Keyingi ish shu ro'yxatda bo'lishi mumkin. Keling, boshlaymiz.",wk6l:"Boshlash",
+  work_eyebrow:"Ishlar",work_title:"Real bizneslar. Jonli saytlar.",work_sub:"Quyidagi ko'rinishlar — haqiqiy jonli saytlar, real vaqtda. Istalganini bosib oching.",
+  cat_edu:"Ta'lim",cat_lang:"Til markazi",cat_platform:"Platforma",cat_portfolio:"Portfolio",cat_next:"Keyingi",open:"Saytni ochish",live:"JONLI",
+  wk1:"Xususiy maktab sayti — uch tilli, real CEFR natijalari.",wk2:"Til o'quv markazi uchun zamonaviy, uch tilli sayt.",
+  wk3:"Insho yozish va baholash platformasi.",wk4:"Amaliy testlar va ta'lim platformasi.",wk5:"Shaxsiy portfolio sayti namunasi.",
+  wk6t:"Sizning saytingiz",wk6d:"Keyingi ish shu ro'yxatda bo'lishi mumkin.",wk6l:"Boshlash",
   proc_eyebrow:"Jarayon",proc_title:"G'oyadan birinchi mijozgacha",proc_sub:"Cheksiz qo'ng'iroqlarsiz. Ishlaydigan natijani ko'rsatamiz va ishga tushiramiz.",
   pr1n:"15 daqiqa",pr1t:"Vazifani aniqlaymiz",pr1d:"Kim uchun, qanday sahifalar va ariza qayerga tushishini birga yozamiz.",
   pr2n:"Birinchi ekran",pr2t:"Prototipni ko'rasiz",pr2d:"Ishlab chiqishdan oldin dizaynni ko'rsatamiz. Tasdiqlagach quramiz.",
@@ -599,21 +568,17 @@ const I18N = {
   cta_title:"Loyihangizni bugun boshlaymiz.",cta_p:"Vazifangizni bitta xabarda yozing — formatni maslahat beramiz, namuna va narxni aytamiz.",cta_btn:"Bepul narx olish",
   cta_eg_l:"Namuna xabar",cta_eg:"«Assalomu alaykum! Kafem uchun menyu va joy band qilish formasi bo'lgan sayt kerak.»",
   con_eyebrow:"Aloqa",con_title:"Keling, gaplashamiz",con_sub:"Bitta xabar yeting — shaxsan javob beramiz, ortiqcha qo'ng'iroqsiz.",
-  con_email:"Email",con_tg:"Telegram",con_phone:"Telefon",
-  foot_tag:"O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.",
-  foot_nav:"Bo'limlar",foot_con:"Aloqa",foot_rights:"O'zbekistonda ❤ bilan qurildi",
-  page_title:"then — Biznesingiz uchun sayt studiyasi | O'zbekiston"
+  con_tg:"Telegram",con_phone:"Telefon",con_email:"Email",
+  foot_tag:"O'zbekistonda zamonaviy, sotadigan saytlar. To'g'ridan-to'g'ri quruvchi bilan.",foot_nav:"Bo'limlar",foot_con:"Aloqa",foot_rights:"O'zbekistonda ❤ bilan qurildi",
+  rot:["sotadigan","tez","chiroyli","zamonaviy","ishonchli"],page_title:"then — Biznesingiz uchun sayt studiyasi | O'zbekiston"
  },
  ru:{
   nav_services:"Услуги",nav_work:"Работы",nav_pricing:"Цены",nav_process:"Процесс",nav_contact:"Контакты",nav_cta:"Начать проект",
-  hero_eyebrow:"Ташкент · Веб-студия",
-  hero_h1:"Сайт, который <span class='hl'>продаёт</span> ваш бизнес.",
+  hero_eyebrow:"Ташкент · Веб-студия",hero_pre:"",hero_post:" сайт для бизнеса.",
   hero_lead:"Красивой картинки мало. Мы делаем сайты, которые приводят клиентов: быстрые, мобильные, заточенные под заявки — от рекламы до обращения.",
   hero_cta1:"Узнать цену",hero_cta2:"Смотреть работы",
-  hero_p1:"дня до запуска",hero_p2:"живых проекта",hero_p3:"посредников — напрямую",
-  sc_top:"Избранные работы",sc_live:"живые ↗",
-  sc_1:"Частная школа · 3 языка",sc_2:"Языковой центр · маркетинг",sc_3:"Образовательная платформа",sc_4:"Платформа тестов",
-  hero_float:"Быстро · mobile-first",
+  stat1:"живых проекта",stat2:"дня до запуска",stat3:"mobile-first",
+  d_open:"Открыть ↗",d_load:"загрузка вживую",d_hint:"↑ реальный живой сайт",hero_float:"живое портфолио",
   svc_eyebrow:"Услуги",svc_title:"Решение под вашу задачу",svc_sub:"Каждый сайт делается mobile-first, быстро загружается и готов к поисковым системам.",
   s1t:"Лендинг",s1d:"Одно предложение, одно действие. Превращает трафик в заявки.",s1p:"от 1.5 млн сум",
   s2t:"Бизнес-сайт",s2d:"Многостраничный сайт — компания, услуги и контакты полностью.",s2p:"от 2.5 млн сум",
@@ -622,19 +587,16 @@ const I18N = {
   s5t:"Редизайн",s5d:"Обновляем старый, медленный или «ломающийся» на мобильном сайт.",s5p:"по договорённости",
   s6t:"Поддержка",s6d:"После запуска вы не одни — обновления и правки.",s6p:"помесячно / по договорённости",
   why_eyebrow:"Почему then",why_title:"Дешевле — потому что нет лишнего.",
-  why_p:"В крупных агентствах офис, менеджеры и посредники поднимают цену. У нас вы работаете напрямую с тем, кто делает сайт. Поэтому цена ниже, качество выше, а ответ — быстрый.",
-  why_cta:"Начнём?",
+  why_p:"В крупных агентствах офис, менеджеры и посредники поднимают цену. У нас вы работаете напрямую с тем, кто делает сайт. Поэтому цена ниже, качество выше, а ответ — быстрый.",why_cta:"Начнём?",
   w1t:"Напрямую с разработчиком",w1d:"Без посредников и скрытых платежей. Цена ниже, ответ лично и быстро.",
   w2t:"Живое портфолио, а не демо",w2d:"Наши работы можно открыть прямо сейчас — их используют реальные бизнесы.",
   w3t:"Быстро и mobile-first",w3d:"Не тяжёлый шаблон, а чистый код. Сайт быстрый и на телефоне, и на медленном интернете.",
   w4t:"Честная цена, чёткая смета",w4d:"До старта фиксируем цену, сроки и что входит. Потом сумма не растёт.",
-  work_eyebrow:"Работы",work_title:"Реальные бизнесы. Живые сайты.",work_sub:"Каждый из них можно открыть прямо сейчас. Это наше главное доказательство.",
-  cat_edu:"Образование",cat_lang:"Языковой центр",cat_platform:"Платформа",cat_portfolio:"Портфолио",cat_next:"Следующий",open:"Открыть сайт",
-  wk1:"Сайт частной школы — трёхъязычный, с реальными результатами CEFR.",
-  wk2:"Современный трёхъязычный маркетинговый сайт для языкового центра.",
-  wk3:"Платформа для написания и оценки эссе — для учащихся.",
-  wk4:"Платформа практических тестов и обучения.",wk5:"Пример личного сайта-портфолио.",
-  wk6t:"Ваш сайт",wk6d:"Следующая работа может быть в этом списке. Давайте начнём.",wk6l:"Начать",
+  work_eyebrow:"Работы",work_title:"Реальные бизнесы. Живые сайты.",work_sub:"То, что ниже — реальные живые сайты в реальном времени. Откройте любой.",
+  cat_edu:"Образование",cat_lang:"Языковой центр",cat_platform:"Платформа",cat_portfolio:"Портфолио",cat_next:"Следующий",open:"Открыть сайт",live:"LIVE",
+  wk1:"Сайт частной школы — трёхъязычный, с реальными результатами CEFR.",wk2:"Современный трёхъязычный сайт для языкового центра.",
+  wk3:"Платформа для написания и оценки эссе.",wk4:"Платформа практических тестов и обучения.",wk5:"Пример личного сайта-портфолио.",
+  wk6t:"Ваш сайт",wk6d:"Следующая работа может быть в этом списке.",wk6l:"Начать",
   proc_eyebrow:"Процесс",proc_title:"От идеи до первого клиента",proc_sub:"Без бесконечных созвонов. Показываем рабочий результат и запускаем.",
   pr1n:"15 минут",pr1t:"Определяем задачу",pr1d:"Вместе фиксируем: для кого, какие страницы и куда приходит заявка.",
   pr2n:"Первый экран",pr2t:"Показываем прототип",pr2d:"Показываем дизайн до разработки. Утвердили — делаем.",
@@ -655,76 +617,164 @@ const I18N = {
   cta_title:"Начнём ваш проект сегодня.",cta_p:"Опишите задачу одним сообщением — подскажем формат, покажем пример и назовём цену.",cta_btn:"Узнать цену",
   cta_eg_l:"Пример сообщения",cta_eg:"«Здравствуйте! Нужен сайт для кафе с меню и формой бронирования столика.»",
   con_eyebrow:"Контакты",con_title:"Давайте поговорим",con_sub:"Напишите одно сообщение — ответим лично, без лишних созвонов.",
-  con_email:"Email",con_tg:"Telegram",con_phone:"Телефон",
-  foot_tag:"Современные продающие сайты в Узбекистане. Напрямую с разработчиком.",
-  foot_nav:"Разделы",foot_con:"Контакты",foot_rights:"Сделано с ❤ в Узбекистане",
-  page_title:"then — веб-студия для вашего бизнеса | Узбекистан"
+  con_tg:"Telegram",con_phone:"Телефон",con_email:"Email",
+  foot_tag:"Современные продающие сайты в Узбекистане. Напрямую с разработчиком.",foot_nav:"Разделы",foot_con:"Контакты",foot_rights:"Сделано с ❤ в Узбекистане",
+  rot:["продающий","быстрый","красивый","современный","надёжный"],page_title:"then — веб-студия для вашего бизнеса | Узбекистан"
  }
 };
 
-/* ======= RENDER ======= */
-const mailHref = "mailto:"+CFG.email+"?subject="+encodeURIComponent("then.uz — sayt bo'yicha so'rov");
-function primaryContact(){ return CFG.telegram ? CFG.telegram : mailHref; }
+/* ===== helpers ===== */
+const tgHref = CFG.telegram || ("mailto:"+CFG.email);
+let LANG='uz';
 
+function applyLang(lang){
+  const t=I18N[lang]; if(!t)return; LANG=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!=null) el.innerHTML=t[k];});
+  if(t.page_title) document.title=t.page_title;
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+  document.querySelectorAll('.js-tg').forEach(a=>{if(a.tagName==='A'){a.href=tgHref;if(CFG.telegram){a.target="_blank";a.rel="noopener";}}});
+  buildContacts(lang); setDeviceCap();
+  localStorage.setItem('then_lang',lang);
+}
 function buildContacts(lang){
-  const box=document.getElementById('contacts');
-  const foot=document.getElementById('foot-contact');
-  const t=I18N[lang];
-  let items=[];
-  if(CFG.telegram) items.push({ic:"✈",lbl:t.con_tg,val:CFG.telegram.replace(/^https?:\/\//,''),href:CFG.telegram});
-  items.push({ic:"✉",lbl:t.con_email,val:CFG.email,href:mailHref});
-  if(CFG.phone) items.push({ic:"☎",lbl:t.con_phone,val:CFG.phone,href:"tel:"+CFG.phone.replace(/\s/g,'')});
-  box.innerHTML=items.map(i=>`<a class="cc" href="${i.href}" ${i.href.startsWith('http')?'target="_blank" rel="noopener"':''}><span class="ic">${i.ic}</span><span><small>${i.lbl}</small><b>${i.val}</b></span></a>`).join('');
-  // footer contact links
+  const t=I18N[lang], box=document.getElementById('contacts'), foot=document.getElementById('foot-contact');
+  const items=[];
+  if(CFG.telegram) items.push({ic:"✈",lbl:t.con_tg,val:CFG.telegram.replace(/^https?:\/\//,''),href:CFG.telegram,ext:1});
+  if(CFG.phone) items.push({ic:"☎",lbl:t.con_phone,val:CFG.phone,href:"tel:"+CFG.phone.replace(/[^\d+]/g,'')});
+  items.push({ic:"✉",lbl:t.con_email,val:CFG.email,href:"mailto:"+CFG.email});
+  box.innerHTML=items.map(i=>`<a class="cc" href="${i.href}" ${i.ext?'target="_blank" rel="noopener"':''}><span class="ic">${i.ic}</span><span><small>${i.lbl}</small><b>${i.val}</b></span></a>`).join('');
   let f='<b>'+t.foot_con+'</b>';
   if(CFG.telegram) f+=`<a href="${CFG.telegram}" target="_blank" rel="noopener">Telegram</a>`;
-  f+=`<a href="${mailHref}">${CFG.email}</a>`;
-  if(CFG.phone) f+=`<a href="tel:${CFG.phone.replace(/\s/g,'')}">${CFG.phone}</a>`;
+  if(CFG.phone) f+=`<a href="tel:${CFG.phone.replace(/[^\d+]/g,'')}">${CFG.phone}</a>`;
+  f+=`<a href="mailto:${CFG.email}">Email</a>`;
   foot.innerHTML=f;
 }
 
-function applyLang(lang){
-  const t=I18N[lang]; if(!t) return;
-  document.documentElement.lang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n'); if(t[k]!=null) el.innerHTML=t[k];
-  });
-  if(t.page_title) document.title=t.page_title;
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
-  document.querySelectorAll('.js-cta').forEach(a=>{
-    a.href=primaryContact(); if(CFG.telegram){a.target="_blank";a.rel="noopener";}
-  });
-  buildContacts(lang);
-  localStorage.setItem('then_lang',lang);
+/* ===== rotating word ===== */
+let rotI=0,rotTimer;
+function startRot(){
+  clearInterval(rotTimer);
+  const el=document.getElementById('rot'); if(!el)return;
+  rotI=0; el.textContent=I18N[LANG].rot[0];
+  rotTimer=setInterval(()=>{
+    const words=I18N[LANG].rot; el.classList.add('out');
+    setTimeout(()=>{rotI=(rotI+1)%words.length; el.textContent=words[rotI]; el.classList.remove('out');},340);
+  },2200);
 }
 
+/* ===== count up ===== */
+function countUp(el){
+  const target=+el.dataset.count, suf=el.dataset.suffix||''; let cur=0, steps=42, inc=target/steps;
+  const t=setInterval(()=>{cur+=inc; if(cur>=target){cur=target;clearInterval(t);} el.textContent=Math.round(cur)+suf;},22);
+}
+
+/* ===== device carousel (live iframes) ===== */
+const SITES=[
+  {u:"https://zedavlod.uz",cap:{uz:"Xususiy maktab",ru:"Частная школа"}},
+  {u:"https://ctnlc.uz",cap:{uz:"Til markazi",ru:"Языковой центр"}},
+  {u:"https://pangea8.com",cap:{uz:"Ta'lim platformasi",ru:"Обр. платформа"}},
+  {u:"https://flarestamina.com",cap:{uz:"Testlar platformasi",ru:"Платформа тестов"}},
+  {u:"https://maqsudjon.com",cap:{uz:"Shaxsiy portfolio",ru:"Личное портфолио"}}
+];
+let devI=0,devTimer,devFrames=[];
+const stage=document.getElementById('dStage'),dUrl=document.getElementById('dUrl'),dOpen=document.getElementById('dOpen'),dCap=document.getElementById('dCap'),dDots=document.getElementById('dDots');
+function scaleFrame(f){f.style.transform='scale('+(stage.clientWidth/1440)+')';}
+function ensureFrame(i){
+  if(devFrames[i])return devFrames[i];
+  const f=document.createElement('iframe');
+  f.setAttribute('loading','lazy'); f.setAttribute('scrolling','no'); f.setAttribute('tabindex','-1');
+  f.setAttribute('sandbox','allow-scripts allow-same-origin');
+  f.src=SITES[i].u; scaleFrame(f); stage.appendChild(f); devFrames[i]=f;
+  f.addEventListener('load',()=>{const l=stage.querySelector('.d-load'); if(l)l.style.display='none';});
+  return f;
+}
+function showDev(i){
+  devI=i=(i+SITES.length)%SITES.length;
+  ensureFrame(i);
+  devFrames.forEach((f,k)=>f&&f.classList.toggle('on',k===i));
+  dUrl.textContent=SITES[i].u; dOpen.href=SITES[i].u;
+  setDeviceCap();
+  [...dDots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+  // preload next
+  setTimeout(()=>ensureFrame((i+1)%SITES.length),700);
+}
+function setDeviceCap(){ if(dCap&&SITES[devI]) dCap.textContent=SITES[devI].cap[LANG]||SITES[devI].cap.uz; }
+function startDev(){clearInterval(devTimer);devTimer=setInterval(()=>showDev(devI+1),3600);}
+function initDev(){
+  SITES.forEach((s,k)=>{const d=document.createElement('i');d.addEventListener('click',()=>{showDev(k);startDev();});dDots.appendChild(d);});
+  showDev(0); startDev();
+  stage.addEventListener('mouseenter',()=>clearInterval(devTimer));
+  stage.addEventListener('mouseleave',startDev);
+  stage.addEventListener('click',()=>window.open(SITES[devI].u,'_blank'));
+  stage.style.cursor='pointer';
+  addEventListener('resize',()=>devFrames.forEach(f=>f&&scaleFrame(f)));
+  document.addEventListener('visibilitychange',()=>{document.hidden?clearInterval(devTimer):startDev();});
+}
+
+/* ===== work grid live previews (desktop, lazy) ===== */
+function initWorkPrev(){
+  if(innerWidth<=940) return; // mobil'da og'ir iframe yo'q — chiroyli placeholder qoladi
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const box=e.target, url=box.dataset.src; if(!url||box.dataset.done)return;
+      box.dataset.done=1;
+      const f=document.createElement('iframe');
+      f.setAttribute('loading','lazy');f.setAttribute('scrolling','no');f.setAttribute('tabindex','-1');
+      f.setAttribute('sandbox','allow-scripts allow-same-origin'); f.src=url;
+      f.style.transform='scale('+(box.clientWidth/1440)+')';
+      f.addEventListener('load',()=>{const ph=box.querySelector('.w-ph'); if(ph)ph.style.opacity='0';ph&&(ph.style.transition='opacity .5s');});
+      box.appendChild(f);
+      io.unobserve(box);
+    });
+  },{rootMargin:"200px"});
+  document.querySelectorAll('.w-prev[data-src]').forEach(b=>io.observe(b));
+  addEventListener('resize',()=>document.querySelectorAll('.w-prev iframe').forEach(f=>{const b=f.parentElement;f.style.transform='scale('+(b.clientWidth/1440)+')';}));
+}
+
+/* ===== magnetic buttons ===== */
+function initMagnet(){
+  if(matchMedia('(hover:none)').matches)return;
+  document.querySelectorAll('.mag').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();
+      b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`;});
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+}
+/* ===== 3D tilt ===== */
+function initTilt(){
+  if(matchMedia('(hover:none)').matches)return;
+  document.querySelectorAll('.tilt').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();
+      const rx=((e.clientY-r.top)/r.height-.5)*-6, ry=((e.clientX-r.left)/r.width-.5)*6;
+      c.style.transform=`perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;});
+    c.addEventListener('mouseleave',()=>c.style.transform='');
+  });
+}
+
+/* ===== reveal + counters ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');
+    e.target.querySelectorAll?.('[data-count]').forEach(c=>{if(!c.dataset.done){c.dataset.done=1;countUp(c);}});
+    io.unobserve(e.target);}
+}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
 /* marquee */
-(function(){
-  const items=["zedavlod.uz","ctnlc.uz","pangea8.com","flarestamina.com","maqsudjon.com"];
-  const one=items.map(x=>`<span class="marq-item">${x}</span>`).join('');
-  document.getElementById('marq').innerHTML=one+one;
-})();
+(function(){const items=["zedavlod.uz","ctnlc.uz","pangea8.com","flarestamina.com","maqsudjon.com"];
+  const one=items.map(x=>`<span class="marq-item">${x}</span>`).join('');document.getElementById('marq').innerHTML=one+one;})();
 
-/* lang toggle */
-document.getElementById('lang').addEventListener('click',e=>{
-  const b=e.target.closest('button'); if(b) applyLang(b.dataset.lang);
-});
-
-/* mobile menu */
+/* lang + menu + nav */
+document.getElementById('lang').addEventListener('click',e=>{const b=e.target.closest('button');if(b){applyLang(b.dataset.lang);startRot();}});
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
 burger.addEventListener('click',()=>menu.classList.toggle('open'));
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
-
-/* nav shadow */
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
-
-/* reveal */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
 
 /* init */
 applyLang(localStorage.getItem('then_lang')||'uz');
+startRot(); initDev(); initWorkPrev(); initMagnet(); initTilt();
 </script>
 </body>
 </html>
